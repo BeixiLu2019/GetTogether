@@ -1,0 +1,11 @@
+<% @activities.each do |activity| %>
+<div>
+  <strong><%= activity.name %></strong>
+  <br>
+  <%= activity.address %>
+  <br>
+  Starting at: <%= activity.datetime %>
+  <br>
+  <%#= activity.participants.count %> are going
+</div>
+<% end %>
