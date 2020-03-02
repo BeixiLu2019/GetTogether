@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
     # For additional in app/views/devise/registrations/edit.html.erb
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
+
+  # Redirection after sign up  !!!
+  # def after_sign_up_path_for(resource)
+  #   edit_user_registration_path # <- Path you want to redirect the user to.
+  # end
 end
