@@ -2,11 +2,11 @@ class ActivitiesController < ApplicationController
 skip_before_action :authenticate_user!, only: [:index, :show]
 before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
-def index
-  @activities = Activity.all
-end
+  def index
+    @activities = Activity.all
+  end
 
-def show
+  def show
     # authorize @office
     @activity = Activity.find(params[:id])
     # authorize @booking
