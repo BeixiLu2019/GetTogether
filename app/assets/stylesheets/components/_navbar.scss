@@ -10,3 +10,29 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar {
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.mr-auto {
+  justify-content: space-between;
+}
+
+.navbar-nav {
+  justify-content: space-between;
+}
+
+.nav-item {
+  color: gray;
+}
+
+.nav-link {
+  color: gray
+}
+
+.active {
+  color: black;
+}
