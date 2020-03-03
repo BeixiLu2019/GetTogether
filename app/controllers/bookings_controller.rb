@@ -16,7 +16,6 @@ def create
   @booking.save
   redirect_to activity_path(params[:activity_id])
   else
-    flash.now[:alert] = "No more spaces left"
     redirect_to activity_path(@activity)
   end
   # else
