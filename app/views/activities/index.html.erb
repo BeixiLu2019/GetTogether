@@ -1,11 +1,22 @@
 <% @activities.each do |activity| %>
 <div>
-  <strong><%= link_to activity.name, activity_path(activity) %></strong>
-  <br>
-  <%= activity.address %>
-  <br>
-  Starting at: <%= activity.datetime %>
-  <br>
-  <%#= activity.participants.count %> are going
-</div>
+
+  <li>
+    <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
+    <br>
+    <% activity.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
+    <% end %>
+    <br>
+
+    Starting at: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+    <br>
+    <%= activity.address %>
+    <br>
+    <%#= activity.participants.count %> are going
+  </li>
+
 <% end %>
+</div>
+
+
