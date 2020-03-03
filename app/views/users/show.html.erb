@@ -1,8 +1,8 @@
-<h1>Username: <%= @user.username %> </h1>
-<p>First name: <%= @user.first_name %></p>
-<p>Last name: <%= @user.last_name %></p>
-<p>Birthday: <%= @user.birthday %></p>
-<p>Email: <%= @user.email %></p>
-<p>Bio: <%= @user.bio %></p>
-<p>Interest: <%= @user.interest %></p>
+<h1>Username: <%= current_user.username %> </h1>
+<p>First name: <%= current_user.first_name %></p>
+<p>Last name: <%= current_user.last_name %></p>
+<p>Birthday: <%= current_user.birthday %></p>
+<p>Email: <%= current_user.email %></p>
+<p>Bio: <%= current_user.bio %></p>
+<p>Interest: <%= current_user.interest %></p>
 <p><%= link_to "Edit", edit_user_registration_path %></p>
