@@ -8,13 +8,17 @@ def new
 end
 
 def create
-
+  if @activity.capacity - @activity.bookings.count > 0
   @booking = Booking.new()
   @booking.activity_id = params[:activity_id]
   @booking.user_id = current_user.id
   # authorize @booking
   @booking.save
   redirect_to activity_path(params[:activity_id])
+  else
+    flash.now[:alert] = "No more spaces left"
+    redirect_to activity_path(@activity)
+  end
   # else
   #   render :new
   # end
@@ -27,7 +31,7 @@ end
 
   def destroy
     @booking = Booking.find(params[:id])
-    @office = @booking.office_id
+    @activity = @booking.activity_id
     @booking.destroy
     # authorize @booking
     redirect_to activities_path
