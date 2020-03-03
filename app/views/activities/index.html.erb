@@ -1,6 +1,6 @@
 <% @activities.each do |activity| %>
 <div>
-  <strong><%= activity.name %></strong>
+  <strong><%= link_to activity.name, activity_path(activity) %></strong>
   <br>
   <%= activity.address %>
   <br>
