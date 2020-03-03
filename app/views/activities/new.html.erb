@@ -1,8 +1,9 @@
+<div>
 <h3>Create a new activity: </h3>
   <%= simple_form_for @activity do |f| %>
     <%= f.input :name, label: 'name of the activity' %>
     <%= f.input :address, label: 'address' %>
-    <%= f.input :category, label: 'category of the activity' %>
+    <%= f.input :category, label: 'category of the activity', :collection => %w[sports food&drinks nightlife culture nature wellness networking learning] %>
     <%= f.input :description, label: 'description of the activity' %>
     <%= f.input :datetime, label: 'datetime' %>
     <%= f.input :capacity, label: 'maximum capacity of the activity' %>
@@ -10,3 +11,6 @@
     <br>
     <%= f.button :submit, class:"btn btn-ghost btn-lg btn-block" %>
   <% end %>
+<br>
+<br>
+</div>

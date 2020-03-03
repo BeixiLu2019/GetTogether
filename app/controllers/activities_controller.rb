@@ -1,10 +1,20 @@
 class ActivitiesController < ApplicationController
-skip_before_action :authenticate_user!, only: [:index, :show]
-before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
     @activities = Activity.all
+    # Mapbox Code
+    @activities = Activity.geocoded #returns activitys with coordinates
+    @markers = @activities.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
+      }
+    end
   end
+  # Mapbox Code
 
   def show
     # authorize @office
@@ -20,11 +30,13 @@ before_action :set_activity, only: [:show, :edit, :update, :destroy]
   end
 
   def create
+    # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)
     @activity.user = current_user
-    # authorize @office
-    @activity.save
-    redirect_to activity_path(@activity)
+    # authorize @activity
+    if @activity.save
+      redirect_to activity_path(@activity)
+    end
   end
 
   def edit
@@ -43,7 +55,7 @@ before_action :set_activity, only: [:show, :edit, :update, :destroy]
     redirect_to activities_path # to be updated
   end
 
-private
+  private
 
   def set_activity
     @activity = Activity.find(params[:id])

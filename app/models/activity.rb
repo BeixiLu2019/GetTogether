@@ -10,5 +10,6 @@ class Activity < ApplicationRecord
   validates :category, presence: true
   validates :capacity, presence: true
   validates :datetime, presence: {message: "Date cannot be blank."}
-
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 end
