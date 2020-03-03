@@ -7,12 +7,22 @@
 Starting at: <%= @activity.datetime %>
 <%= @activity.category %>
 <br>
-Hosted by: <strong><%#= @activity.username %></strong>
+Hosted by: <strong><%= @activity.user.username %></strong>
 <br>
 Participants:
 <%#= link_to "contact Organizer", chatroom_path %>
 <!-- update the link of the chatroom -->
 activity
 
+<br>
+<h1>Confirm Attendance to <%= @activity.name %> </h1>
+  <div class="form">
+    <%= simple_form_for([@activity, @booking]) do |f| %>
+      <%#= f.input :user_id, label: 'user id' %>
+      <%#= f.input :activity_id, label: 'activity id' %>
+      <br>
+      <%= f.button :submit, class:"btn btn-ghost btn-lg btn-block" %>
+    <% end %>
+  </div>
 
 <%#= link_to "join now!",  %>
