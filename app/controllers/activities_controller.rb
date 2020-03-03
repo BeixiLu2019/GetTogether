@@ -27,21 +27,21 @@ before_action :set_activity, only: [:show, :edit, :update, :destroy]
     redirect_to activity_path(@activity)
   end
 
-  # def edit
-  #   authorize @activiy
-  # end
+  def edit
+    #authorize @activity
+  end
 
-  # def update
-  #   authorize @activiy
-  #   @activiy.update(activiy_params)
-  #   redirect_to activiy_path(@activiy)
-  # end
+  def update
+    #authorize @activity
+    @activity.update(activity_params)
+    redirect_to activity_path(@activity)
+  end
 
-  # def destroy
-  #   authorize @activiy
-  #   @activiy.destroy
-  #   redirect_to activiys_path
-  # end
+  def destroy
+    #authorize @activity
+    @activity.destroy
+    redirect_to activities_path # to be updated
+  end
 
 private
 
