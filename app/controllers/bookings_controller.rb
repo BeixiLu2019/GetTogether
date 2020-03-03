@@ -4,15 +4,17 @@ class BookingsController < ApplicationController
 def new
   @booking = Booking.new
   # authorize @booking
+  create
 end
 
 def create
-  @booking = Booking.new(booking_params)
-  @booking.activity_id = @activity.id
+
+  @booking = Booking.new()
+  @booking.activity_id = params[:activity_id]
   @booking.user_id = current_user.id
   # authorize @booking
   @booking.save
-  redirect_to booking_path(@booking)
+  redirect_to activity_path(params[:activity_id])
   # else
   #   render :new
   # end
@@ -27,8 +29,8 @@ end
     @booking = Booking.find(params[:id])
     @office = @booking.office_id
     @booking.destroy
-    authorize @booking
-    redirect_to offices_path
+    # authorize @booking
+    redirect_to activities_path
   end
 
   private

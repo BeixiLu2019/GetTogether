@@ -3,26 +3,31 @@
 <p><%= @activity.address %></p>
  <!-- ? miles away -->
 <p>About:  <%= @activity.description %></p>
+
 # Make code more beautyful please. No one knows what UTC is
-Starting at: <%= @activity.datetime %>
+<br>Starting at: <%= @activity.datetime %>
 <%= @activity.category %>
 <br>
 Hosted by: <strong><%= @activity.user.username %></strong>
 <br>
-Participants:
+Capacity: <%= @activity.capacity %>
+Spaces left: <%= @activity.capacity - @activity.bookings.sum %>
+
 <%#= link_to "contact Organizer", chatroom_path %>
 <!-- update the link of the chatroom -->
-activity
 
 <br>
+<br>
 <h1>Confirm Attendance to <%= @activity.name %> </h1>
-  <div class="form">
-    <%= simple_form_for([@activity, @booking]) do |f| %>
+<%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Confirm<% end %>
+
+  <!-- <div class="form">
+    <%#= simple_form_for([@activity, @booking]) do |f| %>
       <%#= f.input :user_id, label: 'user id' %>
       <%#= f.input :activity_id, label: 'activity id' %>
       <br>
-      <%= f.button :submit, class:"btn btn-ghost btn-lg btn-block" %>
-    <% end %>
-  </div>
+      <%#= f.button :submit, class:"btn btn-ghost btn-lg btn-block" %>
+    <%# end %>
+  </div> -->
 
 <%#= link_to "join now!",  %>
