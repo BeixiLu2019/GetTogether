@@ -1,5 +1,6 @@
 class Activity < ApplicationRecord
   belongs_to :user
+  has_many :bookings, dependent: :destroy
   validates :datetime, presence: true
   # geocoded_by :address
   # has_many photos for cloudinary ...
