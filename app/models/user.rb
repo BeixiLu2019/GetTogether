@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  has_one_attached :photo
   has_many :activites
   has_many :bookings
   validates :email, presence: true, format: { with: /\A.*@.*\.com\z/ }, uniqueness: true
