@@ -3,7 +3,17 @@ skip_before_action :authenticate_user!, only: [:index, :show]
 before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    @activities = Activity.all
+    if params[:address].nil?
+      @activities = Activity.all
+    else
+      params[:address].present?
+      # results = Geocoder.near(params[:query])
+      # results.first.coordinates
+      @activities = Activity.near(params[:address], 5)
+
+    end
+
+    # @activities_geo = @activities.geocoded
   end
 
   def show

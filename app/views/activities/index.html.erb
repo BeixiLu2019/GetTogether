@@ -1,8 +1,24 @@
+<!-- <input type=”text” name=”query” id=”query” placeholder=”Find an event”>
+<input type=”submit” name=”commit” value=“Search”> -->
+
+<%= form_tag activities_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Please sth"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<%end%>
+
 <% @activities.each do |activity| %>
 <div>
   <strong><%= link_to activity.name, activity_path(activity) %></strong>
   <br>
   <%= activity.address %>
+  <br>
+  <%= activity.description %>
+  <br>
+  <%= activity.category %>
   <br>
   Starting at: <%= activity.datetime %>
   <br>
