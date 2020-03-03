@@ -1,5 +1,6 @@
 <% @activities.each do |activity| %>
 <div>
+
   <li>
     <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
     <br>
@@ -14,6 +15,7 @@
     <br>
     <%#= activity.participants.count %> are going
   </li>
+
 <% end %>
 </div>
 

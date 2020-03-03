@@ -55,5 +55,4 @@ private
     params.require(:activity).permit(:datetime, :name, :capacity, :address, :description, :category, :user_id, photos: [])
   end
 
-
 end
