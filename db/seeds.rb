@@ -88,11 +88,21 @@ Activity.create!(
   )
 
 Activity.create!(
+  name: 'Tennis in Kreuzberg',
+  description: 'Move your body with me playing tennis. I am not very good. ',
+  address: "Cantianstr. 24, 10437 Berlin",
+  category: "sports",
+  datetime: DateTime.new(2020, 06, 4, 18, 30, 0),
+  capacity: 2,
+  user_id: User.first.id,
+  )
+
+Activity.create!(
   name: 'Bouldering at Berta Block',
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "fitness",
-  datetime: DateTime.new(2020, 03, 4, 16, 30, 0),
+  datetime: DateTime.new(2020, 05, 4, 16, 30, 0),
   capacity: 5,
   user_id: User.first.id + 1)
 
@@ -110,7 +120,7 @@ Activity.create!(
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
   category: "food",
-  datetime: DateTime.new(2020, 03, 4, 9, 30, 0),
+  datetime: DateTime.new(2020, 04, 3, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
 
@@ -133,23 +143,26 @@ Booking.create!(
   user_id: User.first.id + 3,
   )
 
+Booking.create!(
+  activity_id: Activity.first.id,
+  user_id: (User.first.id + 1),
+  )
+
 
 Booking.create!(
-  activity_id: Activity.first.id + 1,
+  activity_id: Activity.first.id + 2,
   user_id: User.first.id,
   )
 
 Booking.create!(
-  activity_id: Activity.first.id + 1,
+  activity_id: Activity.first.id + 2,
   user_id: User.first.id + 2,
   )
 
 Booking.create!(
-  activity_id: Activity.first.id + 1,
+  activity_id: Activity.first.id + 2,
   user_id: User.first.id + 3,
   )
-
-
 
 Booking.create!(
   activity_id: Activity.last.id - 1,

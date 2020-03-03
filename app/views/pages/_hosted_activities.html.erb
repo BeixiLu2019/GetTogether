@@ -1,0 +1,33 @@
+<% j = 0 %>
+<% current_user.activities.each do |activity| %>
+  <% if activity.datetime > DateTime.now() %>
+    <% j += 1 %>
+  <% end %>
+<% end %>
+
+<h2>You currently have <%= pluralize j, "activity"%> upcoming: </h2>
+<br>
+
+  <div class="cards cards-dashboard">
+    <% if j == 0  %>
+    <p> <%= link_to "Time to create your activity",  new_activity_path, class: "btn-ghost btn-dashboard" %> </p>
+    <% else %>
+      <% current_user.activities.each do |activity| %>
+        <% if activity.datetime > DateTime.now() %>
+          <div class="card-product dashboard-card">
+            <% if activity.photos.attached? %>
+              <%= cl_image_tag booking.activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+            <% else %>
+              <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+            <% end %>
+            <div class="card-product-infos">
+              <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
+              <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
+              <p class="dashboard-p"> Address: <%= activity.address %></p>
+              <%= link_to "🗑", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
