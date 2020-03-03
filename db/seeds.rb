@@ -69,9 +69,9 @@ Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "food",
-  datetime: DateTime.new(2020, 03, 4, 18, 30, 0),
+  datetime: DateTime.new(2019, 03, 4, 18, 30, 0),
   capacity: 3,
-  user_id: User.first.id )
+  user_id: User.first.id)
 
 Activity.create!(
   name: 'Bouldering at Berta Block',
@@ -80,7 +80,7 @@ Activity.create!(
   category: "fitness",
   datetime: DateTime.new(2020, 03, 4, 16, 30, 0),
   capacity: 5,
-  user_id: User.first.id + 1 )
+  user_id: User.first.id + 1)
 
 Activity.create!(
   name: 'Yoga at Jivamukti Yoga Berlin',
@@ -89,7 +89,7 @@ Activity.create!(
   category: "fitness",
   datetime: DateTime.new(2020, 03, 4, 9, 30, 0),
   capacity: 3,
-  user_id: User.last.id - 1 )
+  user_id: User.last.id - 1)
 
 Activity.create!(
   name: 'Dinner at mine',
@@ -98,7 +98,7 @@ Activity.create!(
   category: "food",
   datetime: DateTime.new(2020, 03, 4, 9, 30, 0),
   capacity: 3,
-  user_id: User.last.id )
+  user_id: User.last.id)
 
 puts 'Activities created'
 
