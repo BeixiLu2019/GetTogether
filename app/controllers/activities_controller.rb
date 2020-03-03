@@ -3,7 +3,8 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    @activities = Activity.all
+     @activities = policy_scope(Activity)
+    # @activities = Activity.all
     # Mapbox Code
     @activities = Activity.geocoded #returns activitys with coordinates
     @markers = @activities.map do |activity|
@@ -20,47 +21,45 @@ class ActivitiesController < ApplicationController
     # authorize @office
     @activity = Activity.find(params[:id])
     # authorize @booking
-
   end
 
   def new
     @user = current_user
     @activity = Activity.new
-    # authorize @activity
+    authorize @activity
+  end
+
+  def show
+    # authorize @booking
   end
 
   def create
     # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)
     @activity.user = current_user
-    # authorize @activity
-    if @activity.save
-      redirect_to activity_path(@activity)
-    end
+    authorize @activity
+    @activity.save
+    redirect_to activity_path(@activity)
   end
 
   def edit
-    #authorize @activity
   end
 
   def update
-    #authorize @activity
     @activity.update(activity_params)
     redirect_to activity_path(@activity)
   end
 
   def destroy
-    #authorize @activity
     @activity.destroy
-    redirect_to activities_path # to be updated
+    redirect_to activities_path
   end
 
   private
 
   def set_activity
     @activity = Activity.find(params[:id])
-    # for when we install Pundit :
-    # authorize @office
+    authorize @activity
   end
 
   def activity_params
