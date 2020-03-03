@@ -1,3 +1,4 @@
+
 <h1><strong> <%= @activity.name %> </strong></h1>
 <br>
 <% @activity.photos.each do |photo| %>
@@ -12,21 +13,29 @@ Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 Category: <%= @activity.category %>
 <br>
 Hosted by: <strong><%= link_to @activity.user.username, user_path(@activity.user) %></strong>
-<br>
-Participants:
 <%#= link_to "users", chatroom_path %>
 <!-- update the link of the chatroom -->
 <br>
 Capacity: <%= @activity.capacity %>
 <br>
 Spaces left: <%= @activity.capacity - @activity.bookings.count %>
-
 <p>About:  <%= @activity.description %></p>
-<%= link_to "edit this event", edit_activity_path %>
+
+<% if policy(@activity).destroy? %>
+<%= link_to "edit this event", edit_activity_path %> |
 <%= link_to "delete this event", activity_path, method: :delete, data: { confirm: "You sure?" } %>
+<% end %>
 
-
-<h1>Confirm Attendance to <%= @activity.name %> </h1>
-<%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Confirm<% end %>
+<% if !policy(@activity).update? %>
+  <h1>Confirm Attendance to <%= @activity.name %> </h1>
+  <%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+<% end %>
 
 <%#= link_to "join now!",  %>
+<%# flash.each do |key, value| %>
+  <!-- <div class="alert"><%#= value %></div> -->
+<%# end %>
+
+<br>
+<br>
+<%= link_to "Back", :back %>

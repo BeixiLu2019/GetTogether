@@ -7,7 +7,9 @@
           <%= link_to "Activities", activities_path, class: "nav-link" %>
         </div>
         <div class="nav-item">
+          <%# if policy(Activity).create? %>
           <%= link_to "Create Acitivity", new_activity_path, class: "nav-link" %>
+          <%# end %>
         </div>
       <% if user_signed_in? %>
         <div class="nav-item">
