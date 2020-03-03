@@ -6,6 +6,8 @@
   <br>
   Starting at: <%= activity.datetime %>
   <br>
-  <%#= activity.participants.count %> are going
+  Capacity: <%= activity.capacity %>
+  <br>
+  <%= activity.bookings.count %> are going
 </div>
 <% end %>
