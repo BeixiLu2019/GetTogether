@@ -1,0 +1,24 @@
+
+<div class="main_container" id="dashboard">
+  <div class="dashboard-nav outsidebox">
+    <div class="dashboard-nav nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="dashboard-nav nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">My bookings</a>
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">My offices</a>
+    </div>
+  </div>
+
+
+  <div class="tab-content" id="v-pills-tabContent">
+    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+      <%= render "upcoming_activities" %>
+    </div>
+    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+      <%= render "past_activities" %>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+<p id="notice"><%= notice %></p>

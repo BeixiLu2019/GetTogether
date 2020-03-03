@@ -1,0 +1,28 @@
+ <h2>You currently have <%= pluralize current_user.bookings.size, "booking"%> upcoming: </h2>
+ <br>
+
+  <div class="cards cards-dashboard">
+
+    <% if current_user.bookings.first.nil? %>
+    <p class="no-offices-text"> Book your office space now! </p>
+    <p> <%= link_to "Browse Offices", offices_path, class: "btn-ghost btn-dashboard" %> </p>
+    <% else %>
+      <% current_user.bookings.each do |booking| %>
+        <div class="card-product dashboard-card">
+          <% if booking.office.photos.attached? %>
+            <%= cl_image_tag booking.office.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+          <% else %>
+            <img src="http://cdn.home-designing.com/wp-content/uploads/2018/06/industrial-style-home-office.jpg" />
+            <% end %>
+          <div class="card-product-infos">
+            <h2 class="dashboard_h2"><%= link_to booking.office.name, booking_path(booking) %></h2>
+            <p class="dashboard-p"> Date: <%=booking.date %> for <%= booking.number_of_guests %> persons </p>
+            <p class="dashboard-p"> Address: <%= booking.office.address %></p>
+            <p class="dashboard-p">Total Price:<%= booking.office.price %> Euros</p>
+            <br>
+            <%= link_to "🗑", booking_path(booking), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
