@@ -6,7 +6,9 @@
 <% end %>
 <br>
 <p><%= @activity.address %></p>
+
 <!-- ? miles away -->
+
 
 Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 <br>
@@ -33,6 +35,24 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <% if policy(@activity).destroy? %>
 <%= link_to "edit this event", edit_activity_path %> |
 <%= link_to "delete this event", activity_path, method: :delete, data: { confirm: "You sure?" } %>
+<% end %>
+
+<!-- <%# if @booking.errors.any? %>
+  <ul>
+  <%# @booking.errors.full_messages.each do |message| %>
+    <li><%#= message %></li>
+  <%# end %>
+  </ul>
+<%# end %> -->
+
+<% if @booking.errors.any? %>
+<div class="alert">
+<% @booking.errors.full_messages.each do |message| %>
+  <span>😱 <%= message %>
+  <a data-dismiss="alert" aria-label="Close">
+    <i class="fas fa-times"></i> </span>
+<% end %>
+</div>
 <% end %>
 
 <% if !policy(@activity).update? %>

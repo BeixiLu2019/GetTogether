@@ -4,14 +4,19 @@ class BookingPolicy < ApplicationPolicy
       scope.all
     end
   end
-
+  
+  def index?
+      true
+    end
+  
   def new?
     create?
   end
 
   def create?
     # !record.activity.user == user
-    record.user == user
+    # record.user == user
+    true
   end
 
   def show?
