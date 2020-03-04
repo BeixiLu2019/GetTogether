@@ -76,6 +76,7 @@ User.create!(
 puts 'Users created'
 
 puts 'creating Activities'
+
 Activity.create!(
   name: 'Dinner at Tim Raue',
   description: 'Join me at the best restaurant in Berlin!',
@@ -113,6 +114,7 @@ Activity.create!(
   datetime: DateTime.new(2020, 03, 4, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
+
 
 puts 'Activities created'
 
@@ -180,7 +182,6 @@ Booking.create!(
   activity_id: Activity.last.id,
   user_id: User.first.id + 2,
   )
-
 
 
 puts 'Bookings created...'

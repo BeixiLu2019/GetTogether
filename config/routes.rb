@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard', as: :dashboard
 
   resources :activities do
+    resources :search, only: [:index]
     resources :bookings, only: [:create, :new]
   end
   resources :bookings, only: [:destroy, :show]
   resources :users, only: :show
+
 end

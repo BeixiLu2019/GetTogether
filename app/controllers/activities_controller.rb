@@ -3,6 +3,14 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
+
+    if params[:address].nil?
+      @activities = Activity.all
+    else
+      params[:address].present?
+      @activities = Activity.near(params[:address], 5)
+    end
+
      @activities = policy_scope(Activity)
     # @activities = Activity.all
     # Mapbox Code
@@ -14,6 +22,7 @@ class ActivitiesController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
       }
     end
+
   end
   # Mapbox Code
 

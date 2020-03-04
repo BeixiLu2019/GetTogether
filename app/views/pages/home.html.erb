@@ -1,0 +1,12 @@
+<div class="container">
+<br>
+<h1>Get Together! </h1>
+<h2>Find new people to join you</h2>
+
+<br>
+
+<%= simple_form_for :search, url: activities_path, method: "get" do |f| %>
+  <input class="address form-control" type="text" name="address" id="friend_places" placeholder="Please type in your Address" />
+  <p>  <%= f.submit "Search", class: "btn btn-primary" %> within 5 kms </p>
+<% end %>
+<br>
