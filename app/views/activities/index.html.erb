@@ -1,24 +1,13 @@
 
 <div class="container">
-<%= simple_form_for :search, url: activities_path, method: "get" do |f| %>
-  <input class="address form-control" type="text" name="address" id="friend_places" placeholder="Please type in your Address" />
-  <p>  <%= f.submit "Search in a different Location", class: "btn btn-primary" %> within 5 kms </p>
+
+<%= form_tag activities_path, method: :get do %>
+    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search for a specific address within a 5km radius" %>
+    <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
+    <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
+    <%= select_tag(:category, options_for_select(["food", "nightlife", "culture", "nature", "wellness", "networking", "learning"])) %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
-
-  <p> <%= form_tag activities_path, method: :get do %>
-    <%= text_field_tag :query,
-    params[:query],
-    class: "form-control",
-      placeholder: "Search for a specific activity"
-      %>
-      <%= submit_tag "Search", class: "btn btn-primary" %>
-      <%end%>
-
-      <% @category = ["sports" "food&drinks" "nightlife" "culture" "nature" "wellness" "networking" "learning"]%>
-      <%= form_tag(:action => :index) do %>
-      <%= select_tag "category", options_for_select(@category) %>
-      <%= submit_tag "Filter by Category" %>
-    <% end %> </p>
 
 
 <div>
@@ -38,6 +27,8 @@
       <%= activity.address %>
       <br>
       Capacity: <%= activity.capacity %>
+       <br>
+      Capacity: <%= activity.category %>
       <br>
       <%= activity.bookings.count %> are going
       <br>
@@ -54,6 +45,12 @@
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
 ></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 </div>
 
 
