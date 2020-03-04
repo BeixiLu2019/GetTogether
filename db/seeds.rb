@@ -161,10 +161,10 @@ Booking.create!(
   user_id: User.first.id + 1,
   )
 
-Booking.create!(
-  activity_id: Activity.first.id + 2,
-  user_id: User.first.id + 1,
-  )
+# Booking.create!(
+#   activity_id: Activity.first.id + 2,
+#   user_id: User.first.id + 1,
+#   )
 
 Booking.create!(
   activity_id: Activity.last.id - 1,
