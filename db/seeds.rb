@@ -144,7 +144,7 @@ Booking.create!(
   )
 
 Booking.create!(
-  activity_id: Activity.first.id,
+  activity_id: Activity.first.id + 1,
   user_id: (User.first.id + 1),
   )
 
