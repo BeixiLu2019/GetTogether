@@ -7,7 +7,6 @@ class ActivitiesController < ApplicationController
       @activities = policy_scope(Activity).geocoded
     elsif params[:address].present?
       @activities = policy_scope(Activity).geocoded.near(params[:address], 5)
-      # raise
       @activities = @activities.search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
       @activities = @activities.where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
     else
@@ -19,7 +18,6 @@ class ActivitiesController < ApplicationController
         lat: activity.latitude,
         lng: activity.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
-        #id: activity.id
       }
     end
 

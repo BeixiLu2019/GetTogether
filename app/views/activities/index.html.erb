@@ -9,28 +9,31 @@
   <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
 
-
   <div>
-
     <% @activities.each do |activity| %>
-    <br>
-    <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
+      <br>
+      <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
 
-    <br>
-    <% activity.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
-    <% end %>
-    <br>
-    When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
-    <br>
-    <%= activity.address %>
-    <br>
-    Capacity: <%= activity.capacity %>
-    <br>
-    Capacity: <%= activity.category %>
-    <br>
-    <%= activity.bookings.count %> are going
-    <br>
+      <br>
+      <% activity.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
+      <% end %>
+      <br>
+      When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+      <br>
+      <% if params[:address].present? %>
+      Where: <%= activity.address %> |
+      <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
+      <% else %>
+      Where: <%= activity.address %>
+      <% end %>
+      <br>
+      Capacity: <%= activity.capacity %>
+      <br>
+      Capacity: <%= activity.category %>
+      <br>
+      <%= activity.bookings.count %> are going
+      <br>
     <% end %>
     <br>
 
