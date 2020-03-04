@@ -1,3 +1,4 @@
+
 <div class="container">
 <%= simple_form_for :search, url: activities_path, method: "get" do |f| %>
   <input class="address form-control" type="text" name="address" id="friend_places" placeholder="Please type in your Address" />
@@ -19,19 +20,40 @@
       <%= submit_tag "Filter by Category" %>
     <% end %> </p>
 
-      <% @activities.each do |activity| %>
-        <div>
-          <strong><%= link_to activity.name, activity_path(activity) %></strong>
-          <br>
-          <%= activity.address %>
-          <br>
-          <%= activity.description %>
-          <br>
-          <%= activity.category %>
-          <br>
-          Starting at: <%= activity.datetime %>
-          <br>
-      People are already going
-      </div>
-    <% end %>
+
+<div>
+
+  <% @activities.each do |activity| %>
+      <br>
+      <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
+
+      <br>
+      <% activity.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
+      <% end %>
+      <br>
+
+      When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+      <br>
+      <%= activity.address %>
+      <br>
+      Capacity: <%= activity.capacity %>
+      <br>
+      <%= activity.bookings.count %> are going
+      <br>
+  <% end %>
+  <br>
+
 </div>
+<br>
+
+<div
+  id="map"
+  style="width: 100%;
+  height: 600px;"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+></div>
+</div>
+
+

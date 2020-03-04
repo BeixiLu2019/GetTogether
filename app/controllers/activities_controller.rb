@@ -1,69 +1,78 @@
 class ActivitiesController < ApplicationController
-skip_before_action :authenticate_user!, only: [:index, :show]
-before_action :set_activity, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
+
     if params[:address].nil?
       @activities = Activity.all
     else
       params[:address].present?
-      # results = Geocoder.near(params[:query])
-      # results.first.coordinates
       @activities = Activity.near(params[:address], 5)
-
     end
 
-    # @activities_geo = @activities.geocoded
+     @activities = policy_scope(Activity)
+    # @activities = Activity.all
+    # Mapbox Code
+    @activities = Activity.geocoded #returns activitys with coordinates
+    @markers = @activities.map do |activity|
+      {
+        lat: activity.latitude,
+        lng: activity.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
+      }
+    end
+
   end
+  # Mapbox Code
 
   def show
     # authorize @office
     @activity = Activity.find(params[:id])
     # authorize @booking
-
   end
 
   def new
     @user = current_user
     @activity = Activity.new
-    # authorize @activity
+    authorize @activity
+  end
+
+  def show
+    # authorize @booking
   end
 
   def create
+    # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)
     @activity.user = current_user
-    # authorize @office
+    authorize @activity
     @activity.save
     redirect_to activity_path(@activity)
   end
 
-  # def edit
-  #   authorize @activiy
-  # end
+  def edit
+  end
 
-  # def update
-  #   authorize @activiy
-  #   @activiy.update(activiy_params)
-  #   redirect_to activiy_path(@activiy)
-  # end
+  def update
+    @activity.update(activity_params)
+    redirect_to activity_path(@activity)
+  end
 
-  # def destroy
-  #   authorize @activiy
-  #   @activiy.destroy
-  #   redirect_to activiys_path
-  # end
+  def destroy
+    @activity.destroy
+    redirect_to activities_path
+  end
 
-private
+  private
 
   def set_activity
     @activity = Activity.find(params[:id])
-    # for when we install Pundit :
-    # authorize @office
+    authorize @activity
   end
 
   def activity_params
     params.require(:activity).permit(:datetime, :name, :capacity, :address, :description, :category, :user_id, photos: [])
   end
-
 
 end

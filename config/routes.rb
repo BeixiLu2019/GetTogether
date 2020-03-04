@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "registrations" }
   root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'dashboard', to: 'pages#dashboard', as: :dashboard
 
   resources :activities do
-  resources :search, only: [:index]
+    resources :search, only: [:index]
+    resources :bookings, only: [:create, :new]
   end
+  resources :bookings, only: [:destroy, :show]
   resources :users, only: :show
 
 end

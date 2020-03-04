@@ -1,0 +1,5 @@
+<h2><%= activity.name %></h2>
+  <% activity.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 150, width: 150, crop: :fit %>
+  <% end %>
+
