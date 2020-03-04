@@ -3,10 +3,17 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-     @activities = policy_scope(Activity)
-    # @activities = Activity.all
+    if params[:address].nil?
+      @activities = policy_scope(Activity).geocoded
+    elsif params[:address].present?
+      @activities = policy_scope(Activity).geocoded.near(params[:address], 5)
+      # raise
+      @activities = @activities.search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
+      @activities = @activities.where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
+    else
+      @activities = policy_scope(Activity).geocoded #returns activitys with coordinates
+    end
     # Mapbox Code
-    @activities = Activity.geocoded #returns activitys with coordinates
     @markers = @activities.map do |activity|
       {
         lat: activity.latitude,
@@ -15,6 +22,7 @@ class ActivitiesController < ApplicationController
         #id: activity.id
       }
     end
+
   end
   # Mapbox Code
 

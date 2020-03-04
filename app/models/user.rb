@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :bookings, dependent: :destroy
   validates :email, presence: true, format: { with: /\A.*@.*\.com\z/ }, uniqueness: true
+
 end
