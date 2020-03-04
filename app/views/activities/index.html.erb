@@ -14,9 +14,9 @@
       <%= submit_tag "Search", class: "btn btn-primary" %>
       <%end%>
 
-      <% @categories = ["sports", "food", "nightlife", "helath"]%>
+      <% @category = ["sports" "food&drinks" "nightlife" "culture" "nature" "wellness" "networking" "learning"]%>
       <%= form_tag(:action => :index) do %>
-      <%= select_tag "category", options_for_select(@categories) %>
+      <%= select_tag "category", options_for_select(@category) %>
       <%= submit_tag "Filter by Category" %>
     <% end %> </p>
 
