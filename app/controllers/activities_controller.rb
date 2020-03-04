@@ -3,7 +3,6 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    # raise
     if params[:address].nil?
       @activities = policy_scope(Activity).geocoded
     elsif params[:address].present?
