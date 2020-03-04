@@ -145,56 +145,56 @@ Booking.create!(
   user_id: User.first.id + 3,
   )
 
-Booking.create!(
-  activity_id: Activity.first.id + 1,
-  user_id: (User.first.id + 1),
-  )
+# Booking.create!(
+#   activity_id: Activity.first.id + 1,
+#   user_id: (User.first.id + 1),
+#   )
 
 
-Booking.create!(
-  activity_id: Activity.first.id + 2,
-  user_id: User.first.id,
-  )
+# Booking.create!(
+#   activity_id: Activity.first.id + 2,
+#   user_id: User.first.id,
+#   )
 
-Booking.create!(
-  activity_id: Activity.first.id + 2,
-  user_id: User.first.id + 2,
-  )
+# Booking.create!(
+#   activity_id: Activity.first.id + 2,
+#   user_id: User.first.id + 2,
+#   )
 
-Booking.create!(
-  activity_id: Activity.first.id + 2,
-  user_id: User.first.id + 3,
-  )
+# Booking.create!(
+#   activity_id: Activity.first.id + 2,
+#   user_id: User.first.id + 3,
+#   )
 
-Booking.create!(
-  activity_id: Activity.last.id - 1,
-  user_id: User.first.id,
-  )
+# Booking.create!(
+#   activity_id: Activity.last.id - 1,
+#   user_id: User.first.id,
+#   )
 
-Booking.create!(
-  activity_id: Activity.last.id - 1,
-  user_id: User.first.id + 1,
-  )
+# Booking.create!(
+#   activity_id: Activity.last.id - 1,
+#   user_id: User.first.id + 1,
+#   )
 
-Booking.create!(
-  activity_id: Activity.last.id - 1,
-  user_id: User.first.id + 3,
-  )
+# Booking.create!(
+#   activity_id: Activity.last.id - 1,
+#   user_id: User.first.id + 3,
+#   )
 
-Booking.create!(
-  activity_id: Activity.last.id,
-  user_id: User.first.id,
-  )
+# Booking.create!(
+#   activity_id: Activity.last.id,
+#   user_id: User.first.id,
+#   )
 
-Booking.create!(
-  activity_id: Activity.last.id,
-  user_id: User.first.id + 1,
-  )
+# Booking.create!(
+#   activity_id: Activity.last.id,
+#   user_id: User.first.id + 1,
+#   )
 
-Booking.create!(
-  activity_id: Activity.last.id,
-  user_id: User.first.id + 2,
-  )
+# Booking.create!(
+#   activity_id: Activity.last.id,
+#   user_id: User.first.id + 2,
+#   )
 
 
 puts 'Bookings created...'
