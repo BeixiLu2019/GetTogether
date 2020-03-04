@@ -7,6 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+# resource_type = "image"
+# type = "upload"
+# version = 1234567890
+# public_id = "fismpnq3zma80dc2ovjt"
+# format = "jpg"
+# signature = Cloudinary::Utils.api_sign_request({:public_id=>public_id,
+# :version=>version}, Cloudinary.config.api_secret)
+# photo = "#{resource_type}/#{type}/v#{version}/#{public_id}.#{format}##
+# {signature}"
+
+
+
 puts 'Cleaning booking database...'
 Booking.destroy_all
 
@@ -64,6 +76,7 @@ User.create!(
 puts 'Users created'
 
 puts 'creating Activities'
+
 Activity.create!(
   name: 'Dinner at Tim Raue',
   description: 'Join me at the best restaurant in Berlin!',
@@ -71,7 +84,9 @@ Activity.create!(
   category: "food",
   datetime: DateTime.new(2019, 03, 4, 18, 30, 0),
   capacity: 3,
-  user_id: User.first.id)
+  user_id: User.first.id,
+  # photos: ["cqmszae8rere14lnciwy"]
+  )
 
 Activity.create!(
   name: 'Bouldering at Berta Block',
@@ -99,6 +114,7 @@ Activity.create!(
   datetime: DateTime.new(2020, 03, 4, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
+
 
 puts 'Activities created'
 
@@ -166,7 +182,6 @@ Booking.create!(
   activity_id: Activity.last.id,
   user_id: User.first.id + 2,
   )
-
 
 
 puts 'Bookings created...'
