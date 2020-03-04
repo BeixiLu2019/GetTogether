@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :activity
+  has_many :reviews
   #validates :user, uniqueness: true
   validate :unique_activity
   validate :capacity_limit
@@ -16,4 +17,5 @@ class Booking < ApplicationRecord
       errors.add(:no_spaces, "left!")
     end
   end
+
 end

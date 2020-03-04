@@ -1,25 +1,15 @@
-class BookingPolicy < ApplicationPolicy
+class ReviewPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
-  
-  def index?
-      true
-    end
-  
-  def new?
-    create?
-  end
 
-  def create?
-    # !record.activity.user == user
-    # record.user == user
+  def new?
     true
   end
 
-  def show?
+  def create?
     true
   end
 
@@ -34,4 +24,5 @@ class BookingPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
 end

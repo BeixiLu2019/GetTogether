@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
 # Uncomment when you *really understand* Pundit!
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Redirection after sign up  !!!
   # def after_sign_up_path_for(resource)

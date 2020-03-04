@@ -9,6 +9,10 @@ class ActivitiesController < ApplicationController
       @activities = policy_scope(Activity).geocoded.near(params[:address], 5)
       @activities = @activities.search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
       @activities = @activities.where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
+    elsif params[:category].present?
+      @activities = policy_scope(Activity).where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
+    elsif params[:activity].present?
+      @activities = policy_scope(Activity).search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
     else
       @activities = policy_scope(Activity).geocoded #returns activitys with coordinates
     end
