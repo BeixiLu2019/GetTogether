@@ -1,19 +1,20 @@
 <div>
-<h3>Create a new activity: </h3>
+  <h3>Create a new activity: </h3>
   <%= simple_form_for @activity do |f| %>
-    <%= f.input :name, label: 'name of the activity' %>
-    <%= f.input :address, label: 'address' %>
-    <%= f.input :category, label: 'category of the activity', :collection => %w[sports food&drinks nightlife culture nature wellness networking learning] %>
-    <%= f.input :description, label: 'description of the activity' %>
-    <%= f.input :datetime, label: 'datetime' %>
-    <%= f.input :capacity, label: 'maximum capacity of the activity' %>
-    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-    <br>
-    <%= f.button :submit, class:"btn btn-ghost btn-lg btn-block" %>
-    <br>
-    <br>
-    <br>
+  <%= f.input :name, label: 'name of the activity' %>
+  <%= f.input :address, label: 'address' %>
+  <%= f.input :category, label: 'category of the activity', :collection => %w[sports food&drinks nightlife culture nature wellness networking learning] %>
+  <%= f.input :description, label: 'description of the activity' %>
+  <%= f.input :datetime, label: 'datetime' %>
+  <%= f.input :capacity, label: 'maximum capacity of the activity' %>
+  <%= f.input :photos, label: 'Upload images', as: :file, input_html: { multiple: true }%>
+  <br>
+  <%= f.button :submit, class:"btn btn-ghost btn-lg btn-block" %>
+  <br>
+  <br>
+  <br>
   <% end %>
-<br>
-<br>
+  <br>
+  <br>
 </div>
+

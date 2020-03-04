@@ -9,7 +9,6 @@
       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
       <% end %>
       <br>
-
       When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
       <br>
       <%= activity.address %>
@@ -20,18 +19,17 @@
       <br>
   <% end %>
   <br>
-
 </div>
 <br>
 
-<div
+<div class="card"
   id="map"
   style="width: 100%;
   height: 600px;"
   data-markers="<%= @markers.to_json %>"
   data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+
 ></div>
 
 <br>
 <br>
-
