@@ -7,7 +7,6 @@ class ActivitiesController < ApplicationController
       @activities = policy_scope(Activity).geocoded
     elsif params[:address].present?
       @activities = policy_scope(Activity).geocoded.near(params[:address], 5)
-      # raise
       @activities = @activities.search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
       @activities = @activities.where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
     elsif params[:category].present?
@@ -22,7 +21,7 @@ class ActivitiesController < ApplicationController
       {
         lat: activity.latitude,
         lng: activity.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity })
+        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
       }
     end
 
@@ -30,9 +29,11 @@ class ActivitiesController < ApplicationController
   # Mapbox Code
 
   def show
+
     # authorize @office
     @activity = Activity.find(params[:id])
-    # authorize @booking
+    @booking = Booking.new
+    #authorize @booking
   end
 
   def new
@@ -41,9 +42,7 @@ class ActivitiesController < ApplicationController
     authorize @activity
   end
 
-  def show
-    # authorize @booking
-  end
+
 
   def create
     # params[:search][:category] = params[:search][:category].reject(&:empty?)
