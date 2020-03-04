@@ -1,18 +1,16 @@
-<%= cl_image_tag("kropqnh5s4okwosfaest",
-      width: 400, height: 300, crop: :fill) %>
-
-<!-- for face detection -->
-<%= cl_image_tag("cqmszae8rere14lnciwy",
-      width: 150, height: 150, crop: :thumb, gravity: :face) %>
+<div class="container">
 <br>
+<h1>Get Together! </h1>
+<h2>Find new people to join you</h2>
 
 <br>
 
 <%= simple_form_for :search, url: activities_path, method: "get" do |f| %>
   <input class="address form-control" type="text" name="address" id="friend_places" placeholder="Please type in your Address" />
-  <button name="button" type="submit" class="btn btn-white">Submittt</button>
+  <p>  <%= f.submit "Search", class: "btn btn-primary" %> within 5 kms </p>
 <% end %>
 <br>
 <%= link_to "create a new activity", new_activity_path %>
 <br>
 <%= link_to "see all activities", activities_path %>
+</div>

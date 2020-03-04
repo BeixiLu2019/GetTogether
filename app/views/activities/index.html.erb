@@ -1,27 +1,37 @@
-<!-- <input type=”text” name=”query” id=”query” placeholder=”Find an event”>
-<input type=”submit” name=”commit” value=“Search”> -->
+<div class="container">
+<%= simple_form_for :search, url: activities_path, method: "get" do |f| %>
+  <input class="address form-control" type="text" name="address" id="friend_places" placeholder="Please type in your Address" />
+  <p>  <%= f.submit "Search in a different Location", class: "btn btn-primary" %> within 5 kms </p>
+<% end %>
 
-<%= form_tag activities_path, method: :get do %>
-  <%= text_field_tag :query,
+  <p> <%= form_tag activities_path, method: :get do %>
+    <%= text_field_tag :query,
     params[:query],
     class: "form-control",
-    placeholder: "Please sth"
-  %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<%end%>
+      placeholder: "Search for a specific activity"
+      %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+      <%end%>
 
-<% @activities.each do |activity| %>
-<div>
-  <strong><%= link_to activity.name, activity_path(activity) %></strong>
-  <br>
-  <%= activity.address %>
-  <br>
-  <%= activity.description %>
-  <br>
-  <%= activity.category %>
-  <br>
-  Starting at: <%= activity.datetime %>
-  <br>
-  <%#= activity.participants.count %> are going
+      <% @categories = ["sports", "food", "nightlife", "helath"]%>
+      <%= form_tag(:action => :index) do %>
+      <%= select_tag "category", options_for_select(@categories) %>
+      <%= submit_tag "Filter by Category" %>
+    <% end %> </p>
+
+      <% @activities.each do |activity| %>
+        <div>
+          <strong><%= link_to activity.name, activity_path(activity) %></strong>
+          <br>
+          <%= activity.address %>
+          <br>
+          <%= activity.description %>
+          <br>
+          <%= activity.category %>
+          <br>
+          Starting at: <%= activity.datetime %>
+          <br>
+      People are already going
+      </div>
+    <% end %>
 </div>
-<% end %>
