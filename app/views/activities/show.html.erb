@@ -7,6 +7,9 @@
 <br>
 <p><%= @activity.address %></p>
 
+<!-- ? miles away -->
+
+
 Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 <br>
 Category: <%= @activity.category %>
@@ -19,6 +22,15 @@ Capacity: <%= @activity.capacity %>
 <br>
 Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <p>About:  <%= @activity.description %></p>
+<ul>
+  <% @activity.bookings.each do |booking| %>
+  <li>
+    <% user = User.find(booking.user_id) %>
+    <%= link_to user.username, user_path(user.id) %>
+  </li>
+  <% end %>
+
+</ul>
 
 <% if policy(@activity).destroy? %>
 <%= link_to "edit this event", edit_activity_path %> |
@@ -44,13 +56,13 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <% end %>
 
 <% if !policy(@activity).update? %>
-  <h1>Confirm Attendance to <%= @activity.name %> </h1>
-  <%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+<h1>Want to join <%= @activity.name %>? Confirm now! </h1>
+<%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
 <% end %>
 
 <%#= link_to "join now!",  %>
 <%# flash.each do |key, value| %>
-  <!-- <div class="alert"><%#= value %></div> -->
+<!-- <div class="alert"><%#= value %></div> -->
 <%# end %>
 
 <br>
