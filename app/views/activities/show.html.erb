@@ -37,13 +37,6 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <%= link_to "delete this event", activity_path, method: :delete, data: { confirm: "You sure?" } %>
 <% end %>
 
-<!-- <%# if @booking.errors.any? %>
-  <ul>
-  <%# @booking.errors.full_messages.each do |message| %>
-    <li><%#= message %></li>
-  <%# end %>
-  </ul>
-<%# end %> -->
 
 <% if @booking.errors.any? %>
 <div class="alert">
@@ -55,15 +48,11 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 </div>
 <% end %>
 
-<% if !policy(@activity).update? %>
+<% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
 <h1>Want to join <%= @activity.name %>? Confirm now! </h1>
 <%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
 <% end %>
 
-<%#= link_to "join now!",  %>
-<%# flash.each do |key, value| %>
-<!-- <div class="alert"><%#= value %></div> -->
-<%# end %>
 
 <br>
 <br>
