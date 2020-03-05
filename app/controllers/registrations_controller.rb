@@ -1,6 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
   before_action :set_user, only: [:edit, :update]
-  
+
+  def edit
+  end
+
+  def update
+    authorize @user
+    @user.update(user_params)
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def set_user
