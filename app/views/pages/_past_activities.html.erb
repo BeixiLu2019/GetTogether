@@ -55,11 +55,11 @@
       Hosted by:
       <div class="participants">
         <% if current_user.photo.attached? %>
-        <%= link_to cl_image_tag(current_user.photo, class: "avatar"), user_path(current_user) %>
+        <%= link_to cl_image_tag(current_user.photo, class: "avatar"), user_path(user.id) %>
         <% else %>
         <div class="avartar-set">
           <%= link_to current_user.username, user_path(current_user) %>
-          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(current_user) %>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
           <% end %>
         </div>
       </div>
