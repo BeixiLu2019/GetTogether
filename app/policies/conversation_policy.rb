@@ -13,10 +13,10 @@ class ConversationPolicy < ApplicationPolicy
     #   create?
     # end
 
-    # def create?
-    #   # !record.activity.user == user
-    #   true
-    # end
+    def create?
+      # !record.activity.user == user
+      true
+    end
 
     # def show?
     #   true

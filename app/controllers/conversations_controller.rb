@@ -10,7 +10,11 @@ class ConversationsController < ApplicationController
   end
 
   def create
-    @conversation = Conversation.create!(conversation_params)
+    @conversation = Conversation.new
+    @conversation.activity_id = params[:activity_id].to_i
+    @conversation.recipient_id = Activity.find(params[:activity_id]).user_id
+    @conversation.sender_id = current_user.id
+    @conversation.save
     authorize @conversation
     redirect_to conversation_messages_path(@conversation)
   end
@@ -20,6 +24,7 @@ class ConversationsController < ApplicationController
 
   private
     def conversation_params
-      params.permit(:sender_id, :recipient_id, :activity_id)
+      params.permit(:activity_id)
+      raise
     end
 end

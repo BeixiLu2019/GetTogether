@@ -7,21 +7,17 @@ def new
 end
 
 def create
-
-    if @activity.capacity - @activity.bookings.count > 0
-    @booking = Booking.new()
-    @booking.activity_id = params[:activity_id]
-    @booking.user_id = current_user.id
-    authorize @booking
-    @booking.save
+  @booking = Booking.new()
+  @booking.activity_id = params[:activity_id]
+  @booking.user_id = current_user.id
+  authorize @booking
+  if @booking.save
     redirect_to activity_path(params[:activity_id])
   else
-    flash[:alert] = "No more spaces left!"
-    redirect_to activity_path(@activity)
+    # flash[:alert] = "No more spaces left!"
+    render "activities/show", booking: @booking
+    #redirect_to activity_path(@activity)
   end
-  # else
-  #   render :new
-  # end
 end
 
   def show #confirmation page

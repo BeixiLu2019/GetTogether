@@ -1,5 +1,14 @@
-<h1>Messages#index</h1>
-<p>Find me in app/views/messages/index.html.erb</p>
+
+
+
+<% if @conversation.sender_id == current_user.id %>
+  <% chat_partner = User.find(@conversation.recipient_id) %>
+<% else %>
+  <% chat_partner = User.find(@conversation.sender_id) %>
+<% end %>
+
+<h1>Chat with <%= chat_partner.username %></h1>
+
 
 <% @messages.each do |message| %>
   <div>
