@@ -17,20 +17,14 @@
       <%= f.input :bio,
                   required: false,
                   input_html: { autocomplete: "Bio" } %>
-      <%= f.input :birthday,
+      <%= f.input :birthday, start_year: Date.today.year - 60, end_year: Date.today.year,
                   required: false,
                   input_html: { autocomplete: "Birthday" } %>
       <%= f.input :interest,
                   required: false,
                   hint: "Interests or hobbies",
                   input_html: { autocomplete: "Interests" } %>
-      <%#= f.input :password,
-                  hint: "Leave blank if you don't want to change it",
-                  required: false,
-                  input_html: { autocomplete: "new-password" } %>
-      <%#= f.input :password_confirmation,
-                  required: false,
-                  input_html: { autocomplete: "new-password" } %>
+
       <%= f.input :current_password,
             hint: "we need your current password to confirm your changes",
             required: true,

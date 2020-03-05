@@ -1,4 +1,5 @@
-<h2>You currently have <%= pluralize @sorted_upcoming.count, "activity"%> upcoming: </h2>
+
+<h2>You currently have <%= pluralize @sorted_upcoming.count, "activity"%> booked: </h2>
   <div class="cards cards-dashboard">
     <% if @sorted_upcoming.count == 0 %>
       <p> <%= link_to "Find awesome activities", root_path, class: "btn-outline btn-dashboard" %> </p>
@@ -16,38 +17,70 @@
             <!-- card design -->
             <div class="card-product-infos">
               <!-- Add Tag for My event! -->
-              <% if activity.user == current_user  %>
-                <h1> My event: </h1>
+
+
+               <% if activity.user == current_user  %>
+               <h2 class="dashboard_h2">Own event:<%= link_to activity.name, activity_path(activity) %></h2>
+                <%else %>
+                 <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
               <% end %>
-              <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
               <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
               <p class="dashboard-p"> Address: <%= activity.address %></p>
               <p class="dashboard-p"> Attending users: </p>
 
-              <!-- Listing all participating users and host -->
-              <% bookings = Booking.where("activity_id = #{activity.id}") %>
-              <ul>
-                <% bookings.each do |booking| %>
-                  <li>
-                    <% user = User.find(booking.user_id) %>
-                    <%= link_to user.username, user_path(user.id) %>
-                  </li>
-                <% end %>
-                  <li>
-                    <% user = User.find(activity.user_id) %>
-                    <%= link_to user.username, user_path(user.id) %> Host
-                  </li>
-              </ul>
 
-               <!--  Delete links for cards -->
-              <p class="dashboard-p"> Address: <%= activity.address %></p>
-              <% if activity.user == current_user  %>
-                <%= link_to "🗑", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this activity??" }%>
-              <% else %>
-                <%= link_to "🗑", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
+    <!-- card design -->
+    <div class="card-product-infos">
+      <!-- Add Tag for My event! -->
+      <% if activity.user == current_user  %>
+      <h1> My event: </h1>
+      <% end %>
+      <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
+      <p class="dashboard-p"> Date: <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
+      <p class="dashboard-p"> Address: <%= activity.address %></p>
+      <p class="dashboard-p"> Attending users: </p>
+
+      <!-- Listing all participating users and host -->
+      <% bookings = Booking.where("activity_id = #{activity.id}") %>
+      <div class="participants">
+        <% bookings.each do |booking| %>
+        <% user = User.find(booking.user_id) %>
+        <% if user.photo.attached? %>
+        <div class="avartar-set">
+          <div class="avartar-name">
+            <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
+            <%= link_to user.username, user_path(user.id) %>
+
+          </div>
+        </div>
+        <% else %>
+        <div class="avartar-set">
+          <%= link_to user.username, user_path(user.id) %>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+        </div>
+        <% end %>
+        <% end %>
+      </div>
+      Hosted by:
+      <div class="participants">
+        <% if current_user.photo.attached? %>
+        <%= link_to cl_image_tag(current_user.photo, class: "avatar"), user_path(current_user) %>
+        <% else %>
+        <div class="avartar-set">
+          <%= link_to current_user.username, user_path(current_user) %>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(current_user) %>
+          <% end %>
+        </div>
+      </div>
+
+      <!--  Delete links for cards -->
+       <p class="dashboard-p"> Address: <%= activity.address %></p>
+              <% unless activity.user == current_user  %>
+                <%= link_to "Can't attend #{activity.name}", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
               <% end %>
             </div>
-          </div>
-      <% end %>
-    <% end %>
+            <br>
   </div>
+  <% end %>
+  <% end %>
+</div>
