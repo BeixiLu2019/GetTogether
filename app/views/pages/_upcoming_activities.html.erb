@@ -20,7 +20,7 @@
                 <h1> My event: </h1>
               <% end %>
               <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
-              <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
+              <p class="dashboard-p"> Date: <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
               <p class="dashboard-p"> Address: <%= activity.address %></p>
               <p class="dashboard-p"> Attending users: </p>
 
