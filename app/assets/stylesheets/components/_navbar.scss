@@ -1,6 +1,3 @@
-.navbar-wrapper{
-  margin-top: 20px;
-}
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
@@ -10,15 +7,11 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
 .navbar {
-  overflow: hidden;
+  // overflow: hidden;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
 }
 .mr-auto {
   justify-content: space-between;
@@ -36,6 +29,17 @@
   color: gray
 }
 
+a:hover {
+ color: black;
+}
+
 .active {
   color: black;
+}
+
+.fa-smile {
+  color: #fb7e5c;
+  &:hover {
+    color: #ee4d42;
+  }
 }

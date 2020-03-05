@@ -1,4 +1,5 @@
 <h2>You currently host <%= pluralize @sorted_hosting.count, "activity"%> upcoming: </h2>
+
 <div class="cards cards-dashboard">
   <% if @sorted_hosting.count == 0 %>
   <p> <%= link_to "Find awesome activities", root_path, class: "btn-ghost btn-dashboard" %> </p>
@@ -7,6 +8,7 @@
   <div class="card-product dashboard-card">
     <% if activity.photos.attached? %>
     <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+
     <% else %>
     <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
     <% end %>
@@ -25,6 +27,7 @@
           <div class="avartar-name">
             <%= link_to user.username, user_path(user.id) %>
             <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+
           </div>
         </div>
         <% else %>

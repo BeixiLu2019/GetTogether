@@ -32,6 +32,14 @@ Hosted by:
   <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
 </div>
 
+<!-- Contacting host link, host cannot contact himself (if else) -->
+<% if @activity.user_id != current_user.id %>
+  <div>
+    <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+  </div>
+<% end %>
+
+<br>
 Capacity: <%= @activity.capacity %>
 <br>
 Spaces left: <%= @activity.capacity - @activity.bookings.count %>
@@ -58,7 +66,7 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 
 <% if policy(@activity).destroy? %>
 <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
-<%= link_to "Delete", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
+<%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
 <% end %>
 
 <% if @booking.errors.any? %>
