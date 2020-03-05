@@ -1,25 +1,29 @@
-.btn-flat {
+.btn {
   color: white;
   padding: 8px 24px;
   border-radius: 4px;
-  background: #92d0c1;
   transition: background 0.3s ease;
+}
+
+.btn-green {
+  background: #92d0c1;
+  // margin-right: 5px;
+
   &:hover {
     background: #4ec6cb;
-    color: white;
   }
-  margin-right: 5px;
 }
 
 .btn-orange {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
   background: #fb7e5c;
-  transition: background 0.3s ease;
+
   &:hover {
     background: #f65d5a;
-    color: white;
   }
 }
 
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid black;
+  color: black;
+}
