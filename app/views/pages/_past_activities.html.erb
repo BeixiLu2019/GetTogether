@@ -17,15 +17,8 @@
 
       <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
       <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
-      <p class="dashboard-p"> Address: <%= activity.address %></p>
-        <% unless activity.bookings.empty? %>
-          <% if activity.user_id == current_user.id  %>
-          <% else %>
-          <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-ghost" %>
-          <% end %>
-         <% end %>
 
-      <p class="dashboard-p"> Attending users: </p>
+      <p class="dashboard-p"> Users who also attended: </p>
 
       <!-- Listing all participating users and host -->
       <% bookings = Booking.where("activity_id = #{activity.id}") %>
@@ -42,12 +35,12 @@
           <%= link_to user.username, user_path(user.id) %> Host
         </li>
       </ul>
-
-      <% if activity.user == current_user  %>
-      <%= link_to "🗑", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this activity??" }%>
-      <% else %>
-      <%= link_to "🗑", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
-      <% end %>
+      <% unless activity.bookings.empty? %>
+          <% if activity.user_id == current_user.id  %>
+          <% else %>
+          <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-green" %>
+          <% end %>
+         <% end %>
 
       <h3> Reviews: </h3>
       <% if activity.reviews.empty?  %>
@@ -59,12 +52,17 @@
         <% activity.reviews.each do |review| %>
         <li>
           <p>
-           Rating <%= review.activity_rating %> </p>
-           <p>  Review <%= review.content %> </p>
+           Review from <%= User.find(review.booking.user_id).username %> :
+           <p> Rating: <%= review.activity_rating %> </p>
+           <p>  Review description: <%= review.content %> </p>
 
          </li>
-         <%= link_to "edit", edit_review_path(review) %>
-         <%= link_to "delete", review_path(review),  method: :delete, data: { confirm: "Are you sure you want to delete this review?" }  %>
+
+        <% if review.booking.user_id == current_user.id  %>
+         <%= link_to "✏️", edit_review_path(review), class: "btn btn-green" %>
+         <%= link_to "🗑", review_path(review), class: "btn btn-orange",  method: :delete, data: { confirm: "Are you sure you want to delete this review?" }  %>
+         <% end %>
+
          <% end %>
          <% end %>
 

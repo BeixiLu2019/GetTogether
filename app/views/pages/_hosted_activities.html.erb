@@ -31,7 +31,9 @@
               </ul>
 
               <% if activity.user == current_user  %>
-                <%= link_to "🗑", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this activity??" }%>
+                <%= link_to "🗑", activity_path(activity), class: "btn btn-orange", method: :delete, data: { confirm: "Are you sure you want to delete this activity??" }%>
+                <%= link_to "✏️", edit_activity_path(activity), class: "btn btn-green" %>
+
               <% else %>
                 <%= link_to "🗑", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
               <% end %>
