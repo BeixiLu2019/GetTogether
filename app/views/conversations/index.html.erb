@@ -2,11 +2,16 @@
   <h3>Conversations for upcoming activities</h3>
   <div class=”ui”>
 
-   <% @conversations.each do |conversation| %>
-  <div class=”item”>
-    <%= link_to Activity.find(conversation.activity_id).name, conversation_messages_path(conversation)%>
+  <% @conversations.each do |conversation| %>
+    <div class="messenger">
+      <div class=”me”>
+        <%= link_to Activity.find(conversation.activity_id).name, conversation_messages_path(conversation)%>
+      </div>
+      <div>
+        <%=  link_to "Delete", conversation_path(conversation), method: "Delete" %>
+      </div>
+    </div>
   <% end %>
-  </div>
  </div>
 </div>
 

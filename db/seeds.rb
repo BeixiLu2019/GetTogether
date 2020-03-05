@@ -16,6 +16,9 @@
 # :version=>version}, Cloudinary.config.api_secret)
 # photo = "#{resource_type}/#{type}/v#{version}/#{public_id}.#{format}##
 # {signature}"
+require "open-uri"
+
+
 
 puts 'Cleaning review database'
 Review.destroy_all
@@ -36,7 +39,8 @@ puts 'Cleaning user database'
 User.destroy_all
 
 puts 'creating Users'
-User.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/d6c9ok8T8c1CtnbTpgCEbNnz.jpg')
+user = User.create!(
   first_name: "Philipp",
   last_name: "Hamm",
   email: "philipp.hamm@gmail.com",
@@ -46,8 +50,10 @@ User.create!(
   bio: "Everything under control",
   interest: "Music",
   )
+user.photo.attach(io: file, filename: 'photo')
 
-User.create!(
+file1 = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1582326647/zcAAHJjWAb6G7t55D1Mf1wEq.png')
+user1 = User.create!(
   first_name: "Anna",
   last_name: "Herzog",
   username: "Anni",
@@ -57,8 +63,10 @@ User.create!(
   bio: "I know where to go",
   interest: "Tech",
   )
+  user1.photo.attach(io: file1, filename: 'photo1')
 
-User.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427024/Avatar_Ambar_z3njc4.jpg')
+user = User.create!(
   first_name: "Amy",
   last_name: "Lu",
   username: "Beixi",
@@ -68,8 +76,10 @@ User.create!(
   bio: "I love sweets",
   interest: "Cooking healty",
   )
+  user.photo.attach(io: file, filename: 'photo')
 
-User.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427017/Avatar_Amy_lncwih.jpg')
+user = User.create!(
   first_name: "Ambar",
   last_name: "Gonzalez",
   username: "Ambi",
@@ -79,12 +89,14 @@ User.create!(
   bio: "Designing like a boss",
   interest: "I like to dance disco music",
   )
+  user.photo.attach(io: file, filename: 'photo')
 
 puts 'Users created'
 
 puts 'creating Activities'
 
-Activity.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253419/Tim_Raue_o1sjdi.jpg')
+activity = Activity.create!(
   name: 'Dinner at Tim Raue',
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
@@ -94,8 +106,10 @@ Activity.create!(
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
   )
+  activity.photos.attach(io: file, filename: 'photo')
 
-Activity.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583426660/Tennis_hfecbr.jpg')
+activity = Activity.create!(
   name: 'Tennis in Kreuzberg',
   description: 'Move your body with me playing tennis. I am not very good. ',
   address: "Cantianstr. 24, 10437 Berlin",
@@ -104,8 +118,10 @@ Activity.create!(
   capacity: 2,
   user_id: User.first.id,
   )
+  activity.photos.attach(io: file, filename: 'photo')
 
-Activity.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253420/Berta_Block_vtnhva.jpg')
+activity = Activity.create!(
   name: 'Bouldering at Berta Block',
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
@@ -113,8 +129,10 @@ Activity.create!(
   datetime: DateTime.new(2020, 04, 4, 16, 30, 0),
   capacity: 5,
   user_id: User.first.id + 1)
+  activity.photos.attach(io: file, filename: 'photo')
 
-Activity.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253419/Yoga_erxj9j.jpg')
+activity =Activity.create!(
   name: 'Yoga at Jivamukti Yoga Berlin',
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
@@ -122,8 +140,10 @@ Activity.create!(
   datetime: DateTime.new(2020, 03, 15, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id - 1)
+  activity.photos.attach(io: file, filename: 'photo')
 
-Activity.create!(
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583248180/BtHrsTQUiNBDGrVzgsyGo7cQ.jpg')
+activity = Activity.create!(
   name: 'Dinner at mine',
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
@@ -131,6 +151,7 @@ Activity.create!(
   datetime: DateTime.new(2020, 04, 8, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
+  activity.photos.attach(io: file, filename: 'photo')
 
 
 puts 'Activities created'
@@ -264,7 +285,7 @@ Message.create!(
 
 Message.create!(
   user_id: User.first.id + 1,
-  conversation_id: Conversation.first.id,
+  conversation_id: Conversation.first.id + 1,
   body: "Yes"
   )
 
