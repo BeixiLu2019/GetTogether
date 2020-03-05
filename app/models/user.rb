@@ -7,7 +7,6 @@ class User < ApplicationRecord
   has_many :activities, dependent: :destroy
   has_many :bookings, dependent: :destroy
   validates :email, presence: true, format: { with: /\A.*@.*\.com\z/ }, uniqueness: true
-
   def attending_activity? activity
     bookings.map {|booking| booking.activity_id}.include? activity.id
   end

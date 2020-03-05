@@ -52,7 +52,7 @@ user = User.create!(
   )
 user.photo.attach(io: file, filename: 'photo')
 
-file1 = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1582326647/zcAAHJjWAb6G7t55D1Mf1wEq.png')
+file1 = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427020/Avatar_Anna_ibh3qf.jpg')
 user1 = User.create!(
   first_name: "Anna",
   last_name: "Herzog",

@@ -19,7 +19,18 @@ Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 <br>
 Category: <%= @activity.category %>
 <br>
-Hosted by: <strong><%= link_to @activity.user.username, user_path(@activity.user) %></strong>
+Hosted by:
+  <% if @activity.user.photo.attached? %>
+    <%= link_to cl_image_tag(@activity.user.photo, class: "avatar"), user_path(@activity.user) %>
+    <% else %>
+   <div class="avartar-set">
+    <%= link_to @activity.user.username, user_path(@activity.user) %>
+    <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
+  <% end %>
+  </div>
+<div>
+  <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+</div>
 
 <!-- Contacting host link, host cannot contact himself (if else) -->
 <% if @activity.user_id != current_user.id %>
@@ -33,19 +44,25 @@ Capacity: <%= @activity.capacity %>
 <br>
 Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <p>About:  <%= @activity.description %></p>
-<ul>
+
+  <div class="participants">
   <% @activity.bookings.each do |booking| %>
-  <li>
     <% user = User.find(booking.user_id) %>
       <% if user.photo.attached? %>
-      <%= cl_image_tag user.photo.key, class: "avatar" %>
-      <%#= test after profile fixted %>
+      <div class="avartar-set">
+        <div class="avartar-name">
+        <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+          <%= user.username %>
+        </div>
+      </div>
       <% else %>
-      <%= link_to user.username, user_path(user.id) %>
+      <div class="avartar-set">
+        <%= user.username %>
+        <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+      </div>
     <% end %>
-  </li>
   <% end %>
-</ul>
+  </div>
 
 <% if policy(@activity).destroy? %>
 <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>

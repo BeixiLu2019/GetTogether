@@ -19,31 +19,59 @@
     <div class="card-product-infos">
 
       <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
-      <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
+
+      <p class="dashboard-p"> Date: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
+      <p class="dashboard-p"> Address: <%= activity.address %></p>
+        <% unless activity.bookings.empty? %>
+          <% if activity.user_id == current_user.id  %>
+          <% else %>
+          <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-ghost" %>
+          <% end %>
+         <% end %>
 
       <p class="dashboard-p"> Users who also attended: </p>
 
       <!-- Listing all participating users and host -->
-      <% bookings = Booking.where("activity_id = #{activity.id}") %>
-      <ul>
+           <% bookings = Booking.where("activity_id = #{activity.id}") %>
+      <div class="participants">
         <% bookings.each do |booking| %>
-        <li>
-          <% user = User.find(booking.user_id) %>
+        <% user = User.find(booking.user_id) %>
+        <% if user.photo.attached? %>
+        <div class="avartar-set">
+          <div class="avartar-name">
+            <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
+            <%= link_to user.username, user_path(user.id) %>
+          </div>
+        </div>
+        <% else %>
+        <div class="avartar-set">
           <%= link_to user.username, user_path(user.id) %>
-        </li>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+        </div>
         <% end %>
-        <li>
-          <% user = User.find(activity.user_id) %>
 
-          <%= link_to user.username, user_path(user.id) %> Host
-        </li>
-      </ul>
+        <% end %>
+      </div>
+      Hosted by:
+      <div class="participants">
+        <% if current_user.photo.attached? %>
+        <%= link_to cl_image_tag(current_user.photo, class: "avatar"), user_path(user.id) %>
+        <% else %>
+        <div class="avartar-set">
+          <%= link_to current_user.username, user_path(current_user) %>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+          <% end %>
+        </div>
+      </div>
+
+    
       <% unless activity.bookings.empty? %>
           <% if activity.user_id == current_user.id  %>
           <% else %>
           <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-green" %>
           <% end %>
          <% end %>
+
 
       <h3> Reviews: </h3>
       <% if activity.reviews.empty?  %>
