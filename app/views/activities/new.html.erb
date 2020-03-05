@@ -1,15 +1,17 @@
 <div>
   <h3>Create a new activity: </h3>
   <%= simple_form_for @activity do |f| %>
-  <%= f.input :name, label: 'name of the activity' %>
-  <%= f.input :address, label: 'address' %>
-  <%= f.input :category, label: 'category of the activity', :collection => %w[sports food&drinks nightlife culture nature wellness networking learning] %>
-  <%= f.input :description, label: 'description of the activity' %>
-  <%= f.input :datetime, label: 'datetime' %>
-  <%= f.input :capacity, label: 'maximum capacity of the activity' %>
-  <%= f.input :photos, label: 'Upload images', as: :file, input_html: { multiple: true }%>
+  <%= f.input :name, label: 'Name' %>
+  <%= f.input :address, label: 'Input the activity location 🏠' %>
+  <%= f.input :category, label: 'Choose one category that fits most 🔍', :collection => ["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"] %>
+  <%= f.input :description, label: 'Describe what you would like to do ✍️' %>
+  <%= f.input :datetime, label: 'Date 📅 & starting time ⏰' %>
+  <%= f.input :capacity, label: 'Maximum group number🧍‍♀️🧍🧍‍♂️' %>
+  <%= f.input :photos, label: 'Upload images to make your Event more appealing 😍', as: :file, input_html: { multiple: true }%>
   <br>
-  <%= f.button :submit, class:"btn btn-outline btn-lg btn-block" %>
+
+  <%= f.button :submit, class:"btn btn-green" %>
+
   <br>
   <br>
   <br>

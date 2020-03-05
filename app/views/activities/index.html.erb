@@ -4,8 +4,8 @@
   <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search for a specific address within a 5km radius" %>
   <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
   <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
-  <%= select_tag(:category, options_for_select(["food", "nightlife", "culture", "nature", "wellness", "networking", "learning"])) %>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
+  <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => true) %>
+  <%= submit_tag "filter for category", class: "btn btn-primary" %>
   <% end %>
 
   <div class="content-map">
@@ -29,9 +29,13 @@
           <br>
           Capacity: <%= activity.capacity %>
           <br>
-          Capacity: <%= activity.category %>
+          Category: <%= activity.category %>
           <br>
-          <%= activity.bookings.count %> are going
+          <% if activity.bookings.count == 1 %>
+          <%= activity.bookings.count %> Person is going
+          <% else %>
+          <%= activity.bookings.count %> People are going
+          <% end %>
           <br>
         <% end %>
       <% end %>
