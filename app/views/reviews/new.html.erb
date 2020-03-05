@@ -1,0 +1,9 @@
+<div class="container">
+<h3> Rate & review <%= @booking.activity.name %>: </h3>
+
+  <%= simple_form_for([@booking, @review]) do |f| %>
+    <%= f.input :activity_rating, label: 'Please rate the activity on a scale from 1(👎)-5(👍)', :collection => [1,2,3,4,5] %>
+    <%= f.input :content, label: 'Please share some more details about your expirience ✍️' %>
+     <%= f.button :submit, class:"btn btn-primary" %>
+  <% end %>
+</div>

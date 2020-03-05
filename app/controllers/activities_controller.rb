@@ -9,36 +9,44 @@ class ActivitiesController < ApplicationController
       @activities = policy_scope(Activity).geocoded.near(params[:address], 5)
       @activities = @activities.search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
       @activities = @activities.where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
+    elsif params[:category].present?
+      @activities = policy_scope(Activity).where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
+    elsif params[:activity].present?
+      @activities = policy_scope(Activity).search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
     else
       @activities = policy_scope(Activity).geocoded #returns activitys with coordinates
     end
     # Mapbox Code
-    @markers = @activities.map do |activity|
-      {
-        lat: activity.latitude,
-        lng: activity.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
-      }
-    end
-
-  end
+  #   @markers = @activities.map do |activity|
+  #     {
+  #       lat: activity.latitude,
+  #       lng: activity.longitude,
+  #       infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
+  #     }
+  #   end
   # Mapbox Code
+  end
 
   def show
     # authorize @office
     @activity = Activity.find(params[:id])
-    @booking = Booking.new
-    #authorize @booking
+    # authorize @booking
+    # Mapbox Code
+    @marker = {
+        lat: @activity.latitude,
+        lng: @activity.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { activity: @activity })
+      }
+
   end
+  # Mapbox Code
 
   def new
     @user = current_user
     @activity = Activity.new
     authorize @activity
   end
-
-
-
+  
   def create
     # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)

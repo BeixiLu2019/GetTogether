@@ -5,7 +5,18 @@
 <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
 <% end %>
 <br>
+<div class="map"
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-marker="<%= @marker.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+></div>
+<br>
 <p><%= @activity.address %></p>
+
+<!-- ? miles away -->
+
 
 Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 <br>
@@ -19,6 +30,15 @@ Capacity: <%= @activity.capacity %>
 <br>
 Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <p>About:  <%= @activity.description %></p>
+<ul>
+  <% @activity.bookings.each do |booking| %>
+  <li>
+    <% user = User.find(booking.user_id) %>
+    <%= link_to user.username, user_path(user.id) %>
+  </li>
+  <% end %>
+
+</ul>
 
 <% if policy(@activity).destroy? %>
 <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
@@ -36,9 +56,9 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
   </div>
 <% end %>
 
-<% if !policy(@activity).update? %>
-  <h1>Confirm Attendance to <%= @activity.name %> </h1>
-  <%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+<% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+<h1>Want to join <%= @activity.name %>? Confirm now! </h1>
+<%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
 <% end %>
 
 <br>
