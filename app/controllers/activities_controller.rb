@@ -30,6 +30,7 @@ class ActivitiesController < ApplicationController
   def show
     # authorize @office
     @activity = Activity.find(params[:id])
+    @booking = Booking.new
     # authorize @booking
     # Mapbox Code
     @marker = {
@@ -46,7 +47,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
     authorize @activity
   end
-  
+
   def create
     # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)
