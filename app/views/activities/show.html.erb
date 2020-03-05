@@ -15,9 +15,6 @@
 <br>
 <p><%= @activity.address %></p>
 
-<!-- ? miles away -->
-
-
 Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 <br>
 Category: <%= @activity.category %>
@@ -25,7 +22,10 @@ Category: <%= @activity.category %>
 Hosted by: <strong><%= link_to @activity.user.username, user_path(@activity.user) %></strong>
 <%#= link_to "users", chatroom_path %>
 <!-- update the link of the chatroom -->
-<br>
+<div>
+  <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+</div>
+
 Capacity: <%= @activity.capacity %>
 <br>
 Spaces left: <%= @activity.capacity - @activity.bookings.count %>
@@ -48,7 +48,6 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
 <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
 <% end %>
-
 
 <% if @booking.errors.any? %>
   <div class="alert">

@@ -1,0 +1,12 @@
+<div>
+  <h3>Conversations for upcoming activities</h3>
+  <div class=”ui”>
+
+   <% @conversations.each do |conversation| %>
+  <div class=”item”>
+    <%= link_to Activity.find(conversation.activity_id).name, conversation_messages_path(conversation)%>
+  <% end %>
+  </div>
+ </div>
+</div>
+
