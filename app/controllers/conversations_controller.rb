@@ -21,10 +21,4 @@ class ConversationsController < ApplicationController
 
   def destroy
   end
-
-  private
-    def conversation_params
-      params.permit(:activity_id)
-      raise
-    end
 end
