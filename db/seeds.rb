@@ -82,7 +82,7 @@ Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "food",
-  datetime: DateTime.new(2019, 03, 4, 18, 30, 0),
+  datetime: DateTime.new(2019, 03, 19, 18, 30, 0),
   capacity: 3,
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
@@ -112,7 +112,7 @@ Activity.create!(
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 4, 9, 30, 0),
+  datetime: DateTime.new(2020, 03, 15, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id - 1)
 
