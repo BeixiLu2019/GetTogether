@@ -11,15 +11,13 @@ Rails.application.routes.draw do
   end
 
   resources :bookings, only: [:destroy, :show] do
-    resources :reviews, only: [:create, :new, :edit, :update]
+    resources :reviews, only: [:create, :new]
   end
 
   resources :users, only: :show
-  resources :reviews, only: [:destroy, :show]
-
   resources :conversations, only: [:index, :destroy] do
     resources :messages, only: [:index, :new, :create]
-
   end
   resources :messages, only: [:destroy]
+  resources :reviews, only: [:destroy, :show, :edit, :update]
 end

@@ -25,12 +25,29 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @review = Review.find(params[:id])
+    # @booking = review.booking_id
+    authorize @review
+    # authorize @booking
   end
 
   def update
+     @review = Review.find(params[:id])
+     authorize @review
+     if @review.update(review_params)
+      redirect_to dashboard_path
+    else
+      render :edit
+    end
   end
 
   def destroy
+    authorize @booking
+    @review = Review.find(params[:id])
+    @booking = review.booking_id
+    @review.destroy
+    authorize @review
+    redirect_to dashboard_path
   end
 
   private
