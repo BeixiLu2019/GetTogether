@@ -25,7 +25,6 @@ class ActivitiesController < ApplicationController
   # Mapbox Code
 
   def show
-
     # authorize @office
     @activity = Activity.find(params[:id])
     @booking = Booking.new
