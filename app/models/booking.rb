@@ -17,5 +17,4 @@ class Booking < ApplicationRecord
       errors.add(:no_spaces, "left!")
     end
   end
-
 end
