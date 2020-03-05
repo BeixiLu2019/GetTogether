@@ -28,20 +28,36 @@
       <p class="dashboard-p"> Attending users: </p>
 
       <!-- Listing all participating users and host -->
-      <% bookings = Booking.where("activity_id = #{activity.id}") %>
-      <ul>
+           <% bookings = Booking.where("activity_id = #{activity.id}") %>
+      <div class="participants">
         <% bookings.each do |booking| %>
-        <li>
-          <% user = User.find(booking.user_id) %>
+        <% user = User.find(booking.user_id) %>
+        <% if user.photo.attached? %>
+        <div class="avartar-set">
+          <div class="avartar-name">
+            <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
+            <%= link_to user.username, user_path(user.id) %>
+          </div>
+        </div>
+        <% else %>
+        <div class="avartar-set">
           <%= link_to user.username, user_path(user.id) %>
-        </li>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+        </div>
         <% end %>
-        <li>
-          <% user = User.find(activity.user_id) %>
-
-          <%= link_to user.username, user_path(user.id) %> Host
-        </li>
-      </ul>
+        <% end %>
+      </div>
+      Hosted by:
+      <div class="participants">
+        <% if current_user.photo.attached? %>
+        <%= link_to cl_image_tag(current_user.photo, class: "avatar"), user_path(current_user) %>
+        <% else %>
+        <div class="avartar-set">
+          <%= link_to current_user.username, user_path(current_user) %>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(current_user) %>
+          <% end %>
+        </div>
+      </div>
 
       <% if activity.user == current_user  %>
       <%= link_to "🗑", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this activity??" }%>

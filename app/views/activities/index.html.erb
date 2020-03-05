@@ -23,19 +23,20 @@
           When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
           <br>
           <% if params[:address].present? %>
-          Where: <%= activity.address %> |
-          <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
-          <% else %>
+            Where: <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away @
+            <%= activity.address %>
+            <% else %>
+            Where: <%= activity.address %>
+          <% end %>
           <br>
           Capacity: <%= activity.capacity %>
           <br>
-          Capacity: <%= activity.category %>
+          Category: <%= activity.category %>
           <br>
-          <%= activity.bookings.count %> are going
+          <strong><%= activity.bookings.count %></strong> are going
           <br>
         <% end %>
       <% end %>
-    <% end %>
       <br>
     </div>
 
@@ -50,8 +51,8 @@
   </div>
   <br>
   <br>
-    <br>
   <br>
-    <br>
+  <br>
+  <br>
   <br>
 
