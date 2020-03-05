@@ -1,9 +1,9 @@
-
-<h1><strong> <%= @activity.name %> </strong></h1>
-<br>
 <% @activity.photos.each do |photo| %>
 <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
 <% end %>
+<h1><strong> <%= @activity.name %> </strong></h1>
+<br>
+
 <br>
 <div class="map"
     id="map"
