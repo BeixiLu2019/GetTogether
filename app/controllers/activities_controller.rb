@@ -32,13 +32,13 @@ class ActivitiesController < ApplicationController
     @activity = Activity.find(params[:id])
     @booking = Booking.new
     # authorize @booking
+
     # Mapbox Code
     @marker = {
         lat: @activity.latitude,
         lng: @activity.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { activity: @activity })
       }
-
   end
   # Mapbox Code
 

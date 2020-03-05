@@ -34,10 +34,14 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
   <% @activity.bookings.each do |booking| %>
   <li>
     <% user = User.find(booking.user_id) %>
-    <%= link_to user.username, user_path(user.id) %>
+      <% if user.photo.attached? %>
+      <%= cl_image_tag user.photo.key, class: "avatar" %>
+      <%#= test after profile fixted %>
+      <% else %>
+      <%= link_to user.username, user_path(user.id) %>
+    <% end %>
   </li>
   <% end %>
-
 </ul>
 
 <% if policy(@activity).destroy? %>
@@ -55,10 +59,11 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
       <% end %>
   </div>
 <% end %>
-
-<% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-<h1>Want to join <%= @activity.name %>? Confirm now! </h1>
-<%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+  <% if @booking.user != @activity.user && @booking.user != current_user %>
+  <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+  <h1>Want to join <%= @activity.name %>? Confirm now! </h1>
+  <%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+  <% end %>
 <% end %>
 
 <br>
