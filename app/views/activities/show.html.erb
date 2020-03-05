@@ -5,6 +5,14 @@
 <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
 <% end %>
 <br>
+<div class="map"
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-marker="<%= @marker.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+></div>
+<br>
 <p><%= @activity.address %></p>
 
 <!-- ? miles away -->
@@ -26,44 +34,37 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
   <% @activity.bookings.each do |booking| %>
   <li>
     <% user = User.find(booking.user_id) %>
-    <%= link_to user.username, user_path(user.id) %>
+      <% if user.photo.attached? %>
+      <%= cl_image_tag user.photo.key, class: "avatar" %>
+      <%#= test after profile fixted %>
+      <% else %>
+      <%= link_to user.username, user_path(user.id) %>
+    <% end %>
   </li>
   <% end %>
-
 </ul>
 
 <% if policy(@activity).destroy? %>
-<%= link_to "edit this event", edit_activity_path %> |
-<%= link_to "delete this event", activity_path, method: :delete, data: { confirm: "You sure?" } %>
+<%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
+<%= link_to "Delete", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
 <% end %>
 
-<!-- <%# if @booking.errors.any? %>
-  <ul>
-  <%# @booking.errors.full_messages.each do |message| %>
-    <li><%#= message %></li>
-  <%# end %>
-  </ul>
-<%# end %> -->
 
 <% if @booking.errors.any? %>
-<div class="alert">
-<% @booking.errors.full_messages.each do |message| %>
-  <span>😱 <%= message %>
-  <a data-dismiss="alert" aria-label="Close">
-    <i class="fas fa-times"></i> </span>
+  <div class="alert">
+    <% @booking.errors.full_messages.each do |message| %>
+      <span>  😱 <%= message %></span>
+      <a data-dismiss="alert" aria-label="Close">
+        <i class="fas fa-times"></i>
+      <% end %>
+  </div>
 <% end %>
-</div>
+  <% if @booking.user != @activity.user && @booking.user != current_user %>
+  <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+  <h1>Want to join <%= @activity.name %>? Confirm now! </h1>
+  <%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+  <% end %>
 <% end %>
-
-<% if !policy(@activity).update? %>
-<h1>Want to join <%= @activity.name %>? Confirm now! </h1>
-<%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
-<% end %>
-
-<%#= link_to "join now!",  %>
-<%# flash.each do |key, value| %>
-<!-- <div class="alert"><%#= value %></div> -->
-<%# end %>
 
 <br>
 <br>

@@ -1,13 +1,15 @@
 
+<% if @user.photo.attached? %>
+    <%= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fill %>
+<% end %>
 <h1> <%= @user.username %> </h1>
 <p>Name: <%= @user.first_name %> <%= @user.last_name %></p>
-<p>Birthday: <%= @user.birthday %></p>
 <p>Email: <%= @user.email %></p>
+<p>Birthday: <%= @user.birthday %></p>
 <p>Bio: <%= @user.bio %></p>
 <p>Interests: <%= @user.interest %></p>
-<%#= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fill %>
 <br>
-<p><%= link_to "Edit", edit_user_registration_path %></p>
+<p><%= link_to "Edit", edit_user_registration_path, class: "btn btn-green" %></p>
 
 
 <h3> <%= @user.username %>'s  past event reviews : </h3>

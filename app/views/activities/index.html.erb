@@ -1,6 +1,5 @@
 
 <div class="container">
-
   <%= form_tag activities_path, method: :get do %>
   <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search for a specific address within a 5km radius" %>
   <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
@@ -9,46 +8,50 @@
   <%= submit_tag "Search", class: "btn btn-primary" %>
   <% end %>
 
-  <div>
-    <% @activities.each do |activity| %>
-      <br>
-      <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
+  <div class="content-map">
+    <div>
+      <% @activities.each do |activity| %>
+        <br>
+        <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
+          <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
 
-      <br>
-      <% activity.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
+          <br>
+          <% activity.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
+          <% end %>
+          <br>
+          When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+          <br>
+          <% if params[:address].present? %>
+          Where: <%= activity.address %> |
+          <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
+          <% else %>
+          <br>
+          Capacity: <%= activity.capacity %>
+          <br>
+          Capacity: <%= activity.category %>
+          <br>
+          <%= activity.bookings.count %> are going
+          <br>
+        <% end %>
       <% end %>
-      <br>
-      When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
-      <br>
-      <% if params[:address].present? %>
-      Where: <%= activity.address %> |
-      <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
-      <% else %>
-      Where: <%= activity.address %>
-      <% end %>
-      <br>
-      Capacity: <%= activity.capacity %>
-      <br>
-      Capacity: <%= activity.category %>
-      <br>
-      <%= activity.bookings.count %> are going
-      <br>
     <% end %>
-    <br>
+      <br>
+    </div>
 
-    <div class="card"
-    id="map"
-    style="width: 100%;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-    ></div>
+    <!-- <div class="map"
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%#= @markers.to_json %>"
+      data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
+    ></div> -->
+    </div>
   </div>
   <br>
   <br>
+    <br>
   <br>
+    <br>
   <br>
-  <br>
-  <br>
-  <br>
+
