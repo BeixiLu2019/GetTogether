@@ -17,33 +17,37 @@ class ActivitiesController < ApplicationController
       @activities = policy_scope(Activity).geocoded #returns activitys with coordinates
     end
     # Mapbox Code
-    @markers = @activities.map do |activity|
-      {
-        lat: activity.latitude,
-        lng: activity.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
-      }
-    end
-
-  end
+  #   @markers = @activities.map do |activity|
+  #     {
+  #       lat: activity.latitude,
+  #       lng: activity.longitude,
+  #       infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
+  #     }
+  #   end
   # Mapbox Code
+  end
 
   def show
 
     # authorize @office
     @activity = Activity.find(params[:id])
-    @booking = Booking.new
-    #authorize @booking
+    # authorize @booking
+    # Mapbox Code
+    @marker = {
+        lat: @activity.latitude,
+        lng: @activity.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { activity: @activity })
+      }
+
   end
+  # Mapbox Code
 
   def new
     @user = current_user
     @activity = Activity.new
     authorize @activity
   end
-
-
-
+  
   def create
     # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)
