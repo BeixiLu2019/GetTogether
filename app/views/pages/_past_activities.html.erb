@@ -1,50 +1,76 @@
 <h2>You participated in <%= pluralize @sorted_past.count, "activity"%>: </h2>
-  <div class="cards cards-dashboard">
-    <% if @sorted_past.count == 0 %>
-      <p> <%= link_to "Find awesome activities", root_path, class: "btn-ghost btn-dashboard" %> </p>
-    <% else %>
-      <% @sorted_past.each do |activity| %>
-          <div class="card-product dashboard-card">
-            <% if activity.user == current_user  %>
-              <h1> My event: </h1>
-            <% end %>
-              <% if activity.photos.attached? %>
-                <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
-              <% else %>
-                <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
-              <% end %>
-            <div class="card-product-infos">
-
-              <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
-              <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
-              <p class="dashboard-p"> Address: <%= activity.address %></p>
-              <% unless activity.bookings.empty? %>
-                <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-ghost" %>
-              <% end %>
-              <p class="dashboard-p"> Attending users: </p>
-
-              <!-- Listing all participating users and host -->
-              <% bookings = Booking.where("activity_id = #{activity.id}") %>
-              <ul>
-                <% bookings.each do |booking| %>
-                  <li>
-                    <% user = User.find(booking.user_id) %>
-                    <%= link_to user.username, user_path(user.id) %>
-                  </li>
-                <% end %>
-                  <li>
-                    <% user = User.find(activity.user_id) %>
-                    <%= link_to user.username, user_path(user.id) %> Host
-                  </li>
-              </ul>
-
-              <% if activity.user == current_user  %>
-                <%= link_to "🗑", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this activity??" }%>
-              <% else %>
-                <%= link_to "🗑", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
-              <% end %>
-            </div>
-          </div>
-      <% end %>
+<div class="cards cards-dashboard">
+  <% if @sorted_past.count == 0 %>
+  <p> <%= link_to "Find awesome activities", root_path, class: "btn-ghost btn-dashboard" %> </p>
+  <% else %>
+  <% @sorted_past.each do |activity| %>
+  <div class="card-product dashboard-card">
+    <% if activity.user == current_user  %>
+    <h1> My event: </h1>
     <% end %>
-  </div>
+    <% if activity.photos.attached? %>
+    <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+    <% else %>
+    <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+    <% end %>
+    <div class="card-product-infos">
+
+      <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
+      <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
+      <p class="dashboard-p"> Address: <%= activity.address %></p>
+        <% unless activity.bookings.empty? %>
+          <% if activity.user_id == current_user.id  %>
+          <% else %>
+          <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-ghost" %>
+          <% end %>
+         <% end %>
+
+      <p class="dashboard-p"> Attending users: </p>
+
+      <!-- Listing all participating users and host -->
+      <% bookings = Booking.where("activity_id = #{activity.id}") %>
+      <ul>
+        <% bookings.each do |booking| %>
+        <li>
+          <% user = User.find(booking.user_id) %>
+          <%= link_to user.username, user_path(user.id) %>
+        </li>
+        <% end %>
+        <li>
+          <% user = User.find(activity.user_id) %>
+
+          <%= link_to user.username, user_path(user.id) %> Host
+        </li>
+      </ul>
+
+      <% if activity.user == current_user  %>
+      <%= link_to "🗑", activity_path(activity), method: :delete, data: { confirm: "Are you sure you want to delete this activity??" }%>
+      <% else %>
+      <%= link_to "🗑", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>
+      <% end %>
+
+      <h3> Reviews: </h3>
+      <% if activity.reviews.empty?  %>
+
+      <p> This activity has not been reviewed yet </p>
+      <% else %>
+
+      <ul>
+        <% activity.reviews.each do |review| %>
+        <li>
+          <p>
+           Rating <%= review.activity_rating %> </p>
+           <p>  Review <%= review.content %> </p>
+
+         </li>
+         <%= link_to "edit", edit_review_path(review) %>
+         <%= link_to "delete", review_path(review),  method: :delete, data: { confirm: "Are you sure you want to delete this review?" }  %>
+         <% end %>
+         <% end %>
+
+       </ul>
+     </div>
+   </div>
+   <% end %>
+   <% end %>
+ </div>

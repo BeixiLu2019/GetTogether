@@ -17,10 +17,17 @@
 # photo = "#{resource_type}/#{type}/v#{version}/#{public_id}.#{format}##
 # {signature}"
 
+puts 'Cleaning review database'
+Review.destroy_all
 
+puts 'Cleaning messages...'
+
+Message.destroy_all
+Conversation.destroy_all
 
 puts 'Cleaning booking database...'
 Booking.destroy_all
+
 
 puts 'Cleaning activity database...'
 Activity.destroy_all
@@ -103,7 +110,7 @@ Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 4, 16, 30, 0),
+  datetime: DateTime.new(2020, 03, 6, 16, 30, 0),
   capacity: 5,
   user_id: User.first.id + 1)
 
@@ -121,7 +128,7 @@ Activity.create!(
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
   category: "food",
-  datetime: DateTime.new(2020, 04, 3, 9, 30, 0),
+  datetime: DateTime.new(2020, 06, 3, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
 
@@ -150,7 +157,6 @@ Booking.create!(
   activity_id: Activity.first.id + 1,
   user_id: (User.first.id + 2),
   )
-
 
 Booking.create!(
   activity_id: Activity.first.id + 2,
@@ -187,10 +193,6 @@ Booking.create!(
   user_id: User.first.id,
   )
 
-Booking.create!(
-  activity_id: Activity.last.id,
-  user_id: User.first.id + 1,
-  )
 
 Booking.create!(
   activity_id: Activity.last.id,
@@ -202,8 +204,77 @@ Booking.create!(
 puts 'Bookings created...'
 
 
+puts 'Creating conversation and messages part 1...'
 
+Conversation.create!(
+  sender_id: User.last.id,
+  recipient_id: User.first.id,
+  activity_id: Activity.first.id
+  )
 
+Message.create!(
+  user_id: User.last.id,
+  conversation_id: Conversation.first.id,
+  body: "Hi Philipp, I would like to join your event but I don't know if you are cool. Ambar"
+  )
+
+Message.create!(
+  user_id: User.first.id,
+  conversation_id: Conversation.first.id,
+  body: "Hi Ambar, I am supercool. Don't worry and join the event.NOOOWW!!!"
+  )
+
+Message.create!(
+  user_id: User.last.id,
+  conversation_id: Conversation.first.id,
+  body: "That's such a cool answer. Now I am very convinced to join the activity. Thank you so much."
+  )
+
+Message.create!(
+  user_id: User.first.id,
+  conversation_id: Conversation.first.id,
+  body: "Coolio. See yaaa."
+  )
+
+puts 'Creating conversation and messages part 2...'
+
+Conversation.create!(
+  sender_id: User.first.id,
+  recipient_id: User.first.id + 1,
+  activity_id: Activity.first.id + 2
+  )
+
+Message.create!(
+  user_id: User.first.id,
+  conversation_id: Conversation.first.id + 1,
+  body: "Hi Anna, nice event"
+  )
+
+Message.create!(
+  user_id: User.first.id + 1,
+  conversation_id: Conversation.first.id + 1,
+  body: "I know"
+  )
+
+Message.create!(
+  user_id: User.first.id,
+  conversation_id: Conversation.first.id + 1,
+  body: "Are you always that confident about your events"
+  )
+
+Message.create!(
+  user_id: User.first.id + 1,
+  conversation_id: Conversation.first.id,
+  body: "Yes"
+  )
+
+Message.create!(
+  user_id: User.first.id,
+  conversation_id: Conversation.first.id + 1,
+  body: "Cool I join."
+  )
+
+puts 'Messages created...'
 
 
 

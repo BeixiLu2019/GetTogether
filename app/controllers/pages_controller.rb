@@ -21,5 +21,6 @@ class PagesController < ApplicationController
     @sorted_upcoming = upcoming_activities.sort_by {|activity| activity.datetime }
     @sorted_hosting = @sorted_upcoming.select{|activity| activity.user_id == current_user.id}
     @sorted_past = past_activities.sort_by {|activity| activity.datetime }
+    @reviews = Review.all
   end
 end
