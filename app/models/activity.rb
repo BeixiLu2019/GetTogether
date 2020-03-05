@@ -3,6 +3,7 @@ class Activity < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search, against: [:name, :description]
   has_many :bookings, dependent: :destroy
+  has_many :reviews, through: :bookings
   has_many_attached :photos
   validates :datetime, presence: true
   geocoded_by :address
