@@ -1,16 +1,18 @@
 <div class="container">
 <h3>Editing <%= @activity.name %>:</h3>
   <%= simple_form_for @activity do |f| %>
-
-  <%= f.input :name, label: 'Name' %>
-  <%= f.input :address, label: 'Input the activity location 🏠' %>
-  <%= f.input :category, label: 'Choose one category that fits most 🔍', :collection => ["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"] %>
-  <%= f.input :description, label: 'Describe what you would like to do ✍️' %>
+  <%= f.input :name, label: 'Name', placeholder: 'e.g. Yoga' %>
+  <%= f.input :address, label: 'Input the activity location 🏠', placeholder: 'e.g. Rosenthaler Str. 31
+10178 Berlin' %>
+  <%= f.input :category, label: 'Choose one category that fits most 🔍', :collection => ["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]%>
+  <%= f.input :description, label: 'Describe what you would like to do ✍️', placeholder: "e.g. Join me for some yoga in Mitte" %>
   <%= f.input :datetime, label: 'Date 📅 & starting time ⏰' %>
   <%= f.input :capacity, label: 'Maximum group number🧍‍♀️🧍🧍‍♂️' %>
   <%= f.input :photos, label: 'Upload images to make your Event more appealing 😍', as: :file, input_html: { multiple: true }%>
   <br>
+
   <%= f.button :submit, class:"btn btn-green" %>
+
   <br>
   <br>
   <br>
