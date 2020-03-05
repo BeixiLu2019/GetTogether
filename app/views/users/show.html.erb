@@ -10,3 +10,21 @@
 <p><%= link_to "Edit", edit_user_registration_path %></p>
 
 
+<h3> <%= @user.username %>'s  past event reviews : </h3>
+
+<% @user.activities.each do |activity| %>
+
+
+
+    <% if activity.reviews.present?  %>
+    <ul>
+      <% activity.reviews.each do |review| %>
+      <li>
+        <p>
+         Rating: <%= review.activity_rating %> </p>
+         <p>  Review: <%= review.content %> </p>
+       </li>
+  </ul>
+   <% end %>
+   <% end %>
+   <% end %>

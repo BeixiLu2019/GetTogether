@@ -17,10 +17,12 @@
 # photo = "#{resource_type}/#{type}/v#{version}/#{public_id}.#{format}##
 # {signature}"
 
-
+puts 'Cleaning review database'
+Review.destroy_all
 
 puts 'Cleaning booking database...'
 Booking.destroy_all
+
 
 puts 'Cleaning activity database...'
 Activity.destroy_all
@@ -103,7 +105,7 @@ Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 4, 16, 30, 0),
+  datetime: DateTime.new(2020, 03, 6, 16, 30, 0),
   capacity: 5,
   user_id: User.first.id + 1)
 
@@ -112,7 +114,7 @@ Activity.create!(
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 4, 9, 30, 0),
+  datetime: DateTime.new(2020, 03, 6, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id - 1)
 
@@ -121,7 +123,7 @@ Activity.create!(
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
   category: "food",
-  datetime: DateTime.new(2020, 04, 3, 9, 30, 0),
+  datetime: DateTime.new(2020, 06, 3, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
 
