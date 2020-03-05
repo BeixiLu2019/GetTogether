@@ -5,7 +5,9 @@
 <p>Email: <%= @user.email %></p>
 <p>Bio: <%= @user.bio %></p>
 <p>Interests: <%= @user.interest %></p>
-<%#= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fill %>
+<% if @user.photo.attached? %>
+<%= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fit %>
+<% end %>
 <br>
 <p><%= link_to "Edit", edit_user_registration_path %></p>
 
