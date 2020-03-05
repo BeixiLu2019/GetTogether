@@ -1,5 +1,6 @@
 class Activity < ApplicationRecord
   belongs_to :user
+  # has_many :users, through: :bookings
   include PgSearch::Model
   pg_search_scope :search, against: [:name, :description]
   has_many :bookings, dependent: :destroy
@@ -13,4 +14,5 @@ class Activity < ApplicationRecord
   validates :category, presence: true
   validates :capacity, presence: true
   validates :datetime, presence: {message: "Date cannot be blank."}
+  # validates :user, uniqueness: true
 end

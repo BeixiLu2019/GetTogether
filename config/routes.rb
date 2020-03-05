@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     resources :search, only: [:index]
     resources :bookings, only: [:create, :new]
   end
+
   resources :bookings, only: [:destroy, :show]
   resources :users, only: :show
 
+  resources :conversations, only: [:index, :show, :create, :destroy] do
+    resources :messages, only: [:index, :new, :create]
+  end
+  resources :messages, only: [:destroy]
 end
