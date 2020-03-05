@@ -20,12 +20,15 @@ Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 Category: <%= @activity.category %>
 <br>
 Hosted by: <strong><%= link_to @activity.user.username, user_path(@activity.user) %></strong>
-<%#= link_to "users", chatroom_path %>
-<!-- update the link of the chatroom -->
-<div>
-  <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-</div>
 
+<!-- Contacting host link, host cannot contact himself (if else) -->
+<% if @activity.user_id != current_user.id %>
+  <div>
+    <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+  </div>
+<% end %>
+
+<br>
 Capacity: <%= @activity.capacity %>
 <br>
 Spaces left: <%= @activity.capacity - @activity.bookings.count %>

@@ -1,33 +1,27 @@
-
-
-
 <% if @conversation.sender_id == current_user.id %>
   <% chat_partner = User.find(@conversation.recipient_id) %>
 <% else %>
   <% chat_partner = User.find(@conversation.sender_id) %>
 <% end %>
 
-<h1>Chat with <%= chat_partner.username %></h1>
-
-
-<% @messages.each do |message| %>
-  <div>
-    <div>
-      <%= User.find(message.user_id).username %>
-    <div>
-    <div>
-      <%= message.body %>
+<div class="container">
+  <h1>Chat with <%= chat_partner.username %></h1>
+    <% @messages.each do |message| %>
+    <div class="messenger">
+      <p> <%= message.body %> </p>
+      <p> <%= User.find(message.user_id).username %> at <%= message.message_time %> </p>
     </div>
-  </div>
-<% end %>
-
-<div>
-  <%= simple_form_for [@conversation, @message] do |f| %>
-    <%= f.input :body, label: 'new message' %>
-    <%= f.button :submit %>
   <% end %>
+
+  <div>
+    <%= simple_form_for [@conversation, @message] do |f| %>
+      <%= f.input :body, label: 'new message' %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+
+
+  <%= link_to "Show activity", activity_path(@conversation.activity_id) %>
+  <%= link_to "All conversations", conversations_path %>
+
 </div>
-
-
-<%= link_to "Show activity", activity_path(@conversation.activity_id) %>
-<%= link_to "All conversations", conversations_path %>
