@@ -7,12 +7,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    raise
      # authorize @user
   end
 
   def update
-    raise
     authorize @user
     @user.update(user_params)
     redirect_to user_path(current_user)
