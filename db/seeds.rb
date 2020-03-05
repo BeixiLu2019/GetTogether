@@ -264,7 +264,7 @@ Message.create!(
 
 Message.create!(
   user_id: User.first.id + 1,
-  conversation_id: Conversation.first.id,
+  conversation_id: Conversation.first.id + 1,
   body: "Yes"
   )
 
