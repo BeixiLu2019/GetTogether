@@ -18,9 +18,13 @@
       <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
       <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
       <p class="dashboard-p"> Address: <%= activity.address %></p>
-      <% unless activity.bookings.empty? %>
-      <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-ghost" %>
-      <% end %>
+        <% unless activity.bookings.empty? %>
+          <% if activity.user_id == current_user.id  %>
+          <% else %>
+          <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-ghost" %>
+          <% end %>
+         <% end %>
+
       <p class="dashboard-p"> Attending users: </p>
 
       <!-- Listing all participating users and host -->
