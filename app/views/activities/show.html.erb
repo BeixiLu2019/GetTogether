@@ -15,9 +15,6 @@
 <br>
 <p><%= @activity.address %></p>
 
-<!-- ? miles away -->
-
-
 Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
 <br>
 Category: <%= @activity.category %>
@@ -37,12 +34,14 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
   <% @activity.bookings.each do |booking| %>
   <li>
     <% user = User.find(booking.user_id) %>
-    <%= link_to user.username, user_path(user.id) %>
+      <% if user.photo.attached? %>
+      <%= cl_image_tag user.photo.key, class: "avatar" %>
+      <%#= test after profile fixted %>
+      <% else %>
+      <%= link_to user.username, user_path(user.id) %>
+    <% end %>
   </li>
   <% end %>
-
-
-
 </ul>
 
 <% if policy(@activity).destroy? %>
@@ -50,15 +49,20 @@ Spaces left: <%= @activity.capacity - @activity.bookings.count %>
 <%= link_to "Delete", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
 <% end %>
 
-<!-- Line of code for error messages !!!!! -->
-
-
-
-
-
-<% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-<h1>Want to join <%= @activity.name %>? Confirm now! </h1>
-<%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+<% if @booking.errors.any? %>
+  <div class="alert">
+    <% @booking.errors.full_messages.each do |message| %>
+      <span>  😱 <%= message %></span>
+      <a data-dismiss="alert" aria-label="Close">
+        <i class="fas fa-times"></i>
+      <% end %>
+  </div>
+<% end %>
+  <% if @booking.user != @activity.user && @booking.user != current_user %>
+  <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+  <h1>Want to join <%= @activity.name %>? Confirm now! </h1>
+  <%= link_to new_activity_booking_path(@activity), class: "btn btn-primary" do %>Join<% end %>
+  <% end %>
 <% end %>
 
 <br>
