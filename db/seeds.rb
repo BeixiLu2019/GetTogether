@@ -82,7 +82,7 @@ Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "food",
-  datetime: DateTime.new(2019, 03, 19, 18, 30, 0),
+  datetime: DateTime.new(2019, 04, 19, 18, 30, 0),
   capacity: 3,
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
@@ -103,7 +103,7 @@ Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 4, 16, 30, 0),
+  datetime: DateTime.new(2020, 04, 4, 16, 30, 0),
   capacity: 5,
   user_id: User.first.id + 1)
 
@@ -121,7 +121,7 @@ Activity.create!(
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
   category: "food",
-  datetime: DateTime.new(2020, 04, 3, 9, 30, 0),
+  datetime: DateTime.new(2020, 04, 8, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
 

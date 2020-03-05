@@ -1,7 +1,7 @@
 <h2>You participated in <%= pluralize @sorted_past.count, "activity"%>: </h2>
   <div class="cards cards-dashboard">
     <% if @sorted_past.count == 0 %>
-      <p> <%= link_to "Find awesome activities", root_path, class: "btn-ghost btn-dashboard" %> </p>
+      <p> <%= link_to "Find awesome activities", root_path, class: "btn-outline btn-dashboard" %> </p>
     <% else %>
       <% @sorted_past.each do |activity| %>
           <div class="card-product dashboard-card">
@@ -19,7 +19,7 @@
               <p class="dashboard-p"> Date: <%=activity.datetime %> </p>
               <p class="dashboard-p"> Address: <%= activity.address %></p>
               <% unless activity.bookings.empty? %>
-                <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-ghost" %>
+                <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-outline" %>
               <% end %>
               <p class="dashboard-p"> Attending users: </p>
 
