@@ -1,7 +1,7 @@
 <h2>You currently have <%= pluralize @sorted_upcoming.count, "activity"%> booked: </h2>
   <div class="cards cards-dashboard">
     <% if @sorted_upcoming.count == 0 %>
-      <p> <%= link_to "Find awesome activities", root_path, class: "btn-ghost btn-dashboard" %> </p>
+      <p> <%= link_to "Find awesome activities", root_path, class: "btn-outline btn-dashboard" %> </p>
     <% else %>
       <% @sorted_upcoming.each do |activity| %>
           <div class="card-product dashboard-card">

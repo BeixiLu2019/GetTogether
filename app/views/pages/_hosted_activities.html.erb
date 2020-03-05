@@ -1,7 +1,7 @@
 <h2>You currently host <%= pluralize @sorted_hosting.count, "activity"%> upcoming: </h2>
   <div class="cards cards-dashboard">
     <% if @sorted_hosting.count == 0 %>
-      <p> <%= link_to "Find awesome activities", root_path, class: "btn-ghost btn-dashboard" %> </p>
+      <p> <%= link_to "Find awesome activities", root_path, class: "btn-outline btn-dashboard" %> </p>
     <% else %>
       <% @sorted_hosting.each do |activity| %>
           <div class="card-product dashboard-card">

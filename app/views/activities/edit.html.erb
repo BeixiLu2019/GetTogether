@@ -1,6 +1,7 @@
 <div class="container">
 <h3>Editing <%= @activity.name %>:</h3>
   <%= simple_form_for @activity do |f| %>
+
   <%= f.input :name, label: 'Name' %>
   <%= f.input :address, label: 'Input the activity location 🏠' %>
   <%= f.input :category, label: 'Choose one category that fits most 🔍', :collection => ["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"] %>
