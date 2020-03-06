@@ -11,9 +11,9 @@
     <h1> My event: </h1>
     <% end %>
     <% if activity.photos.attached? %>
-    <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+    <%= cl_image_tag activity.photos.first.key, class: "w-100", crop: :fill, :id => "img_booking" %>
     <% else %>
-    <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+    <%= cl_image_tag("cqmszae8rere14lnciwy", width: 50, height: 50, crop: :thumb, gravity: :face) %>
 
     <% end %>
     <div class="card-product-infos">
