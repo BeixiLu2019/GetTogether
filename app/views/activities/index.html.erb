@@ -1,48 +1,57 @@
+<div class="container">
 
-<div class="container-index">
+<div class="form-idx">
   <%= form_tag activities_path, method: :get do %>
-  <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search within a 5km radius" %>
-  <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
-  <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
-  <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => true, class: "btn btn-outline w-50") %>
-  <%= submit_tag "Filter", class: "btn btn-green" %>
+    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Address search within 5km" %>
+    <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
+    <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
+    <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
+    <%= button_tag(type: "submit", class: "btn-orange") do %>
+      <i class="fas fa-sort-amount-down-alt"></i>
+    <% end %>
   <% end %>
+</div>
+  
+  <div class="content-index">
+    <% @activities.each do |activity| %>
+    <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
 
-  <div class="content-map">
-    <div>
-      <% @activities.each do |activity| %>
-        <br>
-        <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
-          <h1><strong><%= link_to activity.name, activity_path(activity) %></strong></h1>
+    <div class="card-trip index-cards">
+      <% activity.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
 
-          <br>
-          <% activity.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, class: "w-100", crop: :fit %>
-          <% end %>
-          <br>
-          When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
-          <br>
-          <% if params[:address].present? %>
-            Where: <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away @
-            <%= activity.address %>
-            <% else %>
-            Where: <%= activity.address %>
-          <% end %>
-          <br>
-          Capacity: <%= activity.capacity %>
-          <br>
-          Category: <%= activity.category %>
-          <br>
-          <% if activity.bookings.count == 1 %>
-          <%= activity.bookings.count %> Person is going
-          <% else %>
-          <%= activity.bookings.count %> People are going
-          <% end %>
-          <br>
-        <% end %>
+     <% end %>
+
+      <div class="card-trip-infos" id="idx-padding">
+        <div class="card-info-index">
+         <h1 class="index-h1"><%= link_to activity.name, activity_path(activity) %></h1>
+         <% if params[:address].present? %>
+        <p> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
+         <%#= activity.address %>
+         <%# else %>
+         <%#= activity.address %>
+         <% end %></p>
+<!--
+ <p> Category: <%= activity.category %></p> -->
+       <div class="idx-card-description">
+       <p> <% if activity.bookings.count == 1 %>
+         <%= activity.bookings.count %> Person is going
+         <% else %>
+         <%= activity.bookings.count %> People are going
+         <% end %> </p>
+         <h2 class="card-trip-pricing " id="idx_date"> <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %></h2>
+       </div>
+      </div>
+
+<!--  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> -->
+      </div>
+      </div>
       <% end %>
-      <br>
-    </div>
+      <% end %>
+      </div>
+
+
+
 
     <!-- <div class="map"
       id="map"
@@ -50,13 +59,8 @@
       height: 600px;"
       data-markers="<%#= @markers.to_json %>"
       data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
-    ></div> -->
+      ></div> -->
     </div>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
+
+
 

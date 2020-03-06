@@ -6,4 +6,53 @@
 @import "form";
 @import "card";
 
+.content-index {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+grid-column-gap: 10px;
+grid-row-gap: 40px;
+padding: 5px;
+padding-top: 15px;
+
+
+}
+
+.index-h1 {
+  font-size: 0.8rem;
+}
+
+#img_index {
+  height: 110px;
+}
+
+#idx-padding {
+  padding: 10px;
+  align-items: flex-start;
+  background-color: #FEF9F4;
+}
+
+.index-cards {
+   height: 200px;
+  background-color: #FEF9F4;
+
+}
+
+.card-info-index {
+  font-size: 0.8rem;
+}
+
+#idx_date {
+  // padding-top: 20px;
+  font-size: 10px;
+}
+
+.form-idx {
+  padding-top: 15px;
+  #friend_places {
+    // background-color: $yellow;
+  }
+  #activity {
+    // background-color: $yellow;
+  }
+}
 
