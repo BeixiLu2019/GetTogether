@@ -6,7 +6,7 @@
 
 <div class="container">
   <h1>Chat with <%= chat_partner.username %></h1>
-    <% @messages.each do |message| %>
+    <% @sorted_messages.each do |message| %>
     <div class="messenger">
       <p> <%= message.body %> </p>
       <p> <%= User.find(message.user_id).username %> at <%= message.message_time %> </p>
@@ -24,3 +24,4 @@
   <%= link_to "All conversations", conversations_path %>
 
 </div>
+
