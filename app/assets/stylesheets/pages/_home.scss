@@ -1,1 +1,9 @@
 // Specific CSS for your home-page
+
+a {
+  color: $orange;
+  &:hover{
+    color: $dark-gray;
+    text-decoration: none;
+  }
+}
