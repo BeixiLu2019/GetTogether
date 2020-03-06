@@ -101,7 +101,7 @@ activity = Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "food",
-  datetime: DateTime.new(2019, 03, 6, 19, 00, 0),
+  datetime: DateTime.new(2020, 03, 6, 19, 00, 0),
   capacity: 3,
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
