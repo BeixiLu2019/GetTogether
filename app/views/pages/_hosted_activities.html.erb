@@ -7,10 +7,10 @@
   <% @sorted_hosting.each do |activity| %>
   <div class="card-product dashboard-card">
     <% if activity.photos.attached? %>
-    <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+    <%= cl_image_tag activity.photos.first.key, class: "w-100", crop: :fill, :id => "img_booking" %>
 
     <% else %>
-    <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+    <%= cl_image_tag("cqmszae8rere14lnciwy", width: 50, height: 50, crop: :thumb, gravity: :face) %>
     <% end %>
     <div class="card-product-infos">
       <h2 class="dashboard_h2"><%= link_to activity.name, activity_path(activity) %></h2>
@@ -26,7 +26,9 @@
         <div class="avartar-set">
           <div class="avartar-name">
             <%= link_to user.username, user_path(user.id) %>
-            <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user) %>
+
+            <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
+
 
           </div>
         </div>
