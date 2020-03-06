@@ -7,6 +7,11 @@
       <div class=”me”>
         <%= link_to Activity.find(conversation.activity_id).name, conversation_messages_path(conversation)%>
       </div>
+      <% if conversation.messages.where(["read = ? and user_id != ?", false, current_user.id ]).present?%>
+      <div>
+        <p>New Messages!</p>
+      </div>
+      <% end %>
       <div>
         <%=  link_to "Delete", conversation_path(conversation), method: "Delete" %>
       </div>
