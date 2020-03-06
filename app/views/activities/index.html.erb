@@ -1,11 +1,11 @@
 
-<div class="container">
+<div class="container-index">
   <%= form_tag activities_path, method: :get do %>
-  <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search for a specific address within a 5km radius" %>
+  <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search within a 5km radius" %>
   <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
   <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
-  <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => true) %>
-  <%= submit_tag "filter for category", class: "btn btn-primary" %>
+  <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => true, class: "btn btn-outline w-50") %>
+  <%= submit_tag "Filter", class: "btn btn-green" %>
   <% end %>
 
   <div class="content-map">
@@ -17,7 +17,7 @@
 
           <br>
           <% activity.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit %>
+          <%= cl_image_tag photo.key, height: 300, class: "w-100", crop: :fit %>
           <% end %>
           <br>
           When: <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
