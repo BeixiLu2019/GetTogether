@@ -1,17 +1,17 @@
-
 <div class="container">
 
 <div class="form-idx">
   <%= form_tag activities_path, method: :get do %>
-  <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Address search within 5km" %>
-  <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
-  <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
-  <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
-  <%= button_tag(type: "submit", class: "btn-orange") do %>
-  <i class="fas fa-sort-amount-down-alt"></i>
-  <% end %>
+    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Address search within 5km" %>
+    <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
+    <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
+    <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
+    <%= button_tag(type: "submit", class: "btn-orange") do %>
+      <i class="fas fa-sort-amount-down-alt"></i>
+    <% end %>
   <% end %>
 </div>
+  
   <div class="content-index">
     <% @activities.each do |activity| %>
     <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
@@ -19,7 +19,8 @@
     <div class="card-trip index-cards">
       <% activity.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
-      <% end %>
+
+     <% end %>
 
       <div class="card-trip-infos" id="idx-padding">
         <div class="card-info-index">
