@@ -3,6 +3,13 @@ class MessagesController < ApplicationController
 
   def index
     @messages = policy_scope(@conversation.messages)
+    @messages.each do |message|
+      unless message.user_id == current_user.id
+        message.read = true
+        message.save
+      end
+    end
+    @sorted_messages = @messages.sort_by {|message| message.id}
     new
     authorize @messages
     authorize @message

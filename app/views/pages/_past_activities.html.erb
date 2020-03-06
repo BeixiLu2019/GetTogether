@@ -11,9 +11,9 @@
     <h1> My event: </h1>
     <% end %>
     <% if activity.photos.attached? %>
-    <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+    <%= cl_image_tag activity.photos.first.key, class: "w-100", crop: :fill, :id => "img_booking" %>
     <% else %>
-    <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+    <%= cl_image_tag("cqmszae8rere14lnciwy", width: 50, height: 50, crop: :thumb, gravity: :face) %>
 
     <% end %>
     <div class="card-product-infos">
@@ -55,16 +55,16 @@
       Hosted by:
       <div class="participants">
         <% if current_user.photo.attached? %>
-        <%= link_to cl_image_tag(current_user.photo, class: "avatar"), user_path(user.id) %>
+        <%= link_to cl_image_tag(current_user.photo, class: "avatar"), user_path(current_user) %>
         <% else %>
         <div class="avartar-set">
           <%= link_to current_user.username, user_path(current_user) %>
-          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(current_user) %>
           <% end %>
         </div>
       </div>
 
-    
+
       <% unless activity.bookings.empty? %>
           <% if activity.user_id == current_user.id  %>
           <% else %>
