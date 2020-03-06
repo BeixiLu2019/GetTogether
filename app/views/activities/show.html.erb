@@ -28,9 +28,6 @@ Hosted by:
     <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
   <% end %>
   </div>
-<div>
-  <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-</div>
 
 <!-- Contacting host link, host cannot contact himself (if else) -->
 <% if @activity.user_id != current_user.id %>
