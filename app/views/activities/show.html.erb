@@ -1,6 +1,4 @@
-
 <div class="main-container">
-
   <div class="show-image">
     <% @activity.photos.each do |photo| %>
     <%= cl_image_tag photo.key, crop: :fit %>
@@ -8,7 +6,7 @@
   </div>
 
     <div class="show-container">
-      <h1><%= @activity.name %> </h1>
+     <h1><%= @activity.name %> </h1>
       <h6><%= @activity.description %></h6>
       <br>
       <p><i class="fas fa-map-marker-alt"></i> <%= @activity.address %></p>
@@ -21,6 +19,33 @@
       <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
       <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
 
+      
+<!--    new code ?    -->
+      
+<!--       <div class="title-btn">
+        <h1><%#= @activity.name %> </h1> -->
+        <!-- booking tn -->
+<!--         <%# if @booking.errors.any? %>
+        <div class="alert">
+          <%# @booking.errors.full_messages.each do |message| %>
+          <span>  😱 <%#= message %></span>
+          <a data-dismiss="alert" aria-label="Close"></a>
+          <i class="fas fa-times"></i>
+          <%# end %>
+        </div>
+        <%# end %>
+        <%# if @booking.user != @activity.user && @booking.user != current_user %>
+        <%# if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+        <div>
+          <%#= link_to 'Join',new_activity_booking_path(@activity), class: "btn btn-primary" %>
+        </div>
+        <%# end %>
+        <%# end %>
+      </div> -->
+      
+
+<!--   my changes    -->
+    
         <div class="host-info">
           <% if @activity.user.photo.attached? %>
           <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
@@ -39,7 +64,7 @@
           <% end %>
         </div>
 
-        <h6>Joining: </h6>
+        <h6>Who's joining: </h6>
         <div class="participants">
          <% @activity.bookings.each do |booking| %>
           <% user = User.find(booking.user_id) %>
