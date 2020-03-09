@@ -7,9 +7,20 @@ a {
   }
 }
 
+.home-img {
+  display: flex;
+  justify-content: center;
+  img {
+
+  width: 90%;
+  z-index: -3;
+  }
+}
+
 .container-home {
-  background-color: $yellow;
-  background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583503802/gettogether_c35njn.png) no-repeat center center fixed;
+  // background-color: $yellow;
+  // background-image: linear-gradient($red, $orange);
+  background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583691170/gettogether_mjh1ge.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -18,18 +29,30 @@ a {
   width: 100%;
   padding: 15px;
   margin: auto;
+  // opacity: 0.5;
 }
 
 .headers {
   margin-top: 20%;
   text-align: center;
   h1 {
-    color: $red;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    color: $dark-gray;
+    font-size: 50px;
+    margin-bottom: 20px;
+    background: -webkit-linear-gradient(#f74742, $orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // background: linear-gradient(90deg,#ff8a00,#e52e71);
+  }
+  h6 {
+    font-size: 21px;
+    color: $dark-gray;
+    margin: 0;
   }
   p {
     font-size: 20px;
     color: $dark-gray;
+    margin-bottom: 36px;
   }
 }
 
@@ -56,8 +79,14 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-   .btn-green {
-    margin-left: 5px;
+  z-index: -1;
+   .btn-orange {
+    height: 40px;
+    // background: linear-gradient($red, $orange);
+    margin-left: -18px;
+    .fa-search-location {
+      font-size: 20px;
+    }
   }
 }
 

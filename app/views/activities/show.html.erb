@@ -1,88 +1,88 @@
-<% @activity.photos.each do |photo| %>
-<div class="img-back w-100">
-  <%= cl_image_tag photo.key, height: 300, class: 'w-100', crop: :fit %>
-  <% end %>
-  <%= link_to "Back", :back, class: "btn btn-outline" %>
-</div>
 
-<div class="content">
-  <div class="title-btn">
-    <h1><strong> <%= @activity.name %></strong></h1>
-    <!-- booking btn -->
-    <% if @booking.errors.any? %>
-    <div class="alert">
-      <% @booking.errors.full_messages.each do |message| %>
-      <span>  😱 <%= message %></span>
-      <a data-dismiss="alert" aria-label="Close"></a>
-      <i class="fas fa-times"></i>
-      <% end %>
-    </div>
-    <% end %>
-    <% if @booking.user != @activity.user && @booking.user != current_user %>
-      <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-          <div>
-          <%= link_to 'Join',new_activity_booking_path(@activity), class: "btn btn-primary" %>
-          </div>
-      <% end %>
+<div class="main-container">
+
+  <div class="show-image">
+    <% @activity.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, crop: :fit %>
     <% end %>
   </div>
 
-  <p>Starting at: <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %></p>
-  <p>Category: <%= @activity.category %></p>
-  <% if @activity.user != current_user %>
-  <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-  <% end %>
-  <div class="avartar-set">
-    <% if @activity.user.photo.attached? %>
-      <div class="avartar-name">
-        <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
-        <%= @activity.user.username %>
-      </div>
-    <% else %>
-      <div class="avartar-name">
-        <%= @activity.user.username %>
-        <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
-      </div>
-    <% end %>
-  </div>
+    <div class="show-container">
+      <h1><%= @activity.name %> </h1>
+      <br>
+      <p><i class="fas fa-map-marker-alt"></i> <%= @activity.address %></p>
+      <p>
+      <i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+      </p>
+      <p>
+      <i class="fas fa-sort-amount-down-alt"></i> <%= @activity.category.capitalize %>
+      </p>
+        <div class="host-info">
+          <% if @activity.user.photo.attached? %>
+          <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
+          <%= @activity.user.username %>
+          <% else %>
+          <%= link_to @activity.user.username, user_path(@activity.user) %>
+          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
+          <% end %>
 
-  <!-- Contacting host link, host cannot contact himself (if else) -->
-  <p>Capacity: <%= @activity.capacity %></p>
-  <p>Spaces left: <%= @activity.capacity - @activity.bookings.count %></p>
-  <p>About:  <%= @activity.description %></p>
-  <p><%= @activity.address %></p>
-  Who is going:
-  <div class="participants">
-    <% @activity.bookings.each do |booking| %>
-      <% user = User.find(booking.user_id) %>
-      <% if user.photo.attached? %>
-      <div class="avartar-set">
-        <div class="avartar-name">
-          <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
-          <%= user.username %>
+          <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+
+          <% if @activity.user_id != current_user.id %>
+          <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+          <% end %>
         </div>
-      </div>
-      <% else %>
-      <div class="avartar-set">
-        <%= user.username %>
-        <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
-      </div>
+
+        <p>Capacity: <%= @activity.capacity %></p>
+        <p>Spaces left: <%= @activity.capacity - @activity.bookings.count %></p>
+        <p>About:  <%= @activity.description %></p>
+
+        <div class="participants">
+         <% @activity.bookings.each do |booking| %>
+          <% user = User.find(booking.user_id) %>
+            <% if user.photo.attached? %>
+            <div class="avartar-set">
+              <div class="avartar-name">
+              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+                <%= user.username %>
+              </div>
+            </div>
+            <% else %>
+            <div class="avartar-set">
+              <%= user.username %>
+              <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+
+      <div class="map"
+          id="map"
+          style="width: 100%;
+          height: 300px;"
+          data-marker="<%= @marker.to_json %>"
+          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
+
+      <div class="bottom-container">
+      <% if policy(@activity).destroy? %>
+      <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
+      <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
       <% end %>
-    <% end %>
-  </div>
- <p><%= link_to "Back", :back, class: "btn btn-outline" %></p>
-  </div>
 
-<div class="map"
-id="map"
-style="width: 100%;
-height: 600px;"
-data-marker="<%= @marker.to_json %>"
-data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-></div>
+          <% if @booking.user != @activity.user && @booking.user != current_user %>
+          <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+          <h1>Want to join <%= @activity.name %>? Confirm now! </h1>
+          <%= link_to new_activity_booking_path(@activity), class: "btn btn-green" do %>Join<% end %>
+          <% end %>
+        <% end %>
+        <br>
+        <br>
+        <%= link_to :back do %>
+      <i class="fas fa-chevron-left"></i>
+      <% end %>
+      </div>
 
-  <% if policy(@activity).destroy? %>
-  <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
-  <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
-  <% end %>
+    </div>
+</div>
 

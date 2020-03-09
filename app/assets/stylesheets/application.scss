@@ -11,14 +11,17 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "components/messenger";
 
+html {
+  height: 100vh;
+}
 
 body {
   background-color: white;
+  height: 100%;
 }
 
-h1 {
-  color: #F65D5A;
+h1, h2, h3, h4, p {
+  color: $dark-gray;
 }
 

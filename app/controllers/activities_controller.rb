@@ -3,6 +3,7 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
+    @current_page = "activities"
     if params[:address].nil?
       @activities = policy_scope(Activity).geocoded
     elsif params[:address].present?
@@ -43,6 +44,7 @@ class ActivitiesController < ApplicationController
   # Mapbox Code
 
   def new
+    @current_page = "new activity"
     @user = current_user
     @activity = Activity.new
     authorize @activity
