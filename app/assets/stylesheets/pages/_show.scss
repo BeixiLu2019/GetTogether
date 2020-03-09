@@ -1,3 +1,4 @@
+
 .main-container {
   height: 100%;
   width: 100%;
@@ -34,4 +35,24 @@
   margin-bottom: 60px;
 }
 
+.content {
+  margin: 0px 15px 15px;
+}
+
+.title-btn {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0px;
+}
+
+p {
+  margin-bottom: 0px !important;
+}
+
+.btn-outline {
+  position: absolute;
+  top: 2%;
+  left: 3%;
+  color: white;
+}
 

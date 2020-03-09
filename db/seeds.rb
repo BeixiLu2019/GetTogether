@@ -101,7 +101,7 @@ activity = Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "food",
-  datetime: DateTime.new(2019, 04, 19, 18, 30, 0),
+  datetime: DateTime.new(2020, 03, 6, 19, 00, 0),
   capacity: 3,
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
@@ -114,7 +114,7 @@ activity = Activity.create!(
   description: 'Move your body with me playing tennis. I am not very good. ',
   address: "Cantianstr. 24, 10437 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 06, 4, 18, 30, 0),
+  datetime: DateTime.new(2020, 03, 6, 19, 30, 0),
   capacity: 2,
   user_id: User.first.id,
   )
@@ -126,9 +126,13 @@ activity = Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "sports",
+<<<<<<< HEAD
   datetime: DateTime.new(2020, 04, 10, 16, 30, 0),
+=======
+  datetime: DateTime.new(2020, 03, 6, 18, 30, 0),
+>>>>>>> master
   capacity: 5,
-  user_id: User.first.id + 1)
+  user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
 
 file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253419/Yoga_erxj9j.jpg')
@@ -137,7 +141,7 @@ activity =Activity.create!(
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 15, 9, 30, 0),
+  datetime: DateTime.new(2020, 03, 7, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id - 1)
   activity.photos.attach(io: file, filename: 'photo')
@@ -148,7 +152,11 @@ activity = Activity.create!(
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
   category: "food",
+<<<<<<< HEAD
   datetime: DateTime.new(2020, 05, 8, 9, 30, 0),
+=======
+  datetime: DateTime.new(2020, 03, 6, 19, 30, 0),
+>>>>>>> master
   capacity: 3,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
