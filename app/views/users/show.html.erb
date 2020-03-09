@@ -1,52 +1,53 @@
 <div class="profile-container">
   <div class="main-content">
 
-  <div class="profile-name">
-      <% if @user.photo.attached? %>
-          <%= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fit %>
-      <% else %>
-          <%= cl_image_tag("img_264570_wuw5yx", class: "avatar-border", height: 300, width: 300, crop: :fit) %>
-      <% end %>
-      <h2> <%= @user.username %> </h2>
-    </div>
-    <div class="profile-content">
-    <% if @user = current_user %>
-      <p><i class="far fa-envelope"></i> <%= @user.email %></p>
-      <p><i class="fas fa-birthday-cake"></i> <%= @user.birthday %></p>
-      <% end %>
-      <p><i class="far fa-edit"></i> <%= @user.bio %></p>
-      <p><i class="far fa-heart"></i> <%= @user.interest %></p>
-    </div>
-    <br>
-    <div class="edit">
-      <% if @user = current_user %>
-      <p><%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-outline" %></p>
-      <% end %>
-    </div>
-    <div class="reviews">
-      <h4> <%= @user.username %>'s  past event reviews </h4>
-
-      <% @user.activities.each do |activity| %>
-
-          <% if activity.reviews.present? %>
-            <ul>
+  <div>
+    <div class="profile-name">
+        <% if @user.photo.attached? %>
+            <%= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fit %>
+        <% else %>
+            <%= cl_image_tag("img_264570_wuw5yx", class: "avatar-border", height: 300, width: 300, crop: :fit) %>
+        <% end %>
+        <h2> <%= @user.username %> </h2>
+      </div>
+      <div class="profile-content">
+      <% if @user == current_user %>
+        <p><i class="far fa-envelope"></i> <%= @user.email %></p>
+        <p><i class="fas fa-birthday-cake"></i> <%= @user.birthday %></p>
+        <% end %>
+        <p><i class="far fa-edit"></i> <%= @user.bio %></p>
+        <p><i class="far fa-heart"></i> <%= @user.interest %></p>
+      </div>
+      <br>
+      <div class="edit">
+        <% if @user == current_user %>
+        <p><%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-outline" %></p>
+        <% end %>
+      </div>
+      <!-- Review Code -->
+      <div class="reviews">
+        <h4> <%= @user.username %>'s  past event reviews </h4>
+        <% @user.activities.each do |activity| %>
+           <div class="event-rating">
+            <% if activity.reviews.present? %>
+            <p><%= activity.name %></p>
+            <%= '⭐️' * (activity.reviews.sum(:activity_rating) / activity.reviews.count) %>
+           </div>
               <% activity.reviews.each do |review| %>
-              <li>
-                <p>
-                 Rating: <%= review.activity_rating %> </p>
-                 <p>  Review: <%= review.content %> </p>
-               </li>
-            </ul>
+              <div class="single-activity">
+                <p class="review-user"><%= User.find(review.booking.user_id).username %> says: </p>
+                <p><%= review.content %></p>
+              </div>
               <% end %>
-              <% else %>
-             <p> <%=@user.username%> has no event reviews yet. </p>
-         <% end %>
-         <% end %>
-    </div>
+            <% end %>
+          <% end %>
+            <p> <%=@user.username%> hasn't received reviews yet. </p>
+          </div>
 
-      <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-      <small><i class="fas fa-sign-out-alt"></i> Sign Out </small>
-      <% end %>
-    <br>
+        <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+        <small><i class="fas fa-sign-out-alt"></i> Sign Out </small>
+        <% end %>
+      <br>
+  </div>
   </div>
 </div>
