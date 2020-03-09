@@ -6,7 +6,7 @@
     <%= f.input :address, label: 'Activity location 🏠', placeholder: 'e.g. Rosenthaler Str. 3110178 Berlin' %>
     <%= f.input :category, label: 'Choose a category 🔍', :collection => ["🍝 Food & Drinks", "🍻 Nightlife", "🎭 Culture", "🌳 Nature", "🧘‍♀️ Wellness", "🤝 Networking", "📚 Learning"]%>
     <%= f.input :description, label: 'Describe activity ✍️', placeholder: "e.g. Join me for yoga in Mitte" %>
-    <%= f.input :datetime, label: 'Date 📅 & starting time ⏰' %>
+    <%= f.input :datetime, label: 'Date 📅 & starting time ⏰', as: :datetime, html5: true %>
     <%= f.input :capacity, label: 'Max group number🧍‍♀️🧍🧍‍♂️' %>
     <%= f.input :photos, label: 'Upload image for Wow factor 😍', as: :file, input_html: { multiple: true }%>
     <br>
