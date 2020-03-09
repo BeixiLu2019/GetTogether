@@ -14,7 +14,9 @@ def create
   @booking.user_id = current_user.id
   authorize @booking
   if @booking.save
-    redirect_to activity_path(params[:activity_id])
+    redirect_to dashboard_path(params[:current_user])
+    # render :show
+    # redirect_to activity_path(params[:activity_id])
   else
     # flash[:alert] = "No more spaces left!"
     render "activities/show", booking: @booking

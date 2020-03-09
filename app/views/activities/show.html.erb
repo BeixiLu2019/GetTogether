@@ -9,6 +9,7 @@
 
     <div class="show-container">
       <h1><%= @activity.name %> </h1>
+      <h6><%= @activity.description %></h6>
       <br>
       <p><i class="fas fa-map-marker-alt"></i> <%= @activity.address %></p>
       <p>
@@ -17,26 +18,28 @@
       <p>
       <i class="fas fa-sort-amount-down-alt"></i> <%= @activity.category.capitalize %>
       </p>
+      <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
+      <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
+
         <div class="host-info">
           <% if @activity.user.photo.attached? %>
           <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
-          <%= @activity.user.username %>
+          <p><%= @activity.user.username %></p>
           <% else %>
           <%= link_to @activity.user.username, user_path(@activity.user) %>
           <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
           <% end %>
 
-          <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-
+          <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
           <% if @activity.user_id != current_user.id %>
           <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+            <%= link_to activity_conversations_path(@activity), method: "Post" do %>
+              <i class="far fa-comment"></i>
+            <% end %>
           <% end %>
         </div>
 
-        <p>Capacity: <%= @activity.capacity %></p>
-        <p>Spaces left: <%= @activity.capacity - @activity.bookings.count %></p>
-        <p>About:  <%= @activity.description %></p>
-
+        <h6>Joining: </h6>
         <div class="participants">
          <% @activity.bookings.each do |booking| %>
           <% user = User.find(booking.user_id) %>
@@ -44,7 +47,7 @@
             <div class="avartar-set">
               <div class="avartar-name">
               <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
-                <%= user.username %>
+              <p> <%= user.username %> </p>
               </div>
             </div>
             <% else %>
@@ -56,24 +59,29 @@
         <% end %>
         </div>
 
-      <div class="map"
-          id="map"
-          style="width: 100%;
-          height: 300px;"
-          data-marker="<%= @marker.to_json %>"
-          data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-      ></div>
+      <div class="map-container">
+        <div class="map"
+            id="map"
+            style="width: 100%;
+            height: 300px;"
+            data-marker="<%= @marker.to_json %>"
+            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+        ></div>
+      </div>
 
       <div class="bottom-container">
-      <% if policy(@activity).destroy? %>
-      <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
-      <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
-      <% end %>
+        <% if policy(@activity).destroy? %>
+          <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
+          <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
+        <% end %>
 
-          <% if @booking.user != @activity.user && @booking.user != current_user %>
+        <% if @booking.user != @activity.user && @booking.user != current_user %>
           <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-          <h1>Want to join <%= @activity.name %>? Confirm now! </h1>
-          <%= link_to new_activity_booking_path(@activity), class: "btn btn-green" do %>Join<% end %>
+          <h6> Want to join <%= @activity.name %>? Confirm now! </h6>
+
+          <%= link_to new_activity_booking_path(@activity), id: "confirm", class: "hidden" do%>
+            <button id="sweet-alert-demo" class="btn btn-green">Join!</button>
+            <% end %>
           <% end %>
         <% end %>
         <br>

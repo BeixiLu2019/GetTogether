@@ -18,21 +18,39 @@
 .show-container {
   padding: 15px;
   margin: auto;
+  h6 {
+    color: #5b6175;
+    font-size: 18px;
+    margin: 0;
+  }
 }
 
 .host-info {
   display: flex;
   align-items: center;
+  margin: 10px 0px 20px -9px;
   img {
     margin-right: 10px;
   }
   a {
     margin-left: 10px;
   }
+  .fa-comment {
+    color: $orange;
+
+  }
 }
 
 .bottom-container {
+  margin-top: 20px;
   margin-bottom: 60px;
+  h6 {
+    color: $orange;
+    margin-bottom: 15px;
+  }
+  .btn-green {
+    width: 100%;
+  }
 }
 
 .content {
@@ -46,13 +64,18 @@
 }
 
 p {
+  color: #5b6175;
   margin-bottom: 0px !important;
 }
 
 .btn-outline {
-  position: absolute;
+  // If you want to move the profile edit button,
+  // do it on the Profile Show page, inside a div,
+  // otherwise this will globally move ALL buttons
+
+  // position: absolute;
   top: 2%;
   left: 3%;
-  color: white;
+  color: $dark-gray;
 }
 
