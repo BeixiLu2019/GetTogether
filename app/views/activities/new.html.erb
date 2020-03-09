@@ -2,13 +2,13 @@
   <div class="form-container">
     <h3>Let's get started: </h3>
     <%= simple_form_for @activity do |f| %>
-    <%= f.input :name, label: 'Name 🤗', placeholder: 'e.g. Yoga' %>
-    <%= f.input :address, label: 'Activity location 🏠', placeholder: 'e.g. Rosenthaler Str. 3110178 Berlin' %>
+    <%= f.input :name, label: 'Title 🤗', placeholder: 'e.g. Yoga' %>
+    <%= f.input :address, label: 'Activity location 🏠', placeholder: 'e.g. Torstr. 31 10119 Berlin' %>
     <%= f.input :category, label: 'Choose a category 🔍', :collection => ["🍝 Food & Drinks", "🍻 Nightlife", "🎭 Culture", "🌳 Nature", "🧘‍♀️ Wellness", "🤝 Networking", "📚 Learning"]%>
-    <%= f.input :description, label: 'Describe activity ✍️', placeholder: "e.g. Join me for yoga in Mitte" %>
+    <%= f.input :description, label: 'Describe your activity ✍️', placeholder: "e.g. Join me for yoga in Mitte" %>
     <%= f.input :datetime, label: 'Date 📅 & starting time ⏰', as: :datetime, html5: true %>
-    <%= f.input :capacity, label: 'Max group number🧍‍♀️🧍🧍‍♂️' %>
-    <%= f.input :photos, label: 'Upload image for Wow factor 😍', as: :file, input_html: { multiple: true }%>
+    <%= f.input :capacity, label: 'Number of participants🧍‍♀️🧍🧍‍♂️' %>
+    <%= f.input :photos, label: 'Upload image for WOW factor 😍', as: :file, input_html: { multiple: true }%>
     <br>
 
     <%= f.button :submit, class:"btn btn-green" %>
