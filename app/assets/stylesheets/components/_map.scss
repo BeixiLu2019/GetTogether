@@ -3,6 +3,7 @@
 .content-map {
   display: flex;
   justify-content: space-between;
+  margin:30px 0px;
 }
 
 #map {
@@ -11,5 +12,5 @@
 
 #map.map.mapboxgl-map {
   width: 100%;
-  margin: 20px 0px 30px 0px;
+  margin: 30px 0px 30px 0px;
 }
