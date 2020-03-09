@@ -6,20 +6,20 @@
 @import "button";
 @import "form";
 @import "card";
+@import "messenger";
 
 .content-index {
 display: grid;
 grid-template-columns: repeat(2, 1fr);
 grid-column-gap: 10px;
-grid-row-gap: 40px;
+grid-row-gap: 15px;
 padding: 5px;
 padding-top: 15px;
-
-
 }
 
 .index-h1 {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  margin-bottom: 2px;
 }
 
 #img_index {
@@ -29,31 +29,44 @@ padding-top: 15px;
 #idx-padding {
   padding: 10px;
   align-items: flex-start;
-  background-color: #FEF9F4;
 }
 
 .index-cards {
-   height: 200px;
-  background-color: #FEF9F4;
-
+  height: 200px;
+  background-color: #f5ece6;
+  border-radius: 6px;
 }
 
 .card-info-index {
   font-size: 0.8rem;
+  a {
+    color: $red;
+  }
 }
 
 #idx_date {
   // padding-top: 20px;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .form-idx {
-  padding-top: 15px;
+  padding: 15px;
+  .btn-orange {
+    height: 35px;
+  }
   #friend_places {
-    // background-color: $yellow;
+    margin-bottom: 5px;
   }
   #activity {
-    // background-color: $yellow;
+    margin-bottom: 5px;
   }
+  #category {
+    color: #ced4da;
+    border: 1px solid #ced4da;
+    background-color: white;
+    height: 35px;
+    border-radius: 10px;
+  }
+  border-bottom: 1px solid $light-gray;
 }
 

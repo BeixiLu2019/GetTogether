@@ -1,3 +1,10 @@
+.messages {
+  width: 100%;
+  padding: 15px;
+  margin: 0;
+  border-bottom: 1px solid $light-gray;
+}
+
 .messenger {
   display: flex;
   justify-content: space-between;

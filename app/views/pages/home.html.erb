@@ -3,15 +3,23 @@
 
   <div class="headers">
   <h1>Get Together </h1>
-  <p>Find new people to join you!</p>
+  <h6>Find something to do today</h6>
+  <p>and meet new friends.</p>
   </div>
 
+   <!-- <div class="home-img">
+    <img src="https://res.cloudinary.com/dvpcxhofq/image/upload/v1583682701/undraw_team_work_k80m_vcu3v7.png" alt="">
+  </div> -->
 
   <%= simple_form_for :search, url: activities_path, method: "get" do |f| %>
     <div class="search-bar">
-    <input class="search-address" type="text" name="address" id="friend_places" placeholder="Search within 5km" />
-    <%= f.submit "Search", class: "btn btn-green" %>
+    <input class="search-address" type="text" name="address" id="friend_places" placeholder="Search address within 5km" />
+    <%= button_tag(type: "submit", class: "btn btn-orange") do %>
+    <i class="fas fa-search-location"></i>
+    <% end %>
   <% end %>
   </div>
+
+
 
 </div>

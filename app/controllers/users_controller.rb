@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @current_page = "profile"
     @user = User.find(params[:id])
     authorize @user
   end

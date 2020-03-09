@@ -1,50 +1,48 @@
-<div class="navbar-wrapper">
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
 
-    <div class="nav-item active">
-      <%= link_to root_path, class: "nav-link" do %>
-      <i class="far fa-smile"></i>
+    <div class="nav-item">
+      <%= link_to root_path, class: "nav-link #{current_page == "home" ? 'active' : ''}" do %>
+      <i class="fas fa-search"></i>
       <% end %>
     </div>
     <div class="nav-item">
-      <%= link_to activities_path, class: "nav-link" do %>
+      <%= link_to activities_path, class: "nav-link #{current_page == "activities" ? 'active' : ''}" do %>
       <i class="far fa-paper-plane"></i>
       <% end %>
     </div>
     <div class="nav-item">
-      <%= link_to dashboard_path, class: "nav-link" do %>
-      <i class="far fa-bookmark"></i>
+      <%= link_to dashboard_path, class: "nav-link #{current_page == "dashboard" ? 'active' : ''}" do %>
+      <i class="far fa-calendar-alt"></i>
       <% end %>
     </div>
     <div class="nav-item">
-      <%= link_to new_activity_path, class: "nav-link" do %>
+      <%= link_to new_activity_path, class: "nav-link #{current_page == "new activity" ? 'active' : ''}" do %>
       <i class="far fa-plus-square"></i>
       <% end %>
     </div>
 
     <% if user_signed_in? %>
     <div class="nav-item">
-      <%= link_to user_path(current_user), class: "nav-link" do %>
+      <%= link_to user_path(current_user), class: "nav-link #{current_page == "profile" ? 'active' : ''}" do %>
       <i class="far fa-user-circle"></i>
       <% end %>
     </div>
     <div class="nav-item">
-      <%= link_to conversations_path, class: "nav-link" do %>
+      <%= link_to conversations_path, class: "nav-link #{current_page == "messages" ? 'active' : ''}" do %>
       <i class="far fa-comment"></i>
       <% end %>
     </div>
-    <div class="nav-item">
-      <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+  <!-- <div class="nav-item">
+      <%#= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
       <i class="fas fa-sign-out-alt"></i>
-      <% end %>
-    </div>
+      <%# end %>
+    </div> -->
     <% else %>
     <div class="nav-item">
       <%= link_to new_user_session_path, class: "nav-link" do %>
-      <i class="fas fa-sign-in-alt"></i>
+      <i class="far fa-user-circle"></i>
       <% end %>
     </div>
     <% end %>
-  </div>
 </div>
 

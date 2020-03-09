@@ -26,23 +26,38 @@
 
 .nav-item {
   color: gray;
+  &:hover {
+    color: #fb7e5c;
+  }
+  .active {
+    color: $orange;
+  }
 }
 
 .nav-link {
-  color: gray
+  color: gray;
+  &:hover {
+    color: #fb7e5c;
+  }
+  .active {
+    color: $orange;
+  }
 }
 
 a:hover {
- color: black;
+ color: $orange;
 }
 
-.active {
-  color: black;
-}
+// .active {
+//   color: $orange;
+// }
 
-.fa-smile {
-  color: #fb7e5c;
+.fa-search {
+  color: gray;
   &:hover {
-    color: #ee4d42;
+    color: #fb7e5c;
+  }
+   .active {
+    color: $orange;
   }
 }

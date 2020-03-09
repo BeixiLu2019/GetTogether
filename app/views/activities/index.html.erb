@@ -6,12 +6,12 @@
     <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
     <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
     <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
-    <%= button_tag(type: "submit", class: "btn-orange") do %>
+    <%= button_tag(type: "submit", class: "btn btn-outline") do %>
       <i class="fas fa-sort-amount-down-alt"></i>
     <% end %>
   <% end %>
 </div>
-  
+
   <div class="content-index">
     <% @activities.each do |activity| %>
     <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
@@ -19,7 +19,6 @@
     <div class="card-trip index-cards">
       <% activity.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
-
      <% end %>
 
       <div class="card-trip-infos" id="idx-padding">
@@ -34,12 +33,15 @@
 <!--
  <p> Category: <%= activity.category %></p> -->
        <div class="idx-card-description">
-       <p> <% if activity.bookings.count == 1 %>
-         <%= activity.bookings.count %> Person is going
-         <% else %>
-         <%= activity.bookings.count %> People are going
-         <% end %> </p>
-         <h2 class="card-trip-pricing " id="idx_date"> <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %></h2>
+        <h2 class="card-trip-pricing " id="idx_date"> <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %></h2>
+        <p>
+          <% if activity.bookings.count == 1 %>
+            <%= activity.bookings.count %> Person is going
+          <% else %>
+            <%= activity.bookings.count %> People are going
+          <% end %>
+        </p>
+
        </div>
       </div>
 

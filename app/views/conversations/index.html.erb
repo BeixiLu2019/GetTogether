@@ -1,22 +1,24 @@
-<div>
-  <h3>Conversations for upcoming activities</h3>
-  <div class=”ui”>
+<div class="container">
+  <div class="messages">
+    <h3>Your messages</h3>
+    <div class=”ui”>
 
-  <% @conversations.each do |conversation| %>
-    <div class="messenger">
-      <div class=”me”>
-        <%= link_to Activity.find(conversation.activity_id).name, conversation_messages_path(conversation)%>
+    <% @conversations.each do |conversation| %>
+      <div class="messenger">
+        <div class=”me”>
+          <%= link_to Activity.find(conversation.activity_id).name, conversation_messages_path(conversation)%>
+        </div>
+        <% if conversation.messages.where(["read = ? and user_id != ?", false, current_user.id ]).present?%>
+        <div>
+          <p>New Messages!</p>
+        </div>
+        <% end %>
+        <div>
+          <%=  link_to "Delete", conversation_path(conversation), method: "Delete" %>
+        </div>
       </div>
-      <% if conversation.messages.where(["read = ? and user_id != ?", false, current_user.id ]).present?%>
-      <div>
-        <p>New Messages!</p>
-      </div>
-      <% end %>
-      <div>
-        <%=  link_to "Delete", conversation_path(conversation), method: "Delete" %>
-      </div>
-    </div>
-  <% end %>
+    <% end %>
+   </div>
  </div>
 </div>
 

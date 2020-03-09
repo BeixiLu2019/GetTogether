@@ -5,24 +5,11 @@
   justify-content: space-between;
 }
 
-.map {
-  position: sticky;
-  top: 0px;
-  height: 100vh;
-}
-.mapboxgl-popup {
-  max-width: 150px;
-}
-
-.mapboxgl-popup-content {
-  text-align: left;
-  font-family: 'Open Sans', sans-serif;
-}
-.info-window {
-  width: 150px;
-}
-
 #map {
   z-index: -1;
 }
 
+#map.map.mapboxgl-map {
+  width: 100%;
+  margin: 20px 0px 30px 0px;
+}

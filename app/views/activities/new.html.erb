@@ -1,23 +1,24 @@
-<div>
-  <h3>Create a new activity: </h3>
-  <%= simple_form_for @activity do |f| %>
-  <%= f.input :name, label: 'Name 🤗', placeholder: 'e.g. Yoga' %>
-  <%= f.input :address, label: 'Input the activity location 🏠', placeholder: 'e.g. Rosenthaler Str. 31
-10178 Berlin' %>
-  <%= f.input :category, label: 'Choose one category that fits most 🔍', :collection => ["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]%>
-  <%= f.input :description, label: 'Describe what you would like to do ✍️', placeholder: "e.g. Join me for some yoga in Mitte" %>
-  <%= f.input :datetime, label: 'Date 📅 & starting time ⏰' %>
-  <%= f.input :capacity, label: 'Maximum group number🧍‍♀️🧍🧍‍♂️' %>
-  <%= f.input :photos, label: 'Upload images to make your Event more appealing 😍', as: :file, input_html: { multiple: true }%>
-  <br>
+<div class="form-main">
+  <div class="form-container">
+    <h3>Let's get started: </h3>
+    <%= simple_form_for @activity do |f| %>
+    <%= f.input :name, label: 'Name 🤗', placeholder: 'e.g. Yoga' %>
+    <%= f.input :address, label: 'Activity location 🏠', placeholder: 'e.g. Rosenthaler Str. 3110178 Berlin' %>
+    <%= f.input :category, label: 'Choose a category 🔍', :collection => ["🍝 Food & Drinks", "🍻 Nightlife", "🎭 Culture", "🌳 Nature", "🧘‍♀️ Wellness", "🤝 Networking", "📚 Learning"]%>
+    <%= f.input :description, label: 'Describe activity ✍️', placeholder: "e.g. Join me for yoga in Mitte" %>
+    <%= f.input :datetime, label: 'Date 📅 & starting time ⏰' %>
+    <%= f.input :capacity, label: 'Max group number🧍‍♀️🧍🧍‍♂️' %>
+    <%= f.input :photos, label: 'Upload image for Wow factor 😍', as: :file, input_html: { multiple: true }%>
+    <br>
 
-  <%= f.button :submit, class:"btn btn-green" %>
-
-  <br>
-  <br>
-  <br>
-  <% end %>
-  <br>
-  <br>
+    <%= f.button :submit, class:"btn btn-green" %>
+    <% end %>
+    <br>
+      <%= link_to :back do %>
+        <i class="fas fa-chevron-left"></i>
+      <% end %>
+      <br>
+      <br>
+  </div>
 </div>
 

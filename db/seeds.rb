@@ -126,7 +126,7 @@ activity = Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 04, 4, 16, 30, 0),
+  datetime: DateTime.new(2020, 04, 10, 16, 30, 0),
   capacity: 5,
   user_id: User.first.id + 1)
   activity.photos.attach(io: file, filename: 'photo')
@@ -148,7 +148,7 @@ activity = Activity.create!(
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
   category: "food",
-  datetime: DateTime.new(2020, 04, 8, 9, 30, 0),
+  datetime: DateTime.new(2020, 05, 8, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
