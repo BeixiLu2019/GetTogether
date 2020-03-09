@@ -10,3 +10,85 @@
   margin: auto;
 }
 
+
+.content-index {
+// display: grid;
+// grid-template-columns: repeat(2, 1fr);
+// grid-column-gap: 10px;
+// grid-row-gap: 15px;
+// padding: 5px;
+padding-top: 15px;
+}
+
+.index-h1 {
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+
+}
+
+
+#idx-padding {
+  padding: 10px;
+  align-items: flex-start;
+}
+
+.index-cards {
+  height: 220px;
+  background-color: #f5ece6;
+  border-radius: 6px;
+  margin: 10px;
+  position: relative;
+
+  img {
+     height: 125px;
+  }
+
+}
+
+.card-info-index {
+  a {
+    color: $red;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 1rem;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+}
+  }
+
+
+#idx_date {
+  // padding-top: 20px;
+  font-size: 16px;
+}
+
+.form-idx {
+  padding: 10px;
+
+  #friend_places {
+    margin-bottom: 5px;
+  }
+  #activity {
+    margin-bottom: 5px;
+  }
+  #category {
+    color: #ced4da;
+    border: 1px solid #ced4da;
+    background-color: white;
+    height: 35px;
+    border-radius: 10px;
+  }
+  border-bottom: 1px solid $light-gray;
+}
+
+ button.btn-index.btn.btn-outline {
+   position: unset;
+   color: $orange;
+ }
+
