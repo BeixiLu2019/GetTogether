@@ -28,7 +28,7 @@ demo.forEach((demoNode) => {
       demoNode.innerHTML = "Time until Event starts: " + hours + "h "
     + minutes + "m " + seconds + "s ";
   }
-    // days + "d " +
+
 
     // If the count down is finished, write some text
     if (distance < 0) {
