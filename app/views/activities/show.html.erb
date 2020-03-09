@@ -26,8 +26,11 @@
           <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
           <% end %>
 
-          <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
 
+          <% if current_user && @activity.user_id != current_user.id %>
+          <% elsif current_user == nil %>
+           <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+          <% end %>
           <%# if @activity.user_id != current_user.id %>
           <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
           <%# end %>
