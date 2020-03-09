@@ -7,6 +7,9 @@
     color: $red;
   }
 }
+.category {
+  background-color: #FB955C;
+}
 
 .show-image {
   img {
@@ -32,7 +35,12 @@
 }
 
 .bottom-container {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
+  margin-top: 20px;
+  display:flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
 }
 
 .content {
@@ -43,16 +51,18 @@
   display: flex;
   justify-content: space-between;
   margin: 15px 0px;
+  align-items: center;
 }
 
 p {
   margin-bottom: 0px !important;
 }
 
-.btn-outline {
-  position: absolute;
-  top: 2%;
-  left: 3%;
-  color: white;
-}
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  }
 
+.fa-chevron-left {
+  font-weight: bold;
+}

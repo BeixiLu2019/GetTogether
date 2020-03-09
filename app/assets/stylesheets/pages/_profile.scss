@@ -26,16 +26,16 @@
 }
 
 .reviews {
-  margin-top: 20px;
+  padding-top:20px;
+  padding-left: 15px;
   border-top: 1px solid $light-gray;
   h4 {
-    margin-top: 20px;
     font-size: 20px;
   }
 }
 
 .edit {
-  padding: 0px 30px;
+  padding: 10px 30px 35px 0px;
   .btn-outline {
     width: 100%;
   }
