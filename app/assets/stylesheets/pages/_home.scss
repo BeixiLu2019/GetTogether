@@ -11,9 +11,8 @@
 }
 
 .container-home {
-  // background-color: $yellow;
-  // background-image: linear-gradient($red, $orange);
-  background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583760497/gettogether4_ham6jh.png) no-repeat center center fixed;
+
+  background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583841799/gettogether5_cweskk.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -22,7 +21,6 @@
   width: 100%;
   padding: 15px;
   margin: auto;
-  // opacity: 0.5;
   a {
     color: $orange;
     &:hover{
@@ -33,7 +31,7 @@
 }
 
 .headers {
-  margin-top: 20%;
+  margin-top: 15%;
   text-align: center;
   margin-bottom: 40px;
   h1 {

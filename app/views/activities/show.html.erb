@@ -4,6 +4,9 @@
     <%= cl_image_tag photo.key, crop: :fit %>
     <% end %>
   </div>
+  
+    <div class="show-container">
+
 
   <div class="show-container">
 
@@ -36,6 +39,8 @@
         <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
         <% end %>
       </div>
+     </div>
+        
       <div class="participants">
         <% @activity.bookings.each do |booking| %>
         <% user = User.find(booking.user_id) %>
