@@ -40,19 +40,22 @@
 
 <!--
  <p> Category: <%= activity.category %></p> -->
-         <div class="idx-card-description">
-           <div class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></div>
-           <%# demo_counter += 1 %>
-           <!--   <p class="card-trip-pricing " id="idx_date"> --> <%#= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
-            <% if activity.bookings.count == 1 %>
-            <%= activity.bookings.count %> Person is going
-            <% else %>
-            <%= activity.bookings.count %> People are going
-            <% end %>
-          </p>
+ <div class="idx-card-description">
 
-        </div>
-      </div>
+   <%# demo_counter += 1 %>
+   <!--   <p class="card-trip-pricing " id="idx_date"> --> <%#= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+     <p>
+      <% if activity.bookings.count == 1 %>
+      <%= activity.bookings.count %> Person is going
+      <% else %>
+      <%= activity.bookings.count %> People are going
+      <% end %>
+    </p>
+
+    <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
+
+  </div>
+</div>
 
 <!--  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> -->
 </div>
