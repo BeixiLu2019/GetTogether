@@ -15,17 +15,23 @@
 
           <!-- Add Tag for My event! -->
           <% if activity.user == current_user  %>
-            <h2>Own event:<%= link_to activity.name, activity_path(activity) %></h2>
+            <h3><%= link_to activity.name, activity_path(activity) %></h3>
           <%else %>
-            <h2><%= link_to activity.name, activity_path(activity) %></h2>
+            <h3><%= link_to activity.name, activity_path(activity) %></h3>
           <% end %>
-
+          <div class="dashboard-card-info">
           <!-- List activity information -->
-          <p> Date: <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
-          <p> Address: <%= activity.address %></p>
+            <div>
+              <p><strong>Date: </strong></p>
+              <p><strong>Address:</strong></p>
+            </div>
+            <div>
+              <p> <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
+              <p> <%= activity.address %></p>
+            </div>
+          </div>
           <div class="avatars-dashboard">
             <div>
-              <p> Attending users: </p>
                 <!-- Listing all participating users and host -->
               <% bookings = Booking.where("activity_id = #{activity.id}") %>
               <div class="participants">

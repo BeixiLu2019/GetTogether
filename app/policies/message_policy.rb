@@ -5,13 +5,9 @@ class MessagePolicy < ApplicationPolicy
     end
   end
 
-    def index?
+    def new?
       true
     end
-
-    # def new?
-    #   create?
-    # end
 
     def create?
       # !record.activity.user == user

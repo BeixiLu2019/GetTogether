@@ -1,0 +1,9 @@
+<div class="chat-message">
+  <% if defined?(locals).nil? %>
+    <p> <%= message.body %> </p>
+    <p> <%= User.find(message.user_id).username %> at <%= message.message_time %> </p>
+  <% else %>
+    <p> <%= locals[:message].body %> </p>
+    <p> <%= User.find(locals[:message].user_id).username %> at <%= locals[:message].message_time %> </p>
+  <% end %>
+</div>

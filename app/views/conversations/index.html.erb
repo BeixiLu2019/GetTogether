@@ -6,7 +6,7 @@
     <% @conversations.each do |conversation| %>
       <div class="messenger">
         <div class=”me”>
-          <%= link_to Activity.find(conversation.activity_id).name, conversation_messages_path(conversation)%>
+          <%= link_to Activity.find(conversation.activity_id).name, conversation_path(conversation)%>
         </div>
         <% if conversation.messages.where(["read = ? and user_id != ?", false, current_user.id ]).present?%>
         <div>

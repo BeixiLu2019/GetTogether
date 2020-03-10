@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   resources :reviews, only: [:destroy, :show, :edit, :update]
 
 
-  resources :conversations, only: [:index, :destroy] do
-    resources :messages, only: [:index, :create]
+  resources :conversations, only: [:index, :show, :destroy] do
+    resources :messages, only:  [:new, :create]
   end
   resources :messages, only: [:destroy]
 
