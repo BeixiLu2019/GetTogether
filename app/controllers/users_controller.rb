@@ -8,6 +8,11 @@ class UsersController < ApplicationController
   def show
     @current_page = "profile"
     @user = User.find(params[:id])
+    @reviews = Review.all
+    @review_array = []
+    @reviews.each do |review|
+      @review_array << review.booking.activity.user
+    end
     authorize @user
   end
 

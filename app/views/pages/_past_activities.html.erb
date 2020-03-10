@@ -51,15 +51,15 @@
             <% if current_user.photo.attached? %>
               <div class="avartar-set">
                 <div class="avartar-name">
-                  <%= link_to cl_image_tag(User.find(activity.user_id).photo.key, class: "avatar"), user_path(current_user) %>
-                  <%= link_to User.find(activity.user_id).username, user_path(current_user) %>
+                  <%= link_to cl_image_tag(User.find(activity.user_id).photo.key, class: "avatar"), user_path(activity.user_id) %>
+                  <%= link_to User.find(activity.user_id).username, user_path(activity.user_id) %>
                 </div>
               </div>
             <% else %>
               <div class="avartar-set">
                 <div class="avartar-name">
-                  <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(current_user) %>
-                  <%= link_to User.find(activity.user_id).username, user_path(current_user) %>
+                  <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(activity.user_id) %>
+                  <%= link_to User.find(activity.user_id).username, user_path(activity.user_id) %>
                 </div>
               </div>
             <% end %>
