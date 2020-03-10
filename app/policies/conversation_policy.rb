@@ -13,14 +13,16 @@ class ConversationPolicy < ApplicationPolicy
     #   create?
     # end
 
+    def show?
+      record.sender_id == user.id || record.recipient_id == user.id
+    end
+
     def create?
       # !record.activity.user == user
       true
     end
 
-    # def show?
-    #   true
-    # end
+
 
     # def edit?
     #   update?

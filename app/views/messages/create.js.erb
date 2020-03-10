@@ -1,0 +1,13 @@
+console.log("hallo Philipp")
+// if (typeof messageContainer === 'undefined') {
+//   console.log("hallo PHilipp 2")
+//   const messageContainer = document.querySelector('.messages-container');
+//   };
+messageContainer = document.querySelector('.messages-container');
+messageContainer.insertAdjacentHTML('beforeend', '<%= j render "conversations/message_partial", locals: {message: @message } %>');
+// messageContainer = "undefined";
+// const input = document.querySelector('.chat-message');
+// input.value = '';
+// input.blur();
+
+

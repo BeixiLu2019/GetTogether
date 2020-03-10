@@ -6,6 +6,21 @@ class ConversationsController < ApplicationController
     @conversations = all_conversations.select{|conversation| Activity.find(conversation.activity_id).datetime > DateTime.now()}
   end
 
+  def show
+    @conversation = Conversation.find(params[:id])
+    authorize @conversation
+    @messages = policy_scope(@conversation.messages)
+    @messages.each do |message|
+      unless message.user_id == current_user.id
+        message.read = true
+        message.save
+      end
+    end
+    @sorted_messages = @messages.sort_by {|message| message.id}
+    @message = Message.new
+    # authorize @message
+  end
+
   def create
     # if for this activity a conversation with the same sender_id (user) exists
     if Conversation.where(["activity_id= ? and sender_id = ?", params[:activity_id], current_user.id]).first.present?
@@ -23,4 +38,5 @@ class ConversationsController < ApplicationController
 
   def destroy
   end
+
 end
