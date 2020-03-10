@@ -2,8 +2,8 @@
 
 <div class="form-idx">
   <%= form_tag activities_path, method: :get do %>
-    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Address search within 5km" %>
-    <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
+    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search in a different location" %>
+    <%#= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
     <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
     <div class="form-category">
       <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
