@@ -41,14 +41,14 @@
         <% if user.photo.attached? %>
           <div class="avartar-set">
             <div class="avartar-name">
-              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
             <p> <%= user.username %> </p>
           </div>
       </div>
         <% else %>
           <div class="avartar-set">
             <%= user.username %>
-            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id)%>
           </div>
         <% end %>
       <% end %>

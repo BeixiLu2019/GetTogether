@@ -4,8 +4,6 @@ class ActivitiesController < ApplicationController
 
   def index
     @current_page = "activities"
-
-
     if params[:address] && params[:address].empty?
       @user_location = params[:search][:current_location]
       @activities = policy_scope(Activity).geocoded.near(@user_location, 5).sort_by{|activity| activity.datetime}
@@ -25,19 +23,7 @@ class ActivitiesController < ApplicationController
      # @activities = @activities.sort_by{|activity| activity.datetime}
     else
       @activities = policy_scope(Activity).geocoded.sort_by{|activity| activity.datetime} #returns activitys with coordinates
-
-
     end
-    # Mapbox Code
-      # @activities = Activity.geocoded #returns activitys with coordinates
-      # @markers = @activities.map do |activity|
-      #   {
-      #     lat: activity.latitude,
-      #     lng: activity.longitude,
-      #     infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
-      #   }
-      # end
-    # Mapbox Code
   end
 
   def show
