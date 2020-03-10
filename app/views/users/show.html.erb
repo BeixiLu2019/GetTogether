@@ -46,9 +46,12 @@
           <p> <%=@user.username%> hasn't received reviews yet. </p>
         <% end %>
       </div>
-      <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-      <small><i class="fas fa-sign-out-alt"></i> Sign Out </small>
-      <% end %>
+
+      <% if @user == current_user %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+          <small><i class="fas fa-sign-out-alt"></i> Sign Out </small>
+          <% end %>
+      <%end%>
       <br>
     </div>
   </div>
