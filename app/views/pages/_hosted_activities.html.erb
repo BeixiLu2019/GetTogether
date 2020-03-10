@@ -1,23 +1,28 @@
-<div class="container">
-  <h2>Your hosted <%= pluralize @sorted_hosting.count, "activity"%>: </h2>
+<div class="dashboard-container">
+
+  <h2>Your <%= pluralize @sorted_hosting.count, "activity"%>: </h2>
     <% if @sorted_hosting.count == 0 %>
       <p> <%= link_to "Find awesome activities", root_path, class: "btn-outline btn-dashboard" %> </p>
     <% else %>
       <% @sorted_hosting.each do |activity| %>
-        <div>
+
+        <div class="card-dashboard">
           <!-- Checking if cloudinary image attached -->
           <% if activity.photos.attached? %>
             <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
           <% else %>
             <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
           <% end %>
-          <h2><%= link_to activity.name, activity_path(activity) %></h2>
 
-          <!-- List activity information -->
-          <p> Date: <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
-          <p> Address: <%= activity.address %></p>
-          <p> Attending users: </p>
+          <div class="info-dashboard">
+            <h3><%= link_to activity.name, activity_path(activity) %></h3>
+            <!-- List activity information -->
+            <p> <i class="far fa-clock"></i>  <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
+            <p> <i class="fas fa-map-marker-alt"></i> <%= activity.address %></p>
+            <p> <i class="fas fa-users"></i> Attending </p>
+          </div>
 
+        <div class="participants-section">
           <!-- Listing all participating users and host -->
           <% bookings = Booking.where("activity_id = #{activity.id}") %>
           <div class="participants">
@@ -40,7 +45,7 @@
               <% end %>
             <% end %>
           </div>
-
+        </div>
           <!--  Delete links for cards -->
           <% unless activity.user == current_user  %>
             <%= link_to "Can't attend #{activity.name}", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking??" }%>

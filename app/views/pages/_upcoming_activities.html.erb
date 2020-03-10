@@ -1,33 +1,37 @@
 <div class="dashboard-container">
+
   <h2>You currently have <%= pluralize @sorted_upcoming.count, "activity"%> booked: </h2>
     <% if @sorted_upcoming.count == 0 %>
       <p> <%= link_to "Find awesome activities", root_path, class: "btn-outline btn-dashboard" %> </p>
     <% else %>
       <% @sorted_upcoming.each do |activity| %>
+
         <div class="card-dashboard">
           <!-- Checking if cloudinary image attached -->
-          <% if activity.photos.attached? %>
-            <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
-          <% else %>
-            <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
-          <% end %>
+            <% if activity.photos.attached? %>
+              <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
+            <% else %>
+              <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+            <% end %>
 
-
-          <!-- Add Tag for My event! -->
-          <% if activity.user == current_user  %>
-            <h2>Own event:<%= link_to activity.name, activity_path(activity) %></h2>
-          <%else %>
-            <h2><%= link_to activity.name, activity_path(activity) %></h2>
-          <% end %>
+           <div class="info-dashboard">
+            <!-- Add Tag for My event! -->
+            <% if activity.user == current_user  %>
+              <h3>Your event: <%= link_to activity.name, activity_path(activity) %></h3>
+            <%else %>
+              <h3><%= link_to activity.name, activity_path(activity) %></h3>
+            <% end %>
 
           <!-- List activity information -->
-          <p> <i class="far fa-clock"></i> <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
-          <p> <i class="fas fa-map-marker-alt"></i> <%= activity.address %></p>
-          <div class="avatars-dashboard">
 
+            <p> <i class="far fa-clock"></i> <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
+            <p> <i class="fas fa-map-marker-alt"></i> <%= activity.address %></p>
+          </div>
+
+          <div class="avatars-dashboard">
           <!-- Listing host -->
                   <div class="host-section">
-                    <p> <i class="fas fa-user"></i> Host: </p>
+                    <p> <i class="fas fa-user"></i> Host </p>
                     <div class="participants">
                       <% if current_user.photo.attached? %>
                         <div class="avartar-set">
@@ -49,7 +53,7 @@
 
             <!-- Participants -->
             <div class="participants-section">
-              <p> <i class="fas fa-users"></i> Attending: </p>
+              <p> <i class="fas fa-users"></i> Attending </p>
                 <!-- Listing all participating users and host -->
               <% bookings = Booking.where("activity_id = #{activity.id}") %>
               <div class="participants">
@@ -87,4 +91,5 @@
         </div>
       <% end %>
     <% end %>
+    <br>
 </div>

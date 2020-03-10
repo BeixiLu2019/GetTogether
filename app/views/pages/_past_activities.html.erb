@@ -1,48 +1,55 @@
-<div class="container">
+<div class="dashboard-container">
   <h2>You participated in <%= pluralize @sorted_past.count, "activity"%>: </h2>
     <% if @sorted_past.count == 0 %>
-      <p> <%= link_to "Find awesome activities", root_path, class: "btn-outline btn-dashboard" %> </p>
+      <p> <%= link_to "Find events", activities_path, class: "btn btn-outline" %> </p>
     <% else %>
       <% @sorted_past.each do |activity| %>
-        <div>
+
+        <div class="card-dashboard">
           <!-- Checking if cloudinary image attached -->
           <% if activity.photos.attached? %>
             <%= cl_image_tag activity.photos.first.key, height: 300, width: 400, crop: :fill, :id => "img_booking" %>
           <% else %>
             <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
           <% end %>
-          <!-- Add Tag for My event! -->
-          <% if activity.user == current_user  %>
-            <h2>Own event:<%= link_to activity.name, activity_path(activity) %></h2>
-          <%else %>
-            <h2><%= link_to activity.name, activity_path(activity) %></h2>
-          <% end %>
 
-          <!-- List activity information -->
-          <p> Date: <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
-          <p> Attending users: </p>
+          <div class="info-dashboard">
+          <!-- Add Tag for My event! -->
+            <% if activity.user == current_user  %>
+              <h3>Own event:<%= link_to activity.name, activity_path(activity) %></h3>
+            <%else %>
+              <h3><%= link_to activity.name, activity_path(activity) %></h3>
+            <% end %>
+
+            <!-- List activity information -->
+            <p> <i class="far fa-clock"></i> <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
+            <p><i class="fas fa-users"></i>  Attending </p>
+          </div>
+
+          <div class="participants-section">
 
           <!-- Listing all participating users and host -->
           <% bookings = Booking.where("activity_id = #{activity.id}") %>
           <div class="participants">
-            <% bookings.each do |booking| %>
-              <% user = User.find(booking.user_id) %>
-              <% if user.photo.attached? %>
-                <div class="avartar-set">
-                  <div class="avartar-name">
-                    <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
-                    <%= link_to user.username, user_path(user.id) %>
+              <% bookings.each do |booking| %>
+                <% user = User.find(booking.user_id) %>
+                <% if user.photo.attached? %>
+                  <div class="avartar-set">
+                    <div class="avartar-name">
+                      <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
+                      <%= link_to user.username, user_path(user.id) %>
+                    </div>
                   </div>
-                </div>
-              <% else %>
-                <div class="avartar-set">
-                  <div class="avartar-name">
-                    <%= link_to user.username, user_path(user.id) %>
-                    <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+                <% else %>
+                  <div class="avartar-set">
+                    <div class="avartar-name">
+                      <%= link_to user.username, user_path(user.id) %>
+                      <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+                    </div>
                   </div>
-                </div>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
           </div>
 
           <!-- Listing host -->
@@ -84,6 +91,7 @@
         </div>
       <% end %>
     <% end %>
+    <br>
 </div>
 
  <%#= if activity.booking.user_id == current_user.id %>
