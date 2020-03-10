@@ -82,8 +82,10 @@
 
         <% if policy(@activity).destroy? %>
           <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
-          <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
-        <% end %>
+
+          <button id="sweet-alert-cancel" class="btn btn-orange">Delete Activity</button>
+          <%= link_to '', activity_path(@activity), method: :delete, id: "delete", class: "hidden" %>
+          <% end %>
 
         <% if @booking.user != @activity.user && @booking.user != current_user %>
           <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>

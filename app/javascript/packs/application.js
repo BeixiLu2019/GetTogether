@@ -32,7 +32,7 @@ initSweetalert('#sweet-alert-demo', {
 });
 
 initSweetalert('#sweet-alert-cancel', {
-  text: "Are you sure you want to cancel this booking?",
+  text: "Are you sure you want to do this?",
   icon: "warning",
   dangerMode: true,
   buttons: true,

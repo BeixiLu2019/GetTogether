@@ -81,8 +81,10 @@ class ActivitiesController < ApplicationController
 
   def destroy
     @activity.destroy
+    authorize @activity
     redirect_to activities_path
   end
+
 
   private
 
