@@ -1,19 +1,13 @@
 // Specific CSS for your home-page
-a {
-  color: $orange;
-  &:hover{
-    color: $dark-gray;
-    text-decoration: none;
-  }
-}
+
 
 .home-img {
   display: flex;
   justify-content: center;
   img {
 
-  width: 90%;
-  z-index: -3;
+    width: 90%;
+    z-index: -3;
   }
 }
 
@@ -30,6 +24,13 @@ a {
   padding: 15px;
   margin: auto;
   // opacity: 0.5;
+  a {
+    color: $orange;
+    &:hover{
+      color: $dark-gray;
+      text-decoration: none;
+    }
+  }
 }
 
 .headers {
@@ -80,7 +81,7 @@ a {
   justify-content: center;
   align-items: center;
   z-index: -1;
-   .btn-orange {
+  .btn-orange {
     height: 40px;
     // background: linear-gradient($red, $orange);
     margin-left: -18px;
