@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :activity
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   #validates :user, uniqueness: true
   validate :unique_activity
   validate :capacity_limit
