@@ -18,7 +18,6 @@ def create
     # render :show
     # redirect_to activity_path(params[:activity_id])
   else
-    # flash[:alert] = "No more spaces left!"
     render "activities/show", booking: @booking
     #redirect_to activity_path(@activity)
   end

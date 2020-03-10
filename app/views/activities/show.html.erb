@@ -77,11 +77,10 @@
 
         <% if @booking.user != @activity.user && @booking.user != current_user %>
           <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-          <h6> Want to join <%= @activity.name %>? Confirm now! </h6>
+            <h6> Want to join <%= @activity.name %>? Confirm now! </h6>
 
-          <%= link_to new_activity_booking_path(@activity), id: "confirm", class: "hidden" do%>
             <button id="sweet-alert-demo" class="btn btn-green">Join!</button>
-            <% end %>
+            <%= link_to '', new_activity_booking_path(@activity), id: "confirm", class: "hidden"%>
           <% end %>
         <% end %>
         <br>

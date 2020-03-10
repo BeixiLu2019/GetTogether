@@ -18,14 +18,15 @@ class ActivitiesController < ApplicationController
       @activities = policy_scope(Activity).geocoded #returns activitys with coordinates
     end
     # Mapbox Code
-  #   @markers = @activities.map do |activity|
-  #     {
-  #       lat: activity.latitude,
-  #       lng: activity.longitude,
-  #       infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
-  #     }
-  #   end
-  # Mapbox Code
+      # @activities = Activity.geocoded #returns activitys with coordinates
+      # @markers = @activities.map do |activity|
+      #   {
+      #     lat: activity.latitude,
+      #     lng: activity.longitude,
+      #     infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
+      #   }
+      # end
+    # Mapbox Code
   end
 
   def show
