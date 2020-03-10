@@ -42,12 +42,9 @@
       <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
       <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
       <p><i class="fas fa-user"></i>
-          
+          <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
           <% if @activity.user_id != current_user.id %>
            <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-
-          <% end %>
-                  
             <%= link_to activity_conversations_path(@activity), method: "Post" do %>
               <i class="far fa-comment"></i>
             <% end %>
@@ -60,14 +57,9 @@
             <p><%= @activity.user.username %></p>
             <% else %>
             <%= link_to @activity.user.username, user_path(@activity.user) %>
-
             <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
             <% end %>
           </div>
-
-          <% end %>
-
-        </div>
 
         <div class="participants">
          <% @activity.bookings.each do |booking| %>
@@ -135,3 +127,4 @@
 
     </div>
 </div>
+
