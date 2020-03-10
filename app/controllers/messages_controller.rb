@@ -12,9 +12,6 @@ class MessagesController < ApplicationController
       format.html {redirect_to conversation_path(@conversation)}
       format.js {}
     end
-    ActionCable.server.broadcast("conversation_#{@message.conversation_id}", {
-      message_par: render(partial: "conversations/message_partial", locals: {message: @message})
-      })
   end
 
   private
