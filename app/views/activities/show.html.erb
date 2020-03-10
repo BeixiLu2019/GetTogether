@@ -14,15 +14,15 @@
     <p><i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %></p>
     <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
     <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
-    <p><i class="fas fa-user"></i></p>
+    <p><i class="fas fa-user"></i>
     <% if current_user && @activity.user_id != current_user.id %>
       <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post", class: "title"  %>
-    <%# elsif current_user == nil %>
+      <%= link_to activity_conversations_path(@activity), method: "Post" do %>
+        <i class="far fa-comment"></i>
+      <%# elsif current_user == nil %>
       <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-    <% end %>
-    <%= link_to activity_conversations_path(@activity), method: "Post" do %>
-      <i class="far fa-comment"></i>
-    <% end %>
+      <% end %>
+    <% end %></p>
 
     <!-- avartars -->
     <div class="avatars-show">
@@ -35,27 +35,25 @@
           <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
         <% end %>
       </div>
-    </div>
-
-    <div class="participants">
-     <% @activity.bookings.each do |booking| %>
-      <% user = User.find(booking.user_id) %>
+      <div class="participants">
+        <% @activity.bookings.each do |booking| %>
+        <% user = User.find(booking.user_id) %>
         <% if user.photo.attached? %>
-        <div class="avartar-set">
-          <div class="avartar-name">
-          <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
-            <%= user.username %>
+          <div class="avartar-set">
+            <div class="avartar-name">
+              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+            <p> <%= user.username %> </p>
           </div>
-        </div>
+      </div>
         <% else %>
-        <div class="avartar-set">
-          <%= user.username %>
-          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
-        </div>
+          <div class="avartar-set">
+            <%= user.username %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+          </div>
+        <% end %>
       <% end %>
-    <% end %>
+      </div>
     </div>
-  </div>
   <!-- reviews -->
   <p class="title">Reviews:</p>
   <% if @activity.reviews.empty?  %>
@@ -98,3 +96,4 @@
   <br>
   <br>
 </div>
+
