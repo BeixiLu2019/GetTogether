@@ -5,9 +5,11 @@ class ActivitiesController < ApplicationController
   def index
     @current_page = "activities"
 
+
     if params[:address] && params[:address].empty?
       @user_location = params[:search][:current_location]
       @activities = policy_scope(Activity).geocoded.near(@user_location, 5).sort_by{|activity| activity.datetime}
+
 
     elsif params[:address].present?
       @activities = policy_scope(Activity).geocoded.near(params[:address], 5)

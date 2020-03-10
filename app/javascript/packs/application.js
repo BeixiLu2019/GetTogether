@@ -43,8 +43,3 @@ initSweetalert('#sweet-alert-cancel', {
   }
 });
 
-
-
-
-
-

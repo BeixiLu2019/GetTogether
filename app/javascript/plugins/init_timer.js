@@ -1,3 +1,4 @@
+
 const initTimer = () => {
   const demo = document.querySelectorAll(".demo")
   console.log(demo)
@@ -42,4 +43,5 @@ const initTimer = () => {
 };
 
 export { initTimer };
+
 
