@@ -4,10 +4,9 @@ console.log("hallo Philipp")
 //   const messageContainer = document.querySelector('.messages-container');
 //   };
 messageContainer = document.querySelector('.messages-container');
-messageContainer.insertAdjacentHTML('beforeend', '<%= j render "conversations/message_partial", locals: {message: @message } %>');
-// messageContainer = "undefined";
-// const input = document.querySelector('.chat-message');
-// input.value = '';
-// input.blur();
+messageContainer.insertAdjacentHTML('beforeend', '<%= j render "conversations/message_partial", locals: {message: @message, user_is_messages_author: true } %>');
 
-
+input = document.querySelector('#message_body');
+input.value = '';
+input.blur();
+scrollLastMessageIntoView();

@@ -45,6 +45,7 @@
   a {
     margin-left: 10px;
   }
+
 .fa-comment {
   color: $orange;
   }
@@ -58,6 +59,11 @@
     margin-bottom: 15px;
   }
   .btn-green {
+    width: 100%;
+  }
+
+  .btn-orange {
+    margin-top: 15px;
     width: 100%;
   }
   // margin-bottom: 40px;
@@ -105,9 +111,15 @@ p {
   font-weight: bold;
 }
 
+.info-container {
+  display: inline-block;
+  vertical-align: baseline;
+  margin: 0;
+}
+
 .avatars-show {
   .host-info img {
-    border: 2px solid $orange;
+    border: 2px solid $green;
   }
   display: flex;
   align-items: baseline;
