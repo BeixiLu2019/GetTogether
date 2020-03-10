@@ -1,38 +1,38 @@
 <div class="container">
 
-<div class="form-idx">
-  <%= form_tag activities_path, method: :get do %>
+  <div class="form-idx">
+    <%= form_tag activities_path, method: :get do %>
     <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search in a different location" %>
     <%#= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
     <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
     <%= button_tag(type: "submit", class: "btn-index btn btn-outline", id: "filter-btn" ) do %>
-      <i class="fas fa-sort-amount-down-alt"></i>
+    <i class="fas fa-sort-amount-down-alt"></i>
     <% end %>
 
-  <% end %>
-</div>
+    <% end %>
+  </div>
 
   <div class="content-index">
-      <%# demo_counter = 0 %>
+    <%# demo_counter = 0 %>
     <% @activities.each do |activity| %>
     <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
 
     <div class="card-trip index-cards">
       <% activity.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
-     <% end %>
+      <% end %>
 
       <div class="card-trip-infos" id="idx-padding">
         <div class="card-info-index">
          <h1 class="index-h1"><%= link_to activity.name, activity_path(activity, current_location: @user_location) %></h1>
          <% if params[:address].present? %>
 
-            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h2>
+         <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h2>
 
          <%#= activity.address %>
          <% elsif params[:search].present? %>
-            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
-            <% else %>
+         <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
+         <% else %>
          <%#= activity.address %>
 
          <% end %>
@@ -40,40 +40,37 @@
 
 <!--
  <p> Category: <%= activity.category %></p> -->
-       <div class="idx-card-description">
-       <div class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></div>
-        <%# demo_counter += 1 %>
-      <!--   <p class="card-trip-pricing " id="idx_date"> --> <%#= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
-          <% if activity.bookings.count == 1 %>
-            <%= activity.bookings.count %> Person is going
-          <% else %>
-            <%= activity.bookings.count %> People are going
-          <% end %>
-        </p>
+ <div class="idx-card-description">
 
-       </div>
-      </div>
 
-<!--  <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> -->
-      </div>
-      </div>
+   <%# demo_counter += 1 %>
+   <!--   <p class="card-trip-pricing " id="idx_date"> --> <%#= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+     <p>
+      <% if activity.bookings.count == 1 %>
+      <%= activity.bookings.count %> Person is going
+      <% else %>
+      <%= activity.bookings.count %> People are going
       <% end %>
-      <% end %>
-      </div>
+    </p>
+
+    <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
+
+  </div>
+</div>
 
 
-<!--     <div class="map"
-      id="map"
-      style="width: 100%;
-      height: 200px;"
-      data-markers="<%#= @markers.to_json %>"
-      data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
-      ></div> -->
+</div>
+</div>
 
-    </div>
-    <br>
-    <br>
-    <br>
+
+<% end %>
+<% end %>
+</div>
+</div>
+
+<br>
+<br>
+<br>
 
 
 

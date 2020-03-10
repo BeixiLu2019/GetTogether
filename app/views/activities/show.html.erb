@@ -14,26 +14,6 @@
       <i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %>
       </p>
 
-
-        <!-- booking tn -->
-        <%# if @booking.errors.any? %>
-  <!--       <div class="alert">
-          <%# @booking.errors.full_messages.each do |message| %>
-          <span>  😱 <%#= message %></span>
-          <a data-dismiss="alert" aria-label="Close"></a>
-          <i class="fas fa-times"></i>
-          <%# end %>
-        </div>
-        <%# end %>
-        <%# if @booking.user != @activity.user && @booking.user != current_user %>
-        <%# if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-        <div>
-          <%#= link_to 'Join',new_activity_booking_path(@activity), class: "btn btn-primary" %>
-        </div>
-        <%# end %>
-        <%# end %>
-      </div> -->
-
       <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
       <p>
       <i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
@@ -42,12 +22,9 @@
       <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
       <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
       <p><i class="fas fa-user"></i>
-          
+          <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
           <% if @activity.user_id != current_user.id %>
            <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-
-          <% end %>
-                  
             <%= link_to activity_conversations_path(@activity), method: "Post" do %>
               <i class="far fa-comment"></i>
             <% end %>
@@ -56,18 +33,13 @@
       <div class="avatars-show">
           <div class="host-info">
             <% if @activity.user.photo.attached? %>
-            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
+            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(user.id) %>
             <p><%= @activity.user.username %></p>
             <% else %>
             <%= link_to @activity.user.username, user_path(@activity.user) %>
-
-            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
             <% end %>
           </div>
-
-          <% end %>
-
-        </div>
 
         <div class="participants">
          <% @activity.bookings.each do |booking| %>
@@ -110,8 +82,10 @@
 
         <% if policy(@activity).destroy? %>
           <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
-          <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
-        <% end %>
+
+          <button id="sweet-alert-cancel" class="btn btn-orange">Delete Activity</button>
+          <%= link_to '', activity_path(@activity), method: :delete, id: "delete", class: "hidden" %>
+          <% end %>
 
         <% if @booking.user != @activity.user && @booking.user != current_user %>
           <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>

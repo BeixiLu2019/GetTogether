@@ -1,6 +1,6 @@
 class Activity < ApplicationRecord
   belongs_to :user
-  has_many :conversations
+  has_many :conversations, dependent: :destroy
   # has_many :users, through: :bookings
   include PgSearch::Model
   pg_search_scope :search, against: [:name, :description]
