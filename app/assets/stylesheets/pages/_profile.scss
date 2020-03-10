@@ -29,8 +29,13 @@
   padding-top:20px;
   padding-left: 15px;
   border-top: 1px solid $light-gray;
+
   h4 {
     font-size: 20px;
+  }
+  .review-user {
+    font-style: italic;
+    font-size: 14px;
   }
 }
 
@@ -41,6 +46,20 @@
   }
 }
 
+.event-rating {
+  margin-top: 25px;
+}
+
+.single-activity {
+  padding-top:20px;
+  padding-left: 15px;
+  border-top: 1px solid $light-gray;
+  .event-rating {
+    display: flex;
+    justify-content: space-between;
+
+  }
+}
 small {
   color: $orange;
 }

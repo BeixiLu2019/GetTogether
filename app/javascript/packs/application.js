@@ -11,9 +11,38 @@ initAutocomplete();
 // map import:
 initMapbox();
 
-
 findUserLocation();
 initTimer();
+
+// sweet alert import:
+import { initSweetalert } from '../plugins/init_sweetalert';
+
+initSweetalert('#sweet-alert-demo', {
+  title: "Confirmed",
+  // closeOnClickOutside: false,
+  button: false,
+  timer: 3000,
+  text: "You are going! Don't be late 🕙",
+  icon: "success"
+}, (value) => {
+  console.log('yaya!!', value)
+  const link = document.querySelector('#confirm');
+  link.click();
+});
+
+initSweetalert('#sweet-alert-cancel', {
+  text: "Are you sure you want to cancel this booking?",
+  icon: "warning",
+  dangerMode: true,
+  buttons: true,
+}, (value) => {
+  if (value) {
+    const link = document.querySelector('#delete');
+    link.click();
+  }
+});
+
+
 
 
 
