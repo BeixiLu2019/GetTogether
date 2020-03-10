@@ -4,28 +4,40 @@ class ActivitiesController < ApplicationController
 
   def index
     @current_page = "activities"
-    if params[:address].nil?
-      @activities = policy_scope(Activity).geocoded
+
+
+    if params[:address] && params[:address].empty?
+      @user_location = params[:search][:current_location]
+      @activities = policy_scope(Activity).geocoded.near(@user_location, 5).sort_by{|activity| activity.datetime}
+
+
     elsif params[:address].present?
       @activities = policy_scope(Activity).geocoded.near(params[:address], 5)
       @activities = @activities.search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
       @activities = @activities.where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
-    elsif params[:category].present?
-      @activities = policy_scope(Activity).where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
-    elsif params[:activity].present?
-      @activities = policy_scope(Activity).search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
+
+      @activities = @activities.sort_by{|activity| activity.datetime}
+     elsif params[:category].present?
+     @activities = policy_scope(Activity).where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
+     @activities = @activities.sort_by{|activity| activity.datetime}
+    # elsif params[:activity].present?
+     # @activities = policy_scope(Activity).search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
+     # @activities = @activities.sort_by{|activity| activity.datetime}
     else
-      @activities = policy_scope(Activity).geocoded #returns activitys with coordinates
+      @activities = policy_scope(Activity).geocoded.sort_by{|activity| activity.datetime} #returns activitys with coordinates
+
+
     end
     # Mapbox Code
-  #   @markers = @activities.map do |activity|
-  #     {
-  #       lat: activity.latitude,
-  #       lng: activity.longitude,
-  #       infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
-  #     }
-  #   end
-  # Mapbox Code
+      # @activities = Activity.geocoded #returns activitys with coordinates
+      # @markers = @activities.map do |activity|
+      #   {
+      #     lat: activity.latitude,
+      #     lng: activity.longitude,
+      #     infoWindow: render_to_string(partial: "info_window", locals: { activity: activity }),
+      #   }
+      # end
+    # Mapbox Code
   end
 
   def show

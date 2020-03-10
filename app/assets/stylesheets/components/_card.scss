@@ -49,6 +49,7 @@
   height: 200px;
   width: 100%;
   object-fit: cover;
+  border-radius: 5px;
 }
 
 .card-dashboard p {
@@ -61,7 +62,7 @@
 }
 
 .card-dashboard p {
-  font-size: 12px;
+  font-size: 18px;
   opacity: .7;
   margin: 0;
 }
@@ -80,4 +81,9 @@
   top: -20px;
   width: 40px;
 }
+
+.dashboard-card-info {
+  display:flex;
+}
+
 
