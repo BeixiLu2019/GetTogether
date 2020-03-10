@@ -92,4 +92,8 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Action Cable setup
+  config.action_cable.url = "wss://www.gettogether-for.fun/cable"
+  config.action_cable.allowed_request_origins = [ "http://www.gettogether-for.fun", "https://www.gettogether-for.fun" ]
 end

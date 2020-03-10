@@ -1,9 +1,20 @@
-<div class="chat-message">
-  <% if defined?(locals).nil? %>
-    <p> <%= message.body %> </p>
-    <p> <%= User.find(message.user_id).username %> at <%= message.message_time %> </p>
-  <% else %>
-    <p> <%= locals[:message].body %> </p>
-    <p> <%= User.find(locals[:message].user_id).username %> at <%= locals[:message].message_time %> </p>
-  <% end %>
-</div>
+
+<% if defined?(locals).nil? %>
+  <div class="chat-message <%= "right" if user_is_messages_author %>">
+    <div class="chat-message-time">
+      <p> <%= message.message_time %> </p>
+    </div>
+    <div class="chat-message-content <%= "right" if user_is_messages_author %>">
+      <p> <%= message.body %> </p>
+    </div>
+<% else %>
+  <div class="chat-message <%= "right" if locals[:user_is_messages_author] %>">
+    <div class="chat-message-time">
+      <p> <%= locals[:message].message_time %> </p>
+    </div>
+    <div class="chat-message-content <%= "right" if locals[:user_is_messages_author] %>">
+      <p> <%= locals[:message].body %> </p>
+    </div>
+<% end %>
+  </div>
+
