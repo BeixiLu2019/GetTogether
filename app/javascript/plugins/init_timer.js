@@ -24,10 +24,10 @@ const initTimer = () => {
 
       // Display the result in the element with id="demo"
       if (days > 0 ) {
-        demoNode.innerHTML = "Time until Event starts: " + days +"d " + hours + "h "
+        demoNode.innerHTML = "Starts in: " + days +"d " + hours + "h "
         + minutes + "m " + seconds + "s ";
       } else {
-        demoNode.innerHTML = "Time until Event starts: " + hours + "h "
+        demoNode.innerHTML = "Starts in: " + hours + "h "
         + minutes + "m " + seconds + "s ";
       }
 
