@@ -5,7 +5,6 @@
   display: flex;
   justify-content: center;
   img {
-
     width: 90%;
     z-index: -3;
   }
@@ -14,7 +13,7 @@
 .container-home {
   // background-color: $yellow;
   // background-image: linear-gradient($red, $orange);
-  background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583691170/gettogether_mjh1ge.png) no-repeat center center fixed;
+  background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583760497/gettogether4_ham6jh.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -36,24 +35,25 @@
 .headers {
   margin-top: 20%;
   text-align: center;
+  margin-bottom: 40px;
   h1 {
     color: $dark-gray;
     font-size: 50px;
-    margin-bottom: 20px;
-    background: -webkit-linear-gradient(#f74742, $orange);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+
+    // background: -webkit-linear-gradient(#f74742, $orange);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
     // background: linear-gradient(90deg,#ff8a00,#e52e71);
   }
   h6 {
     font-size: 21px;
-    color: $dark-gray;
+    color: #5b6175;
     margin: 0;
   }
   p {
     font-size: 20px;
-    color: $dark-gray;
-    margin-bottom: 36px;
+    color: #5b6175;
   }
 }
 

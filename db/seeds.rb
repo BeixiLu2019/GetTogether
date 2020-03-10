@@ -127,6 +127,7 @@ activity = Activity.create!(
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "sports",
   datetime: DateTime.new(2020, 03, 10, 16, 30, 0),
+
   capacity: 5,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
