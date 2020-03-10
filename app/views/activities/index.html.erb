@@ -2,17 +2,18 @@
 
 <div class="form-idx">
   <%= form_tag activities_path, method: :get do %>
-    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Address search within 5km" %>
-    <%= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
-    <%# @category = ["sports", "food", "nightlife", "culture", "nature", "wellness", "networking", "learning"]%>
+    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search in a different location" %>
+    <%#= text_field_tag :activity, params[:activity], class: "form-control", placeholder: "Search for a specific activity"%>
     <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
-    <%= button_tag(type: "submit", class: "btn btn-outline") do %>
+    <%= button_tag(type: "submit", class: "btn-index btn btn-outline", id: "filter-btn" ) do %>
       <i class="fas fa-sort-amount-down-alt"></i>
     <% end %>
+
   <% end %>
 </div>
 
   <div class="content-index">
+      <%# demo_counter = 0 %>
     <% @activities.each do |activity| %>
     <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
 
@@ -23,18 +24,26 @@
 
       <div class="card-trip-infos" id="idx-padding">
         <div class="card-info-index">
-         <h1 class="index-h1"><%= link_to activity.name, activity_path(activity) %></h1>
+         <h1 class="index-h1"><%= link_to activity.name, activity_path(activity, current_location: @user_location) %></h1>
          <% if params[:address].present? %>
-        <p> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
+
+            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h2>
+
          <%#= activity.address %>
-         <%# else %>
+         <% elsif params[:search].present? %>
+            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
+            <% else %>
          <%#= activity.address %>
-         <% end %></p>
+
+         <% end %>
+
+
 <!--
  <p> Category: <%= activity.category %></p> -->
        <div class="idx-card-description">
-        <h2 class="card-trip-pricing " id="idx_date"> <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %></h2>
-        <p>
+       <div class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></div>
+        <%# demo_counter += 1 %>
+      <!--   <p class="card-trip-pricing " id="idx_date"> --> <%#= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
           <% if activity.bookings.count == 1 %>
             <%= activity.bookings.count %> Person is going
           <% else %>
@@ -53,16 +62,18 @@
       </div>
 
 
-
-
-    <!-- <div class="map"
+<!--     <div class="map"
       id="map"
       style="width: 100%;
-      height: 600px;"
+      height: 200px;"
       data-markers="<%#= @markers.to_json %>"
       data-mapbox-api-key="<%#= ENV['MAPBOX_API_KEY'] %>"
       ></div> -->
+
     </div>
+    <br>
+    <br>
+    <br>
 
 
 

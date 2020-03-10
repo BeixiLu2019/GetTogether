@@ -101,7 +101,7 @@ activity = Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "food",
-  datetime: DateTime.new(2020, 03, 6, 19, 00, 0),
+  datetime: DateTime.new(2020, 03, 9, 19, 00, 0),
   capacity: 3,
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
@@ -114,7 +114,7 @@ activity = Activity.create!(
   description: 'Move your body with me playing tennis. I am not very good. ',
   address: "Cantianstr. 24, 10437 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 6, 19, 30, 0),
+  datetime: DateTime.new(2020, 03, 9, 19, 30, 0),
   capacity: 2,
   user_id: User.first.id,
   )
@@ -126,7 +126,9 @@ activity = Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "sports",
+
   datetime: DateTime.new(2020, 04, 10, 16, 30, 0),
+
   capacity: 5,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
@@ -137,7 +139,7 @@ activity =Activity.create!(
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
   category: "sports",
-  datetime: DateTime.new(2020, 03, 7, 9, 30, 0),
+  datetime: DateTime.new(2020, 03, 10, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id - 1)
   activity.photos.attach(io: file, filename: 'photo')
@@ -151,6 +153,17 @@ activity = Activity.create!(
   datetime: DateTime.new(2020, 05, 8, 9, 30, 0),
   capacity: 3,
   user_id: User.last.id)
+  activity.photos.attach(io: file, filename: 'photo')
+
+  file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583248180/BtHrsTQUiNBDGrVzgsyGo7cQ.jpg')
+activity = Activity.create!(
+  name: 'Kater Blau',
+  description: "Let's dance the night awayyyyyy in one of Berlin's most famous clubs!" ,
+  address: "Holzmarktstraße 25, 10243 Berlin",
+  category: "food",
+  datetime: DateTime.new(2020, 03, 10, 19, 30, 0),
+  capacity: 3,
+  user_id: User.last.id - 2)
   activity.photos.attach(io: file, filename: 'photo')
 
 
@@ -181,7 +194,7 @@ Booking.create!(
 
 Booking.create!(
   activity_id: Activity.first.id + 2,
-  user_id: User.first.id,
+  user_id: User.last.id,
   )
 
 Booking.create!(
@@ -189,11 +202,6 @@ Booking.create!(
   user_id: User.first.id + 1,
   )
 
-# Booking.create!(
-#   activity_id: Activity.first.id + 2,
-#   user_id: User.first.id + 1,
-#   )
-
 Booking.create!(
   activity_id: Activity.last.id - 1,
   user_id: User.first.id,
@@ -206,7 +214,7 @@ Booking.create!(
 
 Booking.create!(
   activity_id: Activity.last.id - 1,
-  user_id: User.first.id + 3,
+  user_id: User.first.id + 2,
   )
 
 Booking.create!(
@@ -298,6 +306,63 @@ Message.create!(
 puts 'Messages created...'
 
 
+puts 'Creating reviews part 1...'
+
+Review.create!(
+  booking_id: Booking.first.id,
+  content: "It was a super nice dinner, and i absolutely enjoyed it",
+  activity_rating: 5
+  )
+
+Review.create!(
+  booking_id: Booking.first.id + 1,
+  content: "The dinner is very tasty! The cusine is inspired by asian flavors. Friendly staff and awesome service. Worthy the money:)",
+  activity_rating: 5
+  )
+
+Review.create!(
+  booking_id: Booking.first.id + 2,
+  content: "The food is very good and very well presented, but it took too long!",
+  activity_rating: 4
+  )
+
+Review.create!(
+  booking_id: Booking.first.id + 3,
+  content: "A spontaneous sports night! I don't play very well but Hammi was very helpful!",
+  activity_rating: 5
+  )
+
+# Review.create!(
+#   booking_id: Booking.find(129),
+#   content: "so yummmmmmmy! loved Ambi's home-made dim sum! 🤤",
+#   activity_rating: 5
+#   )
+
+# Review.create!(
+#   booking_id: Booking.find(128),
+#   content: "it was a fun night at Ambi's place! she is very international and definetly a lovely entertainer. thanks for the great experience 🤗",
+#   activity_rating: 5
+  # )
+
+Review.create!(
+  booking_id: Booking.first.id + 6,
+  content: "nice yoga session!",
+  activity_rating: 5
+  )
+
+Review.create!(
+  booking_id: Booking.first.id + 7,
+  content: "the studio is very cosy and not too crowded",
+  activity_rating: 4,
+  )
+
+Review.create!(
+  booking_id: Booking.first.id + 8,
+  content: "The teacher's voice is very nice in a meditative way 😇",
+  activity_rating: 5
+  )
+
+puts 'Reviews created...'
 
 
 
