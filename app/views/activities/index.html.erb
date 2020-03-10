@@ -26,14 +26,15 @@
 
       <div class="card-trip-infos" id="idx-padding">
         <div class="card-info-index">
-         <h1 class="index-h1"><%= link_to activity.name, activity_path(activity) %></h1>
+         <h1 class="index-h1"><%= link_to activity.name, activity_path(activity, current_location: @user_location) %></h1>
          <% if params[:address].present? %>
-
-        <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
+            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h2>
          <%#= activity.address %>
-         <%# else %>
+         <% elsif params[:search].present? %>
+            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
+            <% else %>
          <%#= activity.address %>
-         <% end %></h2>
+         <% end %>
 <!--
  <p> Category: <%= activity.category %></p> -->
        <div class="idx-card-description">
