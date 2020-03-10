@@ -3,7 +3,7 @@
 .content-map {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin:30px 0px;
 }
 
 #map {
@@ -14,13 +14,4 @@
 #map.map.mapboxgl-map {
   width: 100%;
   margin: 30px 0px 30px 0px;
-}
-
-.mapboxgl-popup {
-  max-width: 100%;
-}
-
-.mapboxgl-popup-content {
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
 }
