@@ -55,9 +55,6 @@
           </div>
 
           <% end %>
-          <%# if @activity.user_id != current_user.id %>
-          <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-          <%# end %>
         </div>
 
         <p class="title">Available for:</p><%= @activity.capacity %> persons , <%= @activity.capacity - @activity.bookings.count %> spot(s) left
