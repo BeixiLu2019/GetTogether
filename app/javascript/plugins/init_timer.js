@@ -1,11 +1,9 @@
 
 const initTimer = () => {
   const demo = document.querySelectorAll(".demo")
-  console.log(demo)
   if (demo) {
     demo.forEach((demoNode) => {
       var countDownDate = new Date(demoNode.innerHTML).getTime();
-      console.log(countDownDate)
 
     // Update the count down every 1 second
     var x = setInterval(function() {

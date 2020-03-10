@@ -113,7 +113,7 @@ activity = Activity.create!(
   name: 'Tennis in Kreuzberg',
   description: 'Move your body with me playing tennis. I am not very good. ',
   address: "Cantianstr. 24, 10437 Berlin",
-  category: "⛹️‍♀️ sports",
+  category: "⛹️‍♀️ Sports",
   datetime: DateTime.new(2020, 03, 10, 19, 30, 0),
   capacity: 2,
   user_id: User.first.id,
@@ -125,7 +125,7 @@ activity = Activity.create!(
   name: 'Bouldering at Berta Block',
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
-  category: "⛹️‍♀️ sports",
+  category: "⛹️‍♀️ Sports",
 
   datetime: DateTime.new(2020, 03, 10, 16, 30, 0),
 
