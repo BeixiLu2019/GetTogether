@@ -4,37 +4,63 @@
       <%= cl_image_tag photo.key, crop: :fit %>
     <% end %>
   </div>
+  
+    <div class="show-container">
 
-  <div class="show-container">
-    <h1><%= @activity.name %> </h1>
-    <h6><%= @activity.description %></h6>
-    <br>
-    <p><i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %></p>
-    <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
-    <p><i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %></p>
-    <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
-    <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
-    <p><i class="fas fa-user"></i>
-    <% if current_user && @activity.user_id != current_user.id %>
-      <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post", class: "title"  %>
-      <%= link_to activity_conversations_path(@activity), method: "Post" do %>
-        <i class="far fa-comment"></i>
-      <%# elsif current_user == nil %>
-      <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-      <% end %>
-    <% end %></p>
+      <h1><%= @activity.name %> </h1>
+      <h6><%= @activity.description %></h6>
+      <br>
+       <p>
+      <i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %>
+      </p>
 
-    <!-- avartars -->
-    <div class="avatars-show">
-      <div class="host-info">
-        <% if @activity.user.photo.attached? %>
-          <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
-          <p><%= @activity.user.username %></p>
-        <% else %>
-          <%= link_to @activity.user.username, user_path(@activity.user) %>
-          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
+      <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
+      <p>
+      <i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+      </p>
+
+      <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
+      <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
+      <p><i class="fas fa-user"></i>
+          <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+           <% if current_user && @activity.user_id != current_user.id %>
+           <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+            <%= link_to activity_conversations_path(@activity), method: "Post" do %>
+              <i class="far fa-comment"></i>
+            <% end %>
+          <% end %> </p>
+
+      <div class="avatars-show">
+          <div class="host-info">
+            <% if @activity.user.photo.attached? %>
+            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
+            <p><%= @activity.user.username %></p>
+            <% else %>
+            <%= link_to @activity.user.username, user_path(@activity.user) %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
+            <% end %>
+          </div>
+
+        <div class="participants">
+         <% @activity.bookings.each do |booking| %>
+          <% user = User.find(booking.user_id) %>
+            <% if user.photo.attached? %>
+            <div class="avartar-set">
+              <div class="avartar-name">
+              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+              <p> <%= user.username %> </p>
+              </div>
+            </div>
+            <% else %>
+            <div class="avartar-set">
+              <%= user.username %>
+              <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+            </div>
+          <% end %>
         <% end %>
       </div>
+     </div>
+        
       <div class="participants">
         <% @activity.bookings.each do |booking| %>
         <% user = User.find(booking.user_id) %>
