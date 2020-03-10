@@ -13,7 +13,6 @@
        <p>
       <i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %>
       </p>
-      <p><i class="fas fa-map-marker-alt"></i> <%= @activity.address %></p>
 
 
         <!-- booking tn -->
@@ -35,7 +34,6 @@
         <%# end %>
       </div> -->
 
-      <br>
       <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
       <p>
       <i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
@@ -43,26 +41,25 @@
 
       <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
       <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
-
-        <div class="host-info">
-          <% if @activity.user.photo.attached? %>
-          <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
-          <p><%= @activity.user.username %></p>
-          <% else %>
-          <%= link_to @activity.user.username, user_path(@activity.user) %>
-          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
-          <% end %>
-
+      <p><i class="fas fa-user"></i>
           <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
           <% if @activity.user_id != current_user.id %>
-          <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+           <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
             <%= link_to activity_conversations_path(@activity), method: "Post" do %>
               <i class="far fa-comment"></i>
             <% end %>
-          <% end %>
-        </div>
+          <% end %> </p>
 
-        <h6>Joining: </h6>
+      <div class="avatars-show">
+          <div class="host-info">
+            <% if @activity.user.photo.attached? %>
+            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
+            <p><%= @activity.user.username %></p>
+            <% else %>
+            <%= link_to @activity.user.username, user_path(@activity.user) %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
+            <% end %>
+          </div>
 
         <div class="participants">
          <% @activity.bookings.each do |booking| %>
@@ -82,6 +79,7 @@
           <% end %>
         <% end %>
         </div>
+      </div>
         <!-- reviews -->
         <p class="title">Reviews:</p>
           <% if @activity.reviews.empty?  %>

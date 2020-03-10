@@ -34,7 +34,11 @@
 .host-info {
   display: flex;
   align-items: center;
-  margin: 10px 0px 20px -9px;
+  margin: 10px 0px 20px -5px;
+  flex-direction: column;
+  width: 60px;
+  padding: 5px;
+  font-size: 12px;
   img {
     margin-right: 10px;
   }
@@ -96,8 +100,17 @@ p {
 .title {
   font-size: 16px;
   font-weight: bold;
-
+}
 
 .fa-chevron-left {
   font-weight: bold;
 }
+
+.avatars-show {
+  .host-info img {
+    border: 2px solid $orange;
+  }
+  display: flex;
+  align-items: baseline;
+}
+
