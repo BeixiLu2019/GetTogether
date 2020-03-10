@@ -15,6 +15,7 @@
 </div>
 
   <div class="content-index">
+      <%# demo_counter = 0 %>
     <% @activities.each do |activity| %>
     <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
 
@@ -27,16 +28,18 @@
         <div class="card-info-index">
          <h1 class="index-h1"><%= link_to activity.name, activity_path(activity) %></h1>
          <% if params[:address].present? %>
-        <p> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
+
+        <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away
          <%#= activity.address %>
          <%# else %>
          <%#= activity.address %>
-         <% end %></p>
+         <% end %></h2>
 <!--
  <p> Category: <%= activity.category %></p> -->
        <div class="idx-card-description">
-        <h2 class="card-trip-pricing " id="idx_date"> <%= activity.datetime.strftime("%b %eth %Y, %k:%M") %></h2>
-        <p>
+       <div class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></div>
+        <%# demo_counter += 1 %>
+      <!--   <p class="card-trip-pricing " id="idx_date"> --> <%#= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
           <% if activity.bookings.count == 1 %>
             <%= activity.bookings.count %> Person is going
           <% else %>
@@ -64,6 +67,9 @@
       ></div> -->
 
     </div>
+    <br>
+    <br>
+    <br>
 
 
 

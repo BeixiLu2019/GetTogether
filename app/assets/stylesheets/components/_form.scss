@@ -89,6 +89,7 @@ label {
   a {
     color: $dark-gray;
   }
+
 }
 
 .form-inputs #user_birthday_1i {
@@ -98,3 +99,9 @@ label {
 .show-form {
    width: 320px;
   }
+
+.form-inputs {
+    a {
+    color: $orange;
+  }
+}
