@@ -4,105 +4,108 @@
     <%= cl_image_tag photo.key, crop: :fit %>
     <% end %>
   </div>
-  
+
     <div class="show-container">
 
+      <h1><%= @activity.name %> </h1>
+      <h6><%= @activity.description %></h6>
+      <br>
+       <p>
+      <i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %>
+      </p>
 
-  <div class="show-container">
+      <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
+      <p>
+      <i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
+      </p>
 
-  <h1><%= @activity.name %> </h1>
-  <h6><%= @activity.description %></h6>
-  <br>
-  <p><i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %></p>
-  <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
-  <p><i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %></p>
-  <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
-  <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
-  <p><i class="fas fa-user"></i>
-    <% if current_user && @activity.user_id != current_user.id %>
-    <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post", class: "title"  %>
-    <%= link_to activity_conversations_path(@activity), method: "Post" do %>
-    <i class="far fa-comment"></i>
-    <%# elsif current_user == nil %>
-    <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-    <% end %>
-    <% end %></p>
+      <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
+      <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
+      <p><i class="fas fa-user"></i>
+          <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+          <% if @activity.user_id != current_user.id %>
+           <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
+            <%= link_to activity_conversations_path(@activity), method: "Post" do %>
+              <i class="far fa-comment"></i>
+            <% end %>
+          <% end %> </p>
 
-    <!-- avartars -->
-    <div class="avatars-show">
-      <div class="host-info">
-        <% if @activity.user.photo.attached? %>
-        <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
-        <p><%= @activity.user.username %></p>
-        <% else %>
-        <%= link_to @activity.user.username, user_path(@activity.user) %>
-        <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
-        <% end %>
-      </div>
-     </div>
-        
-      <div class="participants">
-        <% @activity.bookings.each do |booking| %>
-        <% user = User.find(booking.user_id) %>
-        <% if user.photo.attached? %>
-        <div class="avartar-set">
-          <div class="avartar-name">
-            <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
-            <p> <%= user.username %> </p>
+      <div class="avatars-show">
+          <div class="host-info">
+            <% if @activity.user.photo.attached? %>
+            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(user.id) %>
+            <p><%= @activity.user.username %></p>
+            <% else %>
+            <%= link_to @activity.user.username, user_path(@activity.user) %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+            <% end %>
           </div>
-        </div>
-        <% else %>
-        <div class="avartar-set">
-          <%= user.username %>
-          <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
-        </div>
+
+        <div class="participants">
+         <% @activity.bookings.each do |booking| %>
+          <% user = User.find(booking.user_id) %>
+            <% if user.photo.attached? %>
+            <div class="avartar-set">
+              <div class="avartar-name">
+              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+              <p> <%= user.username %> </p>
+              </div>
+            </div>
+            <% else %>
+            <div class="avartar-set">
+              <%= user.username %>
+              <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+            </div>
+          <% end %>
         <% end %>
-        <% end %>
+        </div>
       </div>
+        <!-- reviews -->
+        <p class="title">Reviews:</p>
+          <% if @activity.reviews.empty?  %>
+            <p> This activity has not been reviewed yet </p>
+          <% else %>
+            <%= '⭐️' * (@activity.reviews.sum(:activity_rating) / @activity.reviews.count) %>
+          <% end %>
+
+      <div class="map-container">
+        <div class="map"
+            id="map"
+            style="width: 100%;
+            height: 300px;"
+            data-marker="<%= @marker.to_json %>"
+            data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+        ></div>
+      </div>
+
+      <div class="bottom-container">
+
+        <% if policy(@activity).destroy? %>
+          <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
+
+          <button id="sweet-alert-cancel" class="btn btn-orange">Delete Activity</button>
+          <%= link_to '', activity_path(@activity), method: :delete, id: "delete", class: "hidden" %>
+          <% end %>
+
+        <% if @booking.user != @activity.user && @booking.user != current_user %>
+          <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+            <h6> Want to join <%= @activity.name %>? Confirm now! </h6>
+
+            <button id="sweet-alert-demo" class="btn btn-green">Join!</button>
+            <%= link_to '', new_activity_booking_path(@activity), id: "confirm", class: "hidden"%>
+
+          <% end %>
+          <% end %>
+
+        </div>
+
+        <div>
+          <%= link_to :back do %>
+          <i class="fas fa-chevron-left"></i>
+        <% end %>
+        </div>
+        <br>
+        <br>
+
     </div>
-    <!-- reviews -->
-    <p class="title">Reviews:</p>
-    <% if @activity.reviews.empty?  %>
-    <p> This activity has not been reviewed yet </p>
-    <% else %>
-    <%= '⭐️' * (@activity.reviews.sum(:activity_rating) / @activity.reviews.count) %>
-    <% end %>
-
-    <!-- map -->
-    <div class="map-container">
-      <div class="map"
-      id="map"
-      style="width: 100%;
-      height: 300px;"
-      data-marker="<%= @marker.to_json %>"
-      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-      ></div>
-    </div>
-
-    <div class="bottom-container">
-      <% if policy(@activity).destroy? %>
-      <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
-      <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
-      <% end %>
-
-      <% if @booking.user != @activity.user && @booking.user != current_user %>
-      <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-      <h6> Want to join <%= @activity.name %>? Confirm now! </h6>
-      <button id="sweet-alert-demo" class="btn btn-green">Join!</button>
-      <%= link_to '', new_activity_booking_path(@activity), id: "confirm", class: "hidden"%>
-      <% end %>
-      <% end %>
-    </div>
-
-
-    <div>
-      <%= link_to :back do %>
-      <i class="fas fa-chevron-left"></i>
-      <% end %>
-    </div>
-
-  <br>
-  <br>
 </div>
-
-
