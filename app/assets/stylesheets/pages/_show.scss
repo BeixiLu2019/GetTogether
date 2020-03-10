@@ -10,6 +10,9 @@
     color: $red;
   }
 }
+.category {
+  background-color: #FB955C;
+}
 
 .show-image {
   img {
@@ -54,6 +57,12 @@
   .btn-green {
     width: 100%;
   }
+  // margin-bottom: 40px;
+  // margin-top: 20px;
+  // display:flex;
+  // justify-content: space-between;
+  // position: relative;
+  // align-items: center;
 }
 
 .content {
@@ -64,12 +73,14 @@
   display: flex;
   justify-content: space-between;
   margin: 15px 0px;
+  align-items: center;
 }
 
 p {
   color: #5b6175;
   margin-bottom: 0px !important;
 }
+
 
 .btn-outline {
   // If you want to move the profile edit button,
@@ -82,3 +93,11 @@ p {
   color: $dark-gray;
 }
 
+.title {
+  font-size: 16px;
+  font-weight: bold;
+
+
+.fa-chevron-left {
+  font-weight: bold;
+}

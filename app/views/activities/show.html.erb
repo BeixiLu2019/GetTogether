@@ -1,6 +1,4 @@
-
 <div class="main-container">
-
   <div class="show-image">
     <% @activity.photos.each do |photo| %>
     <%= cl_image_tag photo.key, crop: :fit %>
@@ -8,16 +6,41 @@
   </div>
 
     <div class="show-container">
+
       <h1><%= @activity.name %> </h1>
       <h6><%= @activity.description %></h6>
       <br>
+       <p>
+      <i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %>
+      </p>
       <p><i class="fas fa-map-marker-alt"></i> <%= @activity.address %></p>
+
+
+        <!-- booking tn -->
+        <%# if @booking.errors.any? %>
+  <!--       <div class="alert">
+          <%# @booking.errors.full_messages.each do |message| %>
+          <span>  😱 <%#= message %></span>
+          <a data-dismiss="alert" aria-label="Close"></a>
+          <i class="fas fa-times"></i>
+          <%# end %>
+        </div>
+        <%# end %>
+        <%# if @booking.user != @activity.user && @booking.user != current_user %>
+        <%# if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
+        <div>
+          <%#= link_to 'Join',new_activity_booking_path(@activity), class: "btn btn-primary" %>
+        </div>
+        <%# end %>
+        <%# end %>
+      </div> -->
+
+      <br>
+      <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
       <p>
       <i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
       </p>
-      <p>
-      <i class="fas fa-sort-amount-down-alt"></i> <%= @activity.category.capitalize %>
-      </p>
+
       <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
       <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
 
@@ -40,6 +63,7 @@
         </div>
 
         <h6>Joining: </h6>
+
         <div class="participants">
          <% @activity.bookings.each do |booking| %>
           <% user = User.find(booking.user_id) %>
@@ -58,6 +82,13 @@
           <% end %>
         <% end %>
         </div>
+        <!-- reviews -->
+        <p class="title">Reviews:</p>
+          <% if @activity.reviews.empty?  %>
+            <p> This activity has not been reviewed yet </p>
+          <% else %>
+            <%= '⭐️' * (@activity.reviews.sum(:activity_rating) / @activity.reviews.count) %>
+          <% end %>
 
       <div class="map-container">
         <div class="map"
@@ -70,6 +101,7 @@
       </div>
 
       <div class="bottom-container">
+
         <% if policy(@activity).destroy? %>
           <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
           <%= link_to "Cancel", activity_path, class: "btn btn-orange", method: :delete, data: { confirm: "You sure?" } %>
@@ -81,14 +113,19 @@
 
             <button id="sweet-alert-demo" class="btn btn-green">Join!</button>
             <%= link_to '', new_activity_booking_path(@activity), id: "confirm", class: "hidden"%>
+
           <% end %>
+          <% end %>
+
+        </div>
+
+        <div>
+          <%= link_to :back do %>
+          <i class="fas fa-chevron-left"></i>
         <% end %>
+        </div>
         <br>
         <br>
-        <%= link_to :back do %>
-      <i class="fas fa-chevron-left"></i>
-      <% end %>
-      </div>
 
     </div>
 </div>
