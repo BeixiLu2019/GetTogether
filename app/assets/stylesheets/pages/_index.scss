@@ -52,20 +52,31 @@ padding-top: 15px;
 
   p {
     font-size: 1rem;
+    margin-top: 8px;
   }
 
-  h2 {
+  #index-km {
     font-size: 1rem;
+}
+h2.demo {
+    font-size: 1rem !important;
     position: absolute;
     right: 5%;
-    bottom: 5%;
-}
+    bottom: 12%;
+    color: $red;
   }
+
+  }
+
 
 
 #idx_date {
   // padding-top: 20px;
   font-size: 16px;
+}
+
+.demo {
+  font-weight: bold;
 }
 
 .form-idx {

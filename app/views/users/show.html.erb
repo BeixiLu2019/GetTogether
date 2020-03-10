@@ -1,22 +1,21 @@
 <div class="profile-container">
   <div class="main-content">
-
-  <div>
-    <div class="profile-name">
+    <div>
+      <div class="profile-name">
         <% if @user.photo.attached? %>
-            <%= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fit %>
+          <%= cl_image_tag @user.photo.key, class: "avatar-border", height: 300, width: 300, crop: :fit %>
         <% else %>
-            <%= cl_image_tag("img_264570_wuw5yx", class: "avatar-border", height: 300, width: 300, crop: :fit) %>
+          <%= cl_image_tag("img_264570_wuw5yx", class: "avatar-border", height: 300, width: 300, crop: :fit) %>
         <% end %>
         <h2> <%= @user.username %> </h2>
       </div>
       <div class="profile-content">
-      <% if @user == current_user %>
-        <p><i class="far fa-envelope"></i> <%= @user.email %></p>
-        <p><i class="fas fa-birthday-cake"></i> <%= @user.birthday %></p>
+        <% if @user == current_user %>
+          <p><i class="far fa-envelope"></i> <%= @user.email %></p>
+          <p><i class="fas fa-birthday-cake"></i> <%= @user.birthday %></p>
         <% end %>
-        <p><i class="far fa-edit"></i> <%= @user.bio %></p>
-        <p><i class="far fa-heart"></i> <%= @user.interest %></p>
+          <p><i class="far fa-edit"></i> <%= @user.bio %></p>
+          <p><i class="far fa-heart"></i> <%= @user.interest %></p>
       </div>
       <br>
       <div class="edit">
@@ -27,27 +26,33 @@
       <!-- Review Code -->
       <div class="reviews">
         <h4> <%= @user.username %>'s  past event reviews </h4>
-        <% @user.activities.each do |activity| %>
-           <div class="event-rating">
+
+        <% if @review_array.include?(@user) %>
+          <% @user.activities.each do |activity| %>
+          <div class="event-rating">
             <% if activity.reviews.present? %>
-            <p><%= activity.name %></p>
-            <%= '⭐️' * (activity.reviews.sum(:activity_rating) / activity.reviews.count) %>
-           </div>
-              <% activity.reviews.each do |review| %>
-              <div class="single-activity">
-                <p class="review-user"><%= User.find(review.booking.user_id).username %> says: </p>
-                <p><%= review.content %></p>
-              </div>
+              <p><%= activity.name %></p>
+              <%= '⭐️' * (activity.reviews.sum(:activity_rating) / activity.reviews.count) %>
+          </div>
+          <% activity.reviews.each do |review| %>
+            <div class="single-activity">
+              <p class="review-user"><%= User.find(review.booking.user_id).username %> says: </p>
+              <p><%= review.content %></p>
+            </div>
               <% end %>
             <% end %>
           <% end %>
-            <p> <%=@user.username%> hasn't received reviews yet. </p>
-          </div>
-
-        <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
-        <small><i class="fas fa-sign-out-alt"></i> Sign Out </small>
+        <% else %>
+          <p> <%=@user.username%> hasn't received reviews yet. </p>
         <% end %>
+      </div>
+
+      <% if @user == current_user %>
+          <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+          <small><i class="fas fa-sign-out-alt"></i> Sign Out </small>
+          <% end %>
+      <%end%>
       <br>
-  </div>
+    </div>
   </div>
 </div>

@@ -33,11 +33,11 @@
       <div class="avatars-show">
           <div class="host-info">
             <% if @activity.user.photo.attached? %>
-            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
+            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(user.id) %>
             <p><%= @activity.user.username %></p>
             <% else %>
             <%= link_to @activity.user.username, user_path(@activity.user) %>
-            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
             <% end %>
           </div>
 
@@ -109,4 +109,3 @@
 
     </div>
 </div>
-
