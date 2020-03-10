@@ -80,7 +80,6 @@
           <% unless activity.user == current_user  %>
             <%#= link_to 'Cancel', booking_path(@booking), class:"btn btn-orange", method: :delete, data: { confirm: "Are you sure you want to cancel?" } %>
             <button id="sweet-alert-cancel" class="btn btn-orange">Can't attend</button>
-
             <%= link_to '', booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, id: "delete", class: "hidden" %>
             <%#= link_to "Can't attend #{activity.name}", booking_path(Booking.find_by(activity_id: activity.id)), method: :delete, data: { confirm: "Are you sure you want to cancel this booking?" }%>
           <% end %>

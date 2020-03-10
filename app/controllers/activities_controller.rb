@@ -7,20 +7,15 @@ class ActivitiesController < ApplicationController
     if params[:address] && params[:address].empty?
       @user_location = params[:search][:current_location]
       @activities = policy_scope(Activity).geocoded.near(@user_location, 5).sort_by{|activity| activity.datetime}
-
-
     elsif params[:address].present?
       @activities = policy_scope(Activity).geocoded.near(params[:address], 5)
       @activities = @activities.search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
       @activities = @activities.where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
 
       @activities = @activities.sort_by{|activity| activity.datetime}
-     elsif params[:category].present?
+    elsif params[:category].present?
      @activities = policy_scope(Activity).where(category: params[:category]) unless params[:category].nil? || params[:category].empty?
      @activities = @activities.sort_by{|activity| activity.datetime}
-    # elsif params[:activity].present?
-     # @activities = policy_scope(Activity).search(params[:activity]) unless params[:activity].nil? || params[:activity].empty?
-     # @activities = @activities.sort_by{|activity| activity.datetime}
     else
       @activities = policy_scope(Activity).geocoded.sort_by{|activity| activity.datetime} #returns activitys with coordinates
     end
@@ -39,7 +34,6 @@ class ActivitiesController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { activity: @activity })
       }
   end
-  # Mapbox Code
 
   def new
     @current_page = "new activity"
@@ -49,7 +43,6 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)
     @activity.user = current_user
     authorize @activity
@@ -70,7 +63,6 @@ class ActivitiesController < ApplicationController
     authorize @activity
     redirect_to activities_path
   end
-
 
   private
 
