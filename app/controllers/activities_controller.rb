@@ -3,7 +3,6 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
-    # raise
     @current_page = "activities"
     if params[:address] && params[:address].empty?
       @user_location = params[:search][:current_location]
