@@ -42,3 +42,4 @@ const initTimer = () => {
 };
 
 export { initTimer };
+

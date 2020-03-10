@@ -9,6 +9,7 @@ import { findUserLocation } from '../plugins/init_current_location';
 initAutocomplete();
 
 // map import:
+
 initMapbox();
 
 findUserLocation();
@@ -41,6 +42,7 @@ initSweetalert('#sweet-alert-cancel', {
     link.click();
   }
 });
+
 
 
 
