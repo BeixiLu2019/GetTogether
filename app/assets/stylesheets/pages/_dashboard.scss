@@ -3,6 +3,12 @@
   margin: auto;
   height: 100%;
   margin-bottom: 60px;
+  h2 {
+    margin-bottom: 25px;
+  }
+  a:hover {
+    color: $dark-gray;
+  }
 }
 
 
@@ -13,14 +19,37 @@
   img {
     border: 2px solid $green;
   }
+  .fa-user {
+    color: $green;
+  }
+  .participants {
+  margin-left: -10px;
+  }
 }
 
 .participants-section {
   a {
     color: #5b6175;
   }
+  .fa-users {
+    margin-left: 12px;
+  }
 }
 
 .card-dashboard {
   margin-bottom: 20px;
+  h3 {
+    margin-top: 10px;
+    color: #5b6175;
+  }
+}
+.avatars-dashboard {
+  img {
+  margin-top: 5px;
+  }
+  margin-left: 8px;
+}
+
+.info-dashboard {
+  margin-left: 8px;
 }
