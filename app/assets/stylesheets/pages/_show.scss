@@ -1,3 +1,6 @@
+.swal-overlay {
+  background-color: rgba(43, 165, 137, 0.45);
+}
 
 .main-container {
   height: 100%;
@@ -21,32 +24,47 @@
 .show-container {
   padding: 15px;
   margin: auto;
+  h6 {
+    color: #5b6175;
+    font-size: 18px;
+    margin: 0;
+  }
 }
 
 .host-info {
   display: flex;
   align-items: center;
+  margin: 10px 0px 20px -5px;
+  flex-direction: column;
+  width: 60px;
+  padding: 5px;
+  font-size: 12px;
   img {
     margin-right: 10px;
   }
   a {
     margin-left: 10px;
   }
-
-  h2 {
-    position: absolute;
-    right: 5%;
-    bottom: 2%;
-  }
+  .fa-comment {
+    color: $orange;
 }
 
 .bottom-container {
-  margin-bottom: 40px;
   margin-top: 20px;
-  display:flex;
-  justify-content: space-between;
-  position: relative;
-  align-items: center;
+  margin-bottom: 60px;
+  h6 {
+    color: $orange;
+    margin-bottom: 15px;
+  }
+  .btn-green {
+    width: 100%;
+  }
+  // margin-bottom: 40px;
+  // margin-top: 20px;
+  // display:flex;
+  // justify-content: space-between;
+  // position: relative;
+  // align-items: center;
 }
 
 .content {
@@ -61,14 +79,36 @@
 }
 
 p {
+  color: #5b6175;
   margin-bottom: 0px !important;
+}
+
+
+.btn-outline {
+  // If you want to move the profile edit button,
+  // do it on the Profile Show page, inside a div,
+  // otherwise this will globally move ALL buttons
+
+  // position: absolute;
+  top: 2%;
+  left: 3%;
+  color: $dark-gray;
 }
 
 .title {
   font-size: 16px;
   font-weight: bold;
-  }
+}
 
 .fa-chevron-left {
   font-weight: bold;
 }
+
+.avatars-show {
+  .host-info img {
+    border: 2px solid $orange;
+  }
+  display: flex;
+  align-items: baseline;
+}
+
