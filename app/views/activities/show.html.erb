@@ -23,7 +23,7 @@
       <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
       <p><i class="fas fa-user"></i>
           <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-          <% if @activity.user_id != current_user.id %>
+          <% if current_user && @activity.user_id != current_user.id %>
            <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
             <%= link_to activity_conversations_path(@activity), method: "Post" do %>
               <i class="far fa-comment"></i>
@@ -33,11 +33,11 @@
       <div class="avatars-show">
           <div class="host-info">
             <% if @activity.user.photo.attached? %>
-            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(user.id) %>
+            <%= link_to cl_image_tag(@activity.user.photo.key, class: "avatar"), user_path(@activity.user) %>
             <p><%= @activity.user.username %></p>
             <% else %>
             <%= link_to @activity.user.username, user_path(@activity.user) %>
-            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %>
+            <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@activity.user) %>
             <% end %>
           </div>
 
@@ -47,7 +47,7 @@
             <% if user.photo.attached? %>
             <div class="avartar-set">
               <div class="avartar-name">
-              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path %>
+              <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
               <p> <%= user.username %> </p>
               </div>
             </div>
