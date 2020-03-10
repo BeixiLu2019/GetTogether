@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-chat">
     <% if @conversation.sender_id == current_user.id %>
       <% chat_partner = User.find(@conversation.recipient_id) %>
     <% else %>
