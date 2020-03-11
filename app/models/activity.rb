@@ -14,7 +14,7 @@ class Activity < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :category, presence: true
-  validates :capacity, presence: true
+
   validates :datetime, presence: {message: "Date cannot be blank."}
   # validates :user, uniqueness: true
 end
