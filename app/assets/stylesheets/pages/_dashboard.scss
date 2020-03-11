@@ -19,11 +19,11 @@
   img {
     border: 2px solid $green;
   }
-  .fa-user {
-    color: $green;
-  }
   .participants {
-  margin-left: -10px;
+  margin-left: -5px;
+   p, a {
+    color: $dark-gray;
+    }
   }
 }
 
@@ -32,24 +32,66 @@
     color: #5b6175;
   }
   .fa-users {
-    margin-left: 12px;
+    margin-left: 15px;
   }
 }
 
 .card-dashboard {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  background-color: #f5ece6;
+  border-radius: 10px;
   h3 {
     margin-top: 10px;
     color: #5b6175;
   }
+  a {
+    color: $red;
+  }
+   p {
+    a {
+    color: $dark-gray;
+    }
+  }
+  .btn-outline {
+    margin-top: 8px;
+    background-color: white;
+    color: #5b6175;
+    display: block;
+    margin-left: 12px;
+    // margin: auto;
+  }
+  small {
+    color: $dark-gray;
+  }
 }
+
+.img-container {
+  width: 100%;
+  position: relative;
+}
+  .text-block {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border-top-left-radius: 15px;
+  background-color: $red;
+  color: white;
+  padding: 5px 20px 0px 20px;
+  }
+
 .avatars-dashboard {
   img {
   margin-top: 5px;
   }
-  margin-left: 8px;
+  margin-left: 14px;
 }
 
 .info-dashboard {
-  margin-left: 8px;
+  margin-left: 14px;
 }
+
+.review-container {
+  margin-left: 14px;
+}
+
