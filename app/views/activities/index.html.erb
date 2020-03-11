@@ -2,13 +2,17 @@
   <div class="form-idx">
     <%= form_tag activities_path, method: :get do %>
     <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search in a different location" %>
-    <%= select_tag(:category, options_for_select(["🍝 food & drinks", "🍻 nightlife", "🎭 culture", "🌳 nature", "🧘‍♀️ wellness", "🤝 networking", "📚 learning"]), :include_blank => "Category") %>
+    <%= select_tag(:category, options_for_select(["🍝 Food & Drinks", "🍻 Nightlife", "🎭 Culture", "🌳 Nature", "🧘‍♀️ Wellness", "🤝 Networking", "📚 Learning", "⛹️‍♀️ Sports"], selected: params[:category]), :include_blank => "Category") %>
+    <% if params[:search].present? %>
+    <%= hidden_field_tag 'search[current_location]', params[:search][:current_location]%>
+    <% end %>
     <%= button_tag(type: "submit", class: "btn-index btn btn-outline", id: "filter-btn" ) do %>
-        <i class="fas fa-sort-amount-down-alt"></i>
-      <% end %>
-      <% end %>
-    </div>
+    <i class="fas fa-sort-amount-down-alt"></i>
+    <% end %>
+      <button class="btn btn-orange" type='submit' formaction='/random'>Suprise me!</button>
+    <% end %>
   </div>
+
   <%= render "activity_card" %>
 </div>
 

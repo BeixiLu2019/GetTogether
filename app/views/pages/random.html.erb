@@ -24,7 +24,15 @@
   </div>
   <div class="bottom-container">
     <%= link_to 'Anything else?', random_path(current_location: @user_location), class: "btn btn-green" %>
-    <%= link_to 'See all events near you', activities_path, class: "btn btn-orange" %>
+      <div class="form-idx">
+        <%= form_tag activities_path, method: :get do %>
+        <% if params[:search].present? %>
+        <%= hidden_field_tag 'search[current_location]', params[:search][:current_location]%>
+        <% end %>
+        <%= link_to 'See all events near you', activities_path(current_location: @user_location), class: "btn btn-orange" %>
+        <% end %>
+      </div>
   </div>
 </div>
+
 

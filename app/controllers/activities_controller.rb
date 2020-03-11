@@ -24,6 +24,8 @@ class ActivitiesController < ApplicationController
     else
       @activities = policy_scope(Activity).geocoded.sort_by{|activity| activity.datetime} #returns activitys with coordinates
     end
+    @user_location = params[:search].present? ?  params[:search][:current_location] : params[:current_location]
+    @explore_activity = Activity.joins(:bookings).group('activities.id').having('COUNT(bookings.id) < activities.capacity').where('activities.datetime > CURRENT_TIMESTAMP').sample
   end
 
   def show
