@@ -101,7 +101,6 @@ activity = Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.new(2020, 03, 11, 19, 00, 0),
   capacity: 3,
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
@@ -126,13 +125,22 @@ activity = Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "⛹️‍♀️ Sports",
-
   datetime: DateTime.new(2020, 03, 11, 16, 30, 0),
-
   capacity: 5,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
 
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583841094/Italien_food_cgiwta.jpg')
+activity = Activity.create!(
+  name: 'Mädchenitaliener',
+  description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
+  address: "Alte Schönhauser Str. 12, 10119 Berlin",
+  category: "🍝 Food & Drinks",
+  datetime: DateTime.new(2020, 03, 10, 18, 00, 0),
+  capacity: 4,
+  user_id: User.last.id)
+  activity.photos.attach(io: file, filename: 'photo')
 
 file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253419/Yoga_erxj9j.jpg')
 activity =Activity.create!(
@@ -140,7 +148,8 @@ activity =Activity.create!(
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
   category: "🧘‍♀️ Wellness",
-  datetime: DateTime.new(2020, 03, 11, 9, 30, 0),
+  # datetime: DateTime.new(2020, 03, 11, 9, 30, 0),
+  datetime: DateTime.now() + 1.0/12,
   capacity: 3,
   user_id: User.last.id - 1)
   activity.photos.attach(io: file, filename: 'photo')
@@ -195,14 +204,15 @@ activity = Activity.create!(
   description: "Brunch Event -'Sorry Mama' - have heard lots about it and would love to check it out!" ,
   address: "Heidestraße 62, 10557 Berlin, Germany",
   category: "🍻 Nightlife",
-  datetime: DateTime.new(2020, 03, 11, 11, 30, 0),
+  # datetime: DateTime.new(2020, 03, 11, 11, 30, 0),
+  datetime: DateTime.now() + 1.0/12,
   capacity: 3,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
 
 
 puts 'Activities created'
-
+()
 
 puts 'creating bookings'
 # Booking.create!(

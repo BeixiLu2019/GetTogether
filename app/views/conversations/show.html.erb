@@ -35,7 +35,7 @@
 
     <div class="new-message">
       <%= simple_form_for [@conversation, @message], remote: true do |f| %>
-          <%= f.input :body, placeholder: "Write your message", label: false %>
+          <%= f.input :body, placeholder: "Write your message", label: false, type: "text", class: "written-text" %>
           <%= button_tag type: 'submit', class: "btn-orange-chat" do %>
             <i class="far fa-paper-plane"></i>
           <% end %>

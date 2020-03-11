@@ -9,6 +9,10 @@ class Message < ApplicationRecord
     created_at.strftime('%k:%M')
   end
 
+  def message_date
+    created_at.strftime('%m/%d')
+  end
+
   def broadcast_message
     ActionCable.server.broadcast("conversation_#{conversation_id}", {
       message_par: ApplicationController.renderer.render(
