@@ -33,7 +33,7 @@ class ConversationsController < ApplicationController
       @conversation.save
     end
     authorize @conversation
-    redirect_to conversation_messages_path(@conversation)
+    redirect_to conversation_path(@conversation)
   end
 
   def destroy
