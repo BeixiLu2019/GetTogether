@@ -1,5 +1,6 @@
-<%#= @explore_activity.name %>
 
-<%#= link_to 'Anything else?', random_path(@explore_activity) %>
+<%= @explore_activity(params[:search][:current_location]) %>
 
-<%#= link_to 'See all events in area', activities_path %>
+<%#= link_to 'Anything else?', random_path %>
+
+<%= link_to 'See all events in area', activities_path %>
