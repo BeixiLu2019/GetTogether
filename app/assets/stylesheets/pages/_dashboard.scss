@@ -69,6 +69,11 @@
 .img-container {
   width: 100%;
   position: relative;
+  img {
+    object-fit: cover;
+    width: 100%;
+  }
+
 }
   .text-block {
   position: absolute;
