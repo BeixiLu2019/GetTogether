@@ -20,7 +20,7 @@
       </p>
 
       <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
-      <p><i class="fas fa-chair"></i> <%= @activity.capacity - @activity.bookings.count %> spaces left</p>
+      <p><i class="fas fa-chair"></i> <%= pluralize (@activity.capacity - @activity.bookings.count), "space" %> left</p>
       <p><i class="fas fa-user"></i>
           <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
           <% if current_user && @activity.user_id != current_user.id %>
@@ -28,6 +28,8 @@
             <%= link_to activity_conversations_path(@activity), method: "Post" do %>
               <i class="far fa-comment"></i>
             <% end %>
+             <% else %>
+              Your event
           <% end %> </p>
 
       <div class="avatars-show">
@@ -81,9 +83,9 @@
       <div class="bottom-container">
 
         <% if policy(@activity).destroy? %>
-          <%= link_to "Edit", edit_activity_path, class: "btn btn-green" %>
+          <%= link_to "Edit", edit_activity_path, class: "btn btn-outline" %>
 
-          <button id="sweet-alert-cancel" class="btn btn-orange">Delete Activity</button>
+          <button id="sweet-alert-cancel" class="delete-link">Delete Activity?</button>
           <%= link_to '', activity_path(@activity), method: :delete, id: "delete", class: "hidden" %>
           <% end %>
 
@@ -93,6 +95,7 @@
           <div class="button-fixed fixed-bottom text-center">
             <button id="sweet-alert-demo" class="btn btn-green">Join!</button>
             <%= link_to '', new_activity_booking_path(@activity), id: "confirm", class: "hidden"%>
+
           </div>
             <% end %>
 
@@ -100,17 +103,16 @@
               <%= link_to new_activity_booking_path(@activity), id: "confirm", class: "hidden" do %>
                 <button class="btn btn-green">Join!</button>
               <% end %>
+
           <% end %>
-
-        </div>
-
-        <div>
+        <% end %>
+        <br>
+        <div class="back-button">
           <%= link_to :back do %>
           <i class="fas fa-chevron-left"></i>
-        <% end %>
+          <% end %>
         </div>
-        <br>
-        <br>
-
+      </div>
+      <br>
     </div>
 </div>

@@ -46,7 +46,7 @@
 }
 
 .card-dashboard > img {
-  height: 200px;
+  height: 250px;
   width: 100%;
   object-fit: cover;
   border-radius: 5px;
@@ -84,6 +84,98 @@
 
 .dashboard-card-info {
   display:flex;
+}
+
+.card-conversation {
+  font-size: 24px;
+  height: 80px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: $light-gray;
+  overflow: hidden;
+  background: white;
+  // box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  display:flex;
+  justify-content: space-between;
+  .av-message {
+    display:flex;
+  }
+  .new-button {
+    float:right;
+  }
+  .main {
+    padding-left: 9px;
+  }
+  .avatar-me{
+    display:flex;
+    justify-content: space-between;
+  }
+  .date-new {
+  }
+  .date {
+    margin-top: 3px;
+    margin-bottom: 6px;
+    font-size: 12px;
+
+  }
+  .new-button {
+    margin-top: 5px;
+    overflow:hidden;
+    border-radius: 50%;
+    border: none;
+    height: 25px;
+    width: 25px;
+    background: $light-orange;
+
+    p {
+      color:white;
+      font-size: 16px;
+      margin-left:0px;
+      margin-top:0.5px;
+      text-align:center;
+      vertical-align:middle;
+
+    }
+
+
+  }
+  .activity  {
+    font-weight: bolder;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .last-message {
+    p {
+      font-size: 20px;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .avatar {
+    height:65px;
+    width: 65px;
+  }
+}
+
+.header-conversation {
+    position: sticky;
+    top: 0;
+    background-color: white;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 74px;
+    h3{
+      margin: 0px;
+    }
+
 }
 
 

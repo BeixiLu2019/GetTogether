@@ -26,6 +26,9 @@
     font-size: 18px;
     margin: 0;
   }
+  i {
+    margin-right: 5px;
+  }
 }
 
 .host-info {
@@ -57,6 +60,9 @@
     color: $orange;
     margin-bottom: 15px;
   }
+  .btn-outline {
+    width: 100%;
+  }
   .btn-green {
     width: 50%;
     margin-bottom: 10px;
@@ -66,12 +72,9 @@
     margin-top: 15px;
     width: 100%;
   }
-  // margin-bottom: 40px;
-  // margin-top: 20px;
-  // display:flex;
-  // justify-content: space-between;
-  // position: relative;
-  // align-items: center;
+  .back-button {
+    margin-top: 20px;
+  }
 }
 
 .button-fixed {
@@ -96,11 +99,6 @@ p {
 
 
 .btn-outline {
-  // If you want to move the profile edit button,
-  // do it on the Profile Show page, inside a div,
-  // otherwise this will globally move ALL buttons
-
-  // position: absolute;
   top: 2%;
   left: 3%;
   color: $dark-gray;
@@ -112,6 +110,7 @@ p {
 }
 
 .fa-chevron-left {
+  color: $dark-gray;
   font-weight: bold;
 }
 
@@ -129,3 +128,7 @@ p {
   align-items: baseline;
 }
 
+.delete-link {
+  margin-top: 20px;
+  color: $orange;
+}

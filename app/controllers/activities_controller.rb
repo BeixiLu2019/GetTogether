@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :destroy]
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -24,6 +24,8 @@ class ActivitiesController < ApplicationController
     else
       @activities = policy_scope(Activity).geocoded.sort_by{|activity| activity.datetime} #returns activitys with coordinates
     end
+    @user_location = params[:search].present? ?  params[:search][:current_location] : params[:current_location]
+    @explore_activity = Activity.joins(:bookings).group('activities.id').having('COUNT(bookings.id) < activities.capacity').where('activities.datetime > CURRENT_TIMESTAMP').sample
   end
 
   def show
@@ -46,7 +48,6 @@ class ActivitiesController < ApplicationController
   end
 
   def create
-    # params[:search][:category] = params[:search][:category].reject(&:empty?)
     @activity = Activity.new(activity_params)
     @activity.user = current_user
     authorize @activity
@@ -67,7 +68,6 @@ class ActivitiesController < ApplicationController
     authorize @activity
     redirect_to activities_path
   end
-
 
   private
 
