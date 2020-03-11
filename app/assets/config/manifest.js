@@ -3,3 +3,4 @@
 //= link_directory ../stylesheets .css
 //= link favicon/browserconfig.xml
 //= link application.css
+//= link favicon/browserconfig.xml
