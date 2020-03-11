@@ -18,7 +18,7 @@
   <div class="content-index">
     <%# demo_counter = 0 %>
     <% @activities.each do |activity| %>
-    <% if activity.datetime > DateTime.now() && activity.bookings.count < activity.capacity %>
+    <% if activity.datetime > DateTime.now() && activity.bookings.count < activity.capacity && (current_user.bookings.ids & activity.bookings.ids).empty? == true %>
 
     <div class="card-trip index-cards">
       <% activity.photos.each do |photo| %>
