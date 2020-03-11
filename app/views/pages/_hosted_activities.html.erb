@@ -9,7 +9,7 @@
         <div class="card-dashboard">
           <!-- Checking if cloudinary image attached -->
           <% if activity.photos.attached? %>
-            <%= cl_image_tag activity.photos.first.key, height: 250, width: 400, crop: :fill, :id => "img_booking" %>
+            <%= cl_image_tag activity.photos.first.key, height: 250, crop: :fill, :id => "img_booking" %>
           <% else %>
             <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
           <% end %>
@@ -51,10 +51,7 @@
             </div>
 
           <!--  Delete links for cards -->
-            <% if policy(activity).destroy? %>
-              <button id="sweet-alert-cancel" class="btn btn-outline">Cancel activity</button>
-              <%= link_to '', activity_path(activity), method: :delete, id: "delete", class: "hidden" %>
-            <% end %>
+
 
         </div>
       <% end %>
