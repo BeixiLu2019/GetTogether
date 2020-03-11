@@ -30,9 +30,9 @@
               </div>
               <div class="last-message">
                 <p>
-                  <%= link_to conversation.messages.where("user_id = ?", chat_partner.id).last.body[0..28], conversation_path(conversation) %>
+                  <%= link_to conversation.messages.last.body[0..28], conversation_path(conversation) %>
                   <!-- 3 dots for longer messages -->
-                  <% if conversation.messages.where("user_id = ?", chat_partner.id).last.body.size > 28 %>
+                  <% if conversation.messages.last.body.size > 28 %>
                     ...
                   <% end %>
                 </p>
@@ -42,7 +42,7 @@
           <!-- Button for new messages -->
           <div class="date-new">
             <div class="date">
-              <%= conversation.messages.where("user_id = ?", chat_partner.id).last.message_date %>
+              <%= conversation.messages.last.message_date %>
             </div>
             <% if conversation.messages.where(["read = ? and user_id = ?", false, chat_partner.id ]).present?%>
               <div class="new-button">

@@ -100,6 +100,7 @@ activity = Activity.create!(
   name: 'Dinner at Tim Raue',
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
+  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
   category: "🍝 Food & Drinks",
   capacity: 3,
   user_id: User.first.id,
@@ -215,10 +216,7 @@ puts 'Activities created'
 ()
 
 puts 'creating bookings'
-# Booking.create!(
-#   activity_id: Activity.first.id,
-#   user_id: (User.first.id + 1),
-#   )
+
 
 Booking.create!(
   activity_id: Activity.first.id,
