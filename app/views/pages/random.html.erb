@@ -23,7 +23,7 @@
     </div>
   </div>
   <div class="bottom-container">
-    <%= link_to 'Anything else?', random_path, class: "btn btn-green" %>
+    <%= link_to 'Anything else?', random_path(current_location: @user_location), class: "btn btn-green" %>
     <%= link_to 'See all events near you', activities_path, class: "btn btn-orange" %>
   </div>
 </div>
