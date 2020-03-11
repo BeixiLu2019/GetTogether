@@ -24,8 +24,11 @@ const initTimer = () => {
       if (days > 0 ) {
         demoNode.innerHTML = "Starts in: " + days +"d " + hours + "h "
         + minutes + "m " + seconds + "s ";
-      } else {
+      } else if (days < 1 && hours > 0) {
         demoNode.innerHTML = "Starts in: " + hours + "h "
+        + minutes + "m " + seconds + "s ";
+      } else {
+        demoNode.innerHTML = "Starts in: "
         + minutes + "m " + seconds + "s ";
       }
 
