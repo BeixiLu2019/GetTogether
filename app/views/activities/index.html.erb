@@ -36,10 +36,13 @@
 
          <div class="idx-card-description">
            <p>
-            <% if activity.bookings.count == 1 %>
-            <%= activity.bookings.count %> Person is going
-            <% else %>
-            <%= activity.bookings.count %> People are going
+
+            <% if activity.bookings.count < 1 %>
+               Be the first to go!
+            <% else activity.bookings.count == 1 %>
+              <%= activity.bookings.count %> Person is going
+            <%# else %>
+              <%#= activity.bookings.count %>
             <% end %>
           </p>
           <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
@@ -70,11 +73,13 @@
 
        <div class="idx-card-description">
          <p>
-          <% if activity.bookings.count == 1 %>
-          <%= activity.bookings.count %> Person is going
-          <% else %>
-          <%= activity.bookings.count %> People are going
-          <% end %>
+            <% if activity.bookings.count < 1 %>
+               Be the first to go!
+            <% elsif activity.bookings.count == 1 %>
+              <%= activity.bookings.count %> Person is going
+            <% else %>
+              <%= activity.bookings.count %> People are going
+            <% end %>
         </p>
         <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
 

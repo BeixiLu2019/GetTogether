@@ -8,11 +8,13 @@
 
         <div class="card-dashboard">
           <!-- Checking if cloudinary image attached -->
-          <% if activity.photos.attached? %>
-            <%= cl_image_tag activity.photos.first.key, height: 250, crop: :fill, :id => "img_booking" %>
-          <% else %>
-            <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
-          <% end %>
+          <div class="img-container">
+            <% if activity.photos.attached? %>
+              <%= cl_image_tag activity.photos.first.key, height: 250, crop: :fill, :id => "img_booking" %>
+            <% else %>
+              <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
+            <% end %>
+          </div>
 
           <div class="info-dashboard">
             <h3><%= link_to activity.name, activity_path(activity) %></h3>

@@ -17,6 +17,7 @@
 # photo = "#{resource_type}/#{type}/v#{version}/#{public_id}.#{format}##
 # {signature}"
 require "open-uri"
+require "date"
 
 
 
@@ -39,57 +40,122 @@ puts 'Cleaning user database'
 User.destroy_all
 
 puts 'creating Users'
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/d6c9ok8T8c1CtnbTpgCEbNnz.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/Philipp_Boston_kdjdty.jpg')
 user = User.create!(
   first_name: "Philipp",
   last_name: "Hamm",
   email: "philipp.hamm@gmail.com",
   username: "Hammi",
   password: "000000",
-  # birthdate: Date.new(1995,11,29),
+  birthday: Date.new(1984,11,29),
   bio: "Everything under control",
   interest: "Music"
   )
 user.photo.attach(io: file, filename: 'photo')
 
-file1 = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427020/Avatar_Anna_ibh3qf.jpg')
+file1 = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427020/SN_00922_iriwi2.jpg')
 user1 = User.create!(
   first_name: "Anna",
   last_name: "Herzog",
   username: "Anni",
   email: "anna.herzog@gmail.com",
   password: "000000",
-  # birthdate: Date.new(1996,08,11),
+  birthday: Date.new(1990,06,24),
   bio: "I know where to go",
   interest: "Tech"
   )
   user1.photo.attach(io: file1, filename: 'photo1')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427024/Avatar_Ambar_z3njc4.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427024/IMG_7189_wfk7oo.jpg')
 user = User.create!(
-  first_name: "Amy",
+  first_name: "Beixi",
   last_name: "Lu",
   username: "Beixi",
   email: "amy.lu@gmail.com",
   password: "000000",
-  # birthdate: Date.new(1992,08,11),
+  birthday: Date.new(1988,07,06),
   bio: "I love sweets",
   interest: "Cooking healty"
   )
   user.photo.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427017/Avatar_Amy_lncwih.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583427017/LduW3PXwE6Hc3BSJrcin2F6R.jpg')
 user = User.create!(
   first_name: "Ambar",
   last_name: "Gonzalez",
   username: "Ambi",
   email: "ambar.gonzalez@gmail.com",
   password: "000000",
-  # birthdate: Date.new(1993,08,11),
+  birthday: Date.new(1986,10,11),
   bio: "Designing like a boss",
   interest: "I like to dance disco music"
   )
   user.photo.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/pxpk4qnzd8sqlevwyigp.jpg')
+user = User.create!(
+  first_name: "Gennett",
+  last_name: "Wanke",
+  email: "g.wanke@gmail.com",
+  username: "Genni",
+  password: "000000",
+  birthday: Date.new(1995,07,29),
+  bio: "Am addicted to travelling!",
+  interest: "travelling and art",
+  )
+user.photo.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/ep4qgft4an6alhizmdis.jpg')
+user = User.create!(
+  first_name: "Jenny",
+  last_name: "Briggs",
+  email: "j.Briggs@gmail.com",
+  username: "Jenni",
+  password: "000000",
+  birthday: Date.new(1985,01,29),
+  bio: "I'm a photographer. I love to meet new people",
+  interest: "art, food, and dancing",
+  )
+user.photo.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/i1dcl4a3teln9vdsvf9x.jpg')
+user = User.create!(
+  first_name: "Peter",
+  last_name: "Lyon",
+  email: "p.lyon@gmail.com",
+  username: "Petter",
+  password: "000000",
+  birthday: Date.new(1995,12,29),
+  bio: "I'm a Chef and i love outdoor sports, like ski and surfing",
+  interest: "ski and surfing",
+  )
+user.photo.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/trtaoetomxnwce7fvimv.jpg')
+user = User.create!(
+  first_name: "Simon",
+  last_name: "Lennon",
+  email: "s.lennon@gmail.com",
+  username: "Simon",
+  password: "000000",
+  birthday: Date.new(1989,10,29),
+  bio: "Hi everyone, I am from Canada and new to Berlin. Let's explore berlin together?",
+  interest: "card games and culture",
+  )
+user.photo.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/j2tewwkbnezwnbpt3szy.jpg')
+user = User.create!(
+  first_name: "Cristine",
+  last_name: "Skyle",
+  email: "c.skyle@gmail.com",
+  username: "Cristine",
+  password: "000000",
+  birthday: Date.new(1990,11,22),
+  bio: "I make movies, as well as my own candles and soaps!",
+  interest: "DIY everything",
+  )
+user.photo.attach(io: file, filename: 'photo')
 
 puts 'Users created'
 
@@ -101,19 +167,19 @@ activity = Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.now() + 3.0/24,
+  datetime: DateTime.now() - 1.0,
   capacity: 3,
   user_id: User.first.id,
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583426660/Tennis_hfecbr.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583931064/Tennis_n7bwsu.jpg')
 activity = Activity.create!(
   name: 'Tennis in Kreuzberg',
   description: 'Move your body with me playing tennis. I am not very good. ',
   address: "Cantianstr. 24, 10437 Berlin",
   category: "⛹️‍♀️ Sports",
-  datetime: DateTime.now() + 2.5/24,
+  datetime: DateTime.now() - 1.5,
   capacity: 2,
   user_id: User.first.id,
   )
@@ -152,8 +218,19 @@ activity =Activity.create!(
   category: "🧘‍♀️ Wellness",
   datetime: DateTime.now() + 3.2/24,
   capacity: 3,
-  user_id: User.last.id - 1,
-  )
+  user_id: User.last.id - 1)
+  activity.photos.attach(io: file, filename: 'photo')
+
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583931218/fleamarket_xbqij6.jpg')
+activity = Activity.create!(
+  name: 'Fleamarket',
+  description: 'Anyone who woul like to join me on a stroll through a fleamarket? 🤗',
+  address: "Am Kupfergraben 3, 10117 Berlin",
+  category: "🍝 Food & Drinks",
+  datetime: DateTime.now() + 3.1/24,
+  capacity: 4,
+  user_id: User.first.id)
   activity.photos.attach(io: file, filename: 'photo')
 
 file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583512582/sywK1V66gr1zzvG7U3yH5ksh.jpg')
@@ -192,9 +269,6 @@ activity = Activity.create!(
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-# --------------------
-
-
 file = URI.open('')
 activity = Activity.create!(
   name: 'Discover GDR memorial',
@@ -213,7 +287,7 @@ activity = Activity.create!(
   description: "Shop with me on the infamous fleemarket in Prenzalauer Berg",
   address: "Am Falkplatz 1, 10437 Berlin",
   category: "🤝 Networking",
-  datetime: DateTime.now() + 3.38/24,
+  datetime: DateTime.now() - 1.8,
   capacity: 3,
   user_id: User.first.id + 3,
   )
@@ -243,8 +317,6 @@ activity = Activity.create!(
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-
-# ---------------------
 
 puts 'Activities created'
 ()
