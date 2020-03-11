@@ -85,7 +85,7 @@
         <% if policy(@activity).destroy? %>
           <%= link_to "Edit", edit_activity_path, class: "btn btn-outline" %>
 
-          <button id="sweet-alert-cancel" class="delete-link">Delete Activity?</button>
+          <p id="sweet-alert-cancel" class="delete-link">Delete Activity?</p>
           <%= link_to '', activity_path(@activity), method: :delete, id: "delete", class: "hidden" %>
           <% end %>
 
@@ -103,7 +103,6 @@
               <%= link_to new_activity_booking_path(@activity), id: "confirm", class: "hidden" do %>
                 <button class="btn btn-green">Join!</button>
               <% end %>
-
           <% end %>
 
         <br>
