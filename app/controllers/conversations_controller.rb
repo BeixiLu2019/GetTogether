@@ -3,7 +3,7 @@ class ConversationsController < ApplicationController
   def index
     @current_page = "messages"
     all_conversations = policy_scope(Conversation).where("sender_id = ? OR recipient_id = ?", current_user.id, current_user.id)
-    @conversations = all_conversations.select{|conversation| Activity.find(conversation.activity_id).datetime > DateTime.now()}
+    @conversations = all_conversations.select{|conversation| Activity.find(conversation.activity_id).datetime > (DateTime.now() - 2)}
   end
 
   def show

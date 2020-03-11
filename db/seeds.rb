@@ -216,10 +216,7 @@ puts 'Activities created'
 ()
 
 puts 'creating bookings'
-# Booking.create!(
-#   activity_id: Activity.first.id,
-#   user_id: (User.first.id + 1),
-#   )
+
 
 Booking.create!(
   activity_id: Activity.first.id,
