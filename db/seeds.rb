@@ -108,7 +108,7 @@ activity = Activity.create!(
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583426660/Tennis_hfecbr.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583931064/Tennis_n7bwsu.jpg')
 activity = Activity.create!(
   name: 'Tennis in Kreuzberg',
   description: 'Move your body with me playing tennis. I am not very good. ',
@@ -164,6 +164,17 @@ activity = Activity.create!(
   datetime: DateTime.new(2020, 03, 11, 18, 00, 0),
   capacity: 4,
   user_id: User.last.id)
+  activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583931218/fleamarket_xbqij6.jpg')
+activity = Activity.create!(
+  name: 'Fleamarket',
+  description: 'Anyone who woul like to join me on a stroll through a fleamarket? 🤗',
+  address: "Am Kupfergraben 3, 10117 Berlin",
+  category: "🍝 Food & Drinks",
+  datetime: DateTime.new(2020, 03, 11, 18, 00, 0),
+  capacity: 4,
+  user_id: User.first.id)
   activity.photos.attach(io: file, filename: 'photo')
 
 file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583248180/BtHrsTQUiNBDGrVzgsyGo7cQ.jpg')
