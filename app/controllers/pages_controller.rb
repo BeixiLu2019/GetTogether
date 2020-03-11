@@ -30,8 +30,12 @@ class PagesController < ApplicationController
   end
 
   def random
-    @user_location = params[:search][:current_location]
-    @explore_activity = Activity.all.geocoded.near(@user_location, 5).sample
+    @user_location = params[:search].present? ?  params[:search][:current_location] : params[:current_location]
+    # @activities = Activity.all
+    # @activities.each {|activity| activity.bookings.count}
+    # @explore_activities = @activities.where(["datetime > ? and capacity > ?", Time.current,  bookings.count])
+    @explore_activity = Activity.all.sample
   end
 
 end
+# .geocoded.near(@user_location, 5)

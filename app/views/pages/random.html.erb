@@ -1,6 +1,30 @@
+<div class="container">
+  <div class="content-index">
+    <div class="card-trip index-cards">
+      <% @explore_activity.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
+      <% end %>
+        <div class="card-trip-infos" id="idx-padding">
+          <div class="card-info-index">
+            <h1 class="index-h1"><%= link_to @explore_activity.name, activity_path(@explore_activity, current_location: @user_location) %></h1>
+              <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(@explore_activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
+            <div class="idx-card-description">
+            <p>
+            <% if @explore_activity.bookings.count == 1 %>
+              <%= @explore_activity.bookings.count %> Person is going
+            <% else %>
+              <%= @explore_activity.bookings.count %> People are going
+            <% end %>
+            </p>
+            <h2 class="demo"> <%= @explore_activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="bottom-container">
+    <%= link_to 'Anything else?', random_path, class: "btn btn-green" %>
+    <%= link_to 'See all events near you', activities_path, class: "btn btn-orange" %>
+  </div>
+</div>
 
-<%= @explore_activity(params[:search][:current_location]) %>
-
-<%#= link_to 'Anything else?', random_path %>
-
-<%= link_to 'See all events in area', activities_path %>
