@@ -2,26 +2,18 @@
   <%#= cl_image_tag("gettogether_o19azj", width: 400, height: 300, crop: :fill) %>
 
   <div class="headers">
-  <h1>Get Together </h1>
-  <h6>Find something to do NOW</h6>
-  <p> and meet new friends</p>
+    <h1>Get Together </h1>
+    <h6>Find something to do NOW</h6>
+    <p> and meet new friends</p>
   </div>
-
-   <!-- <div class="home-img">
-    <img src="https://res.cloudinary.com/dvpcxhofq/image/upload/v1583682701/undraw_team_work_k80m_vcu3v7.png" alt="">
-  </div> -->
 
   <%= simple_form_for :search, url: activities_path, method: "get" do |f| %>
     <div class="search-bar">
     <input class="search-address" type="text" name="address" id="friend_places" placeholder="5 km around current location" />
     <%= f.input :current_location, as: :hidden, input_html: { value: "" }, id: "user-location" %>
-    <!-- hidden field where you store the user's current location via navigator.geolocation -->
     <%= button_tag(type: "submit", class: "btn btn-orange") do %>
     <i class="fas fa-search-location"></i>
     <% end %>
-  <% end %>
   </div>
-
-
-
+  <% end %>
 </div>

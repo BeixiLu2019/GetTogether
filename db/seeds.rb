@@ -101,8 +101,6 @@ activity = Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "🍝 Food & Drinks",
-  # datetime: DateTime.new(2020, 03, 10, 19, 00, 0),
-  datetime: DateTime.now() + (1.0/12),
   capacity: 3,
   user_id: User.first.id,
   # photos: ["cqmszae8rere14lnciwy"]
@@ -115,8 +113,7 @@ activity = Activity.create!(
   description: 'Move your body with me playing tennis. I am not very good. ',
   address: "Cantianstr. 24, 10437 Berlin",
   category: "⛹️‍♀️ Sports",
-  # datetime: DateTime.new(2020, 03, 10, 19, 30, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
   capacity: 2,
   user_id: User.first.id,
   )
@@ -128,12 +125,11 @@ activity = Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "⛹️‍♀️ Sports",
-
-  # datetime: DateTime.new(2020, 03, 10, 16, 30, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.new(2020, 03, 11, 16, 30, 0),
   capacity: 5,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
+
 
 file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583841094/Italien_food_cgiwta.jpg')
 activity = Activity.create!(
@@ -141,9 +137,7 @@ activity = Activity.create!(
   description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
   address: "Alte Schönhauser Str. 12, 10119 Berlin",
   category: "🍝 Food & Drinks",
-
-  # datetime: DateTime.new(2020, 03, 10, 18, 00, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.new(2020, 03, 10, 18, 00, 0),
   capacity: 4,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
@@ -160,14 +154,24 @@ activity =Activity.create!(
   user_id: User.last.id - 1)
   activity.photos.attach(io: file, filename: 'photo')
 
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583841094/Italien_food_cgiwta.jpg')
+activity = Activity.create!(
+  name: 'Mädchenitaliener',
+  description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
+  address: "Alte Schönhauser Str. 12, 10119 Berlin",
+  category: "🍝 Food & Drinks",
+  datetime: DateTime.new(2020, 03, 11, 18, 00, 0),
+  capacity: 4,
+  user_id: User.last.id)
+  activity.photos.attach(io: file, filename: 'photo')
+
 file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583248180/BtHrsTQUiNBDGrVzgsyGo7cQ.jpg')
 activity = Activity.create!(
   name: 'Dinner at mine',
   description: "Let's cook together in my kitchen!" ,
   address: " Grünberger Straße, 10245 Berlin",
   category: "🍝 Food & Drinks",
-  # datetime: DateTime.new(2020, 03, 10, 18, 30, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.new(2020, 03, 11, 18, 30, 0),
   capacity: 3,
   user_id: User.last.id)
   activity.photos.attach(io: file, filename: 'photo')
@@ -178,8 +182,7 @@ activity = Activity.create!(
   description: "Let's dance the night awayyyyyy in one of Berlin's most famous clubs!" ,
   address: "Holzmarktstraße 25, 10243 Berlin",
   category: "🍻 Nightlife",
-  # datetime: DateTime.new(2020, 03, 10, 19, 30, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
   capacity: 3,
   user_id: User.last.id - 2)
   activity.photos.attach(io: file, filename: 'photo')
@@ -190,16 +193,15 @@ activity = Activity.create!(
   description: "Anyone keen on trying out a Cacao Ceremony with me? Cacao is a gentle for people to expirience awakening that is totally safe and accessible. Did one in Bali and loved it!😍" ,
   address: "Rosenthaler Str. 36, 10178 Berlin",
   category: "🧘‍♀️ Wellness",
-  # datetime: DateTime.new(2020, 03, 10, 19, 30, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
   capacity: 3,
   user_id: User.first.id + 1)
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583837452/Sorry_mama_brunch_nmjvj7.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583858578/brunch_tllgjv.jpg')
 activity = Activity.create!(
-  name: 'SORRY Mama brunch',
-  description: "It's meant to be like a party brunch - have heard lots about it and would love to check it out!" ,
+  name: 'Party Brunchhhhhh',
+  description: "Brunch Event -'Sorry Mama' - have heard lots about it and would love to check it out!" ,
   address: "Heidestraße 62, 10557 Berlin, Germany",
   category: "🍻 Nightlife",
   # datetime: DateTime.new(2020, 03, 11, 11, 30, 0),
@@ -213,10 +215,10 @@ puts 'Activities created'
 ()
 
 puts 'creating bookings'
-Booking.create!(
-  activity_id: Activity.first.id,
-  user_id: (User.first.id + 1),
-  )
+# Booking.create!(
+#   activity_id: Activity.first.id,
+#   user_id: (User.first.id + 1),
+#   )
 
 Booking.create!(
   activity_id: Activity.first.id,

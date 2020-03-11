@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'dashboard', to: 'pages#dashboard', as: :dashboard
 
+  get 'random', to: 'pages#random', as: :random
+
   resources :users, only: :show
 
   resources :activities do
