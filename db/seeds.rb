@@ -91,6 +91,32 @@ user = User.create!(
   )
   user.photo.attach(io: file, filename: 'photo')
 
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/pxpk4qnzd8sqlevwyigp.jpg')
+user = User.create!(
+  first_name: "Gennett",
+  last_name: "Wanke",
+  email: "g.wanke@gmail.com",
+  username: "Genni",
+  password: "000000",
+  # birthdate: Date.new(1995,11,29),
+  bio: "Am addicted to travelling!",
+  interest: "travelling and art",
+  )
+user.photo.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/ep4qgft4an6alhizmdis.jpg')
+user = User.create!(
+  first_name: "Jenny",
+  last_name: "Briggs",
+  email: "j.Briggs@gmail.com",
+  username: "Jenni",
+  password: "000000",
+  # birthdate: Date.new(1995,11,29),
+  bio: "I'm a photographer. I love to meet new people",
+  interest: "art, food, and dancing",
+  )
+user.photo.attach(io: file, filename: 'photo')
+
 puts 'Users created'
 
 puts 'creating Activities'
