@@ -9,6 +9,7 @@ const buildMap = () => {
     style: 'mapbox://styles/mapbox/streets-v10'
   });
 };
+// mapbox://styles/amylu/ck7nk3zs0075n1iphxvwp1b51
 
 const addMarkersToMap = (map, marker) => {
     new mapboxgl.Marker()
