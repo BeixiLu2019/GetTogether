@@ -18,7 +18,7 @@
   <div class="content-index">
     <%# demo_counter = 0 %>
     <% @activities.each do |activity| %>
-    <% if activity.datetime > Time.current && activity.bookings.count < activity.capacity %>
+    <% if activity.datetime > DateTime.now() && activity.bookings.count < activity.capacity %>
 
     <div class="card-trip index-cards">
       <% activity.photos.each do |photo| %>
@@ -29,42 +29,27 @@
         <div class="card-info-index">
          <h1 class="index-h1"><%= link_to activity.name, activity_path(activity, current_location: @user_location) %></h1>
          <% if params[:address].present? %>
-
-         <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h2>
-
-         <%#= activity.address %>
+            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h2>
          <% elsif params[:search].present? %>
-         <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
+            <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
          <% else %>
-         <%#= activity.address %>
-
          <% end %>
 
+       <div class="idx-card-description">
+           <p>
+            <% if activity.bookings.count == 1 %>
+              <%= activity.bookings.count %> Person is going
+            <% else %>
+              <%= activity.bookings.count %> People are going
+            <% end %>
+          </p>
+          <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
 
-<!--
- <p> Category: <%= activity.category %></p> -->
- <div class="idx-card-description">
-
-
-   <%# demo_counter += 1 %>
-   <!--   <p class="card-trip-pricing " id="idx_date"> --> <%#= activity.datetime.strftime("%b %eth %Y, %k:%M") %>
-     <p>
-      <% if activity.bookings.count == 1 %>
-      <%= activity.bookings.count %> Person is going
-      <% else %>
-      <%= activity.bookings.count %> People are going
-      <% end %>
-    </p>
-
-    <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
-
-  </div>
-</div>
-
+        </div>
+      </div>
 
 </div>
 </div>
-
 
 <% end %>
 <% end %>
