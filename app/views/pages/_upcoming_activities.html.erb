@@ -2,7 +2,7 @@
 
   <h2>You currently have <%= pluralize @sorted_upcoming.count, "activity"%> booked: </h2>
     <% if @sorted_upcoming.count == 0 %>
-      <p> <%= link_to "Find awesome activities", activities_path, class: "btn-outline btn-dashboard" %> </p>
+      <p> <%= link_to "Find awesome activities", activities_path, class: "btn-outline" %> </p>
     <% else %>
       <% @sorted_upcoming.each do |activity| %>
 
@@ -10,7 +10,7 @@
             <!-- Checking if cloudinary image attached -->
             <div class="img-container">
               <% if activity.photos.attached? %>
-                <%= cl_image_tag activity.photos.first.key, height: 250, width: 400, crop: :fill, :id => "img_booking" %>
+                <%= cl_image_tag activity.photos.first.key, height: 250, crop: :fill, :id => "img_booking" %>
               <% else %>
                 <%= cl_image_tag("cqmszae8rere14lnciwy", width: 150, height: 150, crop: :thumb, gravity: :face) %>
               <% end %>
