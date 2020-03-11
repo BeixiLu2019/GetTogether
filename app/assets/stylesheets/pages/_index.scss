@@ -3,6 +3,7 @@
 @import "profile";
 @import "show";
 @import "dashboard";
+@import "random";
 
 .container-index {
   width: 100%;
@@ -81,6 +82,14 @@ h2.demo {
 
 .form-idx {
   padding: 10px;
+
+  .btn-orange {
+    width: 140px;
+    background: #fb7e5c;
+    &:hover {
+      background: #f65d5a;
+  }
+  }
 
   #friend_places {
     margin-bottom: 5px;

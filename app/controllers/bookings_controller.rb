@@ -33,7 +33,7 @@ end
     @activity = @booking.activity_id
     @booking.destroy
     authorize @booking
-    redirect_to activities_path
+    redirect_to dashboard_path
   end
 
   private
