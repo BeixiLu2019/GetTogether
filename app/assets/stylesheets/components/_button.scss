@@ -13,7 +13,7 @@
 }
 
 .btn-green {
-  background: #92d0c1;
+  background: $green;
   // margin-right: 5px;
 
   &:hover {
@@ -30,6 +30,6 @@
 
 .btn-outline {
   background-color: transparent;
-  border: 0.6px solid lightgray;
+  border: 1.3px solid #ced4da;
   color: black;
 }

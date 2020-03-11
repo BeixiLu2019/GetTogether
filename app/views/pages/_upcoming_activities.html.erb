@@ -2,7 +2,7 @@
 
   <h2>You currently have <%= pluralize @sorted_upcoming.count, "activity"%> booked: </h2>
     <% if @sorted_upcoming.count == 0 %>
-      <p> <%= link_to "Find awesome activities", activities_path, class: "btn-outline" %> </p>
+      <p> <%= link_to "Find awesome activities", activities_path, class: "btn btn-outline" %> </p>
     <% else %>
       <% @sorted_upcoming.each do |activity| %>
 

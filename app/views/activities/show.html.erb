@@ -63,12 +63,14 @@
         </div>
       </div>
         <!-- reviews -->
-        <p class="title">Reviews:</p>
-          <% if @activity.reviews.empty?  %>
-            <p> This activity has not been reviewed yet </p>
-          <% else %>
-            <%= '⭐️' * (@activity.reviews.sum(:activity_rating) / @activity.reviews.count) %>
-          <% end %>
+        <div class="review-container">
+            <p>Reviews</p>
+            <% if @activity.reviews.empty?  %>
+              <p> This activity has not been reviewed yet </p>
+            <% else %>
+              <%= '⭐️' * (@activity.reviews.sum(:activity_rating) / @activity.reviews.count) %>
+            <% end %>
+        </div>
 
       <div class="map-container">
         <div class="map"

@@ -7,8 +7,14 @@
 
 .container-index {
   width: 100%;
+  // height: 100%;
   padding: 15px;
   margin: auto;
+  // background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583948509/background3_sce0r6.png) no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 
@@ -22,7 +28,7 @@ padding-top: 15px;
 }
 
 .index-h1 {
-  font-size: 1.1rem;
+  font-size: 24px;
   margin-bottom: 5px;
 
 }
@@ -34,14 +40,13 @@ padding-top: 15px;
 }
 
 .index-cards {
-  height: 220px;
   background-color: #f5ece6;
   border-radius: 6px;
-  margin: 10px;
+  margin: 0px 10px 20px 10px;
   position: relative;
 
   img {
-     height: 125px;
+     height: 200px;
   }
 
 }
@@ -52,24 +57,24 @@ padding-top: 15px;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 16px;
     margin-top: 8px;
   }
 
   #index-km {
-    font-size: 1rem;
+    font-size: 16px;
+    color: $dark-gray;
+
 }
 h2.demo {
-    font-size: 1rem !important;
+    font-size: 16px;
     position: absolute;
     right: 5%;
     bottom: 12%;
     color: $red;
   }
 
-  }
-
-
+}
 
 #idx_date {
   // padding-top: 20px;
