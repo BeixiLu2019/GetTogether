@@ -1,24 +1,63 @@
-<div class="container">
-  <div class="messages">
-    <h3>Your messages</h3>
-    <div class=”ui”>
 
+
+<div class="container">
+  <div class="header-conversation">
+    <h3>Your messages</h3>
+  </div>
     <% @conversations.each do |conversation| %>
-      <div class="messenger">
-        <div class=”me”>
-          <%= link_to Activity.find(conversation.activity_id).name, conversation_path(conversation)%>
+
+      <!-- Find Chat partner -->
+      <% if conversation.sender_id == current_user.id %>
+        <% chat_partner = User.find(conversation.recipient_id) %>
+      <% else %>
+        <% chat_partner = User.find(conversation.sender_id) %>
+      <% end %>
+
+      <!-- Conversation card -->
+        <div class="card-conversation">
+          <div class="avatar-me">
+            <div class="avatar-position">
+              <% if chat_partner.photo.attached? %>
+                <%= link_to cl_image_tag(chat_partner.photo.key, class: "avatar"), conversation_path(conversation) %>
+              <% else %>
+                <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), conversation_path(conversation) %>
+              <% end %>
+            </div>
+            <div class="main">
+              <div class="activity">
+                <%= link_to chat_partner.username, conversation_path(conversation) %> <!-- for
+                <%#= Activity.find(conversation.activity_id).name%> -->
+              </div>
+              <div class="last-message">
+                <p>
+                  <%= link_to conversation.messages.where("user_id = ?", chat_partner.id).last.body[0..28], conversation_path(conversation) %>
+                  <!-- 3 dots for longer messages -->
+                  <% if conversation.messages.where("user_id = ?", chat_partner.id).last.body.size > 28 %>
+                    ...
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Button for new messages -->
+          <div class="date-new">
+            <div class="date">
+              <%= conversation.messages.where("user_id = ?", chat_partner.id).last.message_date %>
+            </div>
+            <% if conversation.messages.where(["read = ? and user_id = ?", false, chat_partner.id ]).present?%>
+              <div class="new-button">
+                <p>
+                  <%= conversation.messages.where(["read = ? and user_id = ?", false, chat_partner.id ]).count  %>
+                </p>
+              </div>
+            <% end %>
+          </div>
+
+          <!-- Delete link -->
+  <!--         <div>
+            <%#=  link_to "Delete", conversation_path(conversation), method: "Delete" %>
+          </div> -->
         </div>
-        <% if conversation.messages.where(["read = ? and user_id != ?", false, current_user.id ]).present?%>
-        <div>
-          <p>New Messages!</p>
-        </div>
-        <% end %>
-        <div>
-          <%=  link_to "Delete", conversation_path(conversation), method: "Delete" %>
-        </div>
-      </div>
     <% end %>
-   </div>
- </div>
 </div>
 

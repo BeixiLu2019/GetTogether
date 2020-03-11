@@ -54,9 +54,6 @@
   margin-bottom: 10px;
   &.right {
     flex-direction: row-reverse;
-    .message-content {
-      background-color: $light-orange;
-    }
   }
 }
 
@@ -81,23 +78,27 @@
 .new-message {
   position: sticky;
   bottom: 50px;
-}
 
-.new-message form {
-  display: flex;
-  justify-content: space-between;
-}
+  ::-webkit-input-placeholder {
+ font-size: 20px;
+  }
 
-.new-message form .text-field{
-  width: 100%;
-}
+  .form-control {
+    font-size: 20px;
+  }
 
-
-.new-message textarea.form-control {
+  textarea.form-control {
   height: 50px;
   width: 73vw;
 
+  }
+  form {
+  display: flex;
+  justify-content: space-between;
+  }
+
 }
+
 
 .btn-orange-chat {
   color: white;
@@ -116,3 +117,6 @@
     font-size: 20px;
   }
 }
+
+
+
