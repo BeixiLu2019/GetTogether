@@ -79,7 +79,7 @@
             data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
         ></div>
       </div>
-
+<br>
       <div class="bottom-container">
 
         <% if policy(@activity).destroy? %>
@@ -91,10 +91,19 @@
 
         <% if @booking.user != @activity.user && @booking.user != current_user %>
           <% if !policy(@activity).update? && !current_user.attending_activity?(@activity) %>
-            <h6> Want to join <%= @activity.name %>? Confirm now! </h6>
 
+          <div class="button-fixed fixed-bottom text-center">
             <button id="sweet-alert-demo" class="btn btn-green">Join!</button>
             <%= link_to '', new_activity_booking_path(@activity), id: "confirm", class: "hidden"%>
+
+          </div>
+            <% end %>
+
+          <%elsif current_user.nil? == true %>
+              <%= link_to new_activity_booking_path(@activity), id: "confirm", class: "hidden" do %>
+                <button class="btn btn-green">Join!</button>
+              <% end %>
+
           <% end %>
         <% end %>
         <br>
