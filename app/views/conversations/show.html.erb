@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-chat">
     <% if @conversation.sender_id == current_user.id %>
       <% chat_partner = User.find(@conversation.recipient_id) %>
     <% else %>
@@ -7,7 +7,23 @@
 
 
   <div class="chat-header">
-    <h2>Chat with <%= chat_partner.username %></h2>
+    <div class="element">
+      <%= link_to :back do %>
+        <i class="fas fa-chevron-left"></i>
+      <% end %>
+    </div>
+    <div class="element">
+      <% if chat_partner.photo.attached? %>
+        <%= link_to cl_image_tag(chat_partner.photo.key, class: "avatar"), user_path(chat_partner) %>
+      <% else %>
+        <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@chat_partner) %>
+      <% end %>
+    </div>
+    <div class="element">
+      <h3>
+        <%= link_to chat_partner.username, user_path(chat_partner) %>
+      </h3>
+    </div>
   </div>
 
   <div class="messages-container">
@@ -17,22 +33,14 @@
     <% end %>
   </div>
 
-    <div>
+    <div class="new-message">
       <%= simple_form_for [@conversation, @message], remote: true do |f| %>
-        <%= f.input :body, placeholder: "Write your message", label: false %>
-        <%= button_tag type: 'submit', class: "btn-orange-chat" do %>
-          <i class="far fa-paper-plane"></i>
-        <% end %>
+          <%= f.input :body, placeholder: "Write your message", label: false %>
+          <%= button_tag type: 'submit', class: "btn-orange-chat" do %>
+            <i class="far fa-paper-plane"></i>
+          <% end %>
       <% end %>
     </div>
-
-    <%= link_to "Show activity", activity_path(@conversation.activity_id) %>
-    <%= link_to "All messages", conversations_path %>
-
-<br>
-<br>
-<br>
-<br>
 
 
   <% content_for :after_js do %>
