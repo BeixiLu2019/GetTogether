@@ -14,14 +14,14 @@
   width: 60px;
   padding: 5px;
   font-size: 12px;
-
+  margin-left: 10px;
   .avartar-name {
     text-align: center;
   }
 }
 
  .participants {
-  max-width: 500px;
+  // max-width: 500px;
   display: flex;
   justify-content: flex-start;
  }

@@ -7,6 +7,16 @@
   flex-grow: 0;
 }
 
+.nav-tabs .nav-link.active {
+  color: white;
+  background-color: $red;
+  border-color: #dee2e6 #dee2e6 #ededed;
+}
+
+// .nav-link:hover {
+//   color: $orange !important;
+// }
+
 .navbar {
   overflow: hidden;
   position: fixed;
