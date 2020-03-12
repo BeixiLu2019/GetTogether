@@ -1,25 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-
-# resource_type = "image"
-# type = "upload"
-# version = 1234567890
-# public_id = "fismpnq3zma80dc2ovjt"
-# format = "jpg"
-# signature = Cloudinary::Utils.api_sign_request({:public_id=>public_id,
-# :version=>version}, Cloudinary.config.api_secret)
-# photo = "#{resource_type}/#{type}/v#{version}/#{public_id}.#{format}##
-# {signature}"
 require "open-uri"
 require "date"
-
-
 
 puts 'Cleaning review database'
 Review.destroy_all
@@ -123,7 +103,7 @@ user = User.create!(
   first_name: "Peter",
   last_name: "Lyon",
   email: "p.lyon@gmail.com",
-  username: "Petter",
+  username: "Peter",
   password: "000000",
   birthday: Date.new(1995,12,29),
   bio: "I'm a Chef and i love outdoor sports, like ski and surfing",
@@ -181,82 +161,11 @@ activity = Activity.create!(
   category: "⛹️‍♀️ Sports",
   datetime: DateTime.now() - 1.5,
   capacity: 2,
-  user_id: User.first.id,
-  )
-  activity.photos.attach(io: file, filename: 'photo')
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583944036/Activities/photo-1564769662533-4f00a87b4056_kv0baq.jpg')
-activity = Activity.create!(
-  name: 'Bouldering at Berta Block',
-  description: 'Come boulder with me!',
-  address: "Mühlenstraße 62, 13187 Berlin",
-  category: "⛹️‍♀️ Sports",
-  datetime: DateTime.now() + 1.75/24,
-  capacity: 5,
-  user_id: User.last.id,
-  )
-  activity.photos.attach(io: file, filename: 'photo')
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/Italien_food_cgiwta.jpg')
-activity = Activity.create!(
-  name: 'Mädchenitaliener',
-  description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
-  address: "Alte Schönhauser Str. 12, 10119 Berlin",
-  category: "🍝 Food & Drinks",
-  datetime: DateTime.now() + 3.3/24,
-  capacity: 4,
-  user_id: User.last.id,
-  )
-  activity.photos.attach(io: file, filename: 'photo')
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/Yoga_erxj9j.jpg')
-activity =Activity.create!(
-  name: 'Yoga at Jivamukti Yoga Berlin',
-  description: "Let's do Yoga together!" ,
-  address: " Brunnenstraße 29, 10119 Berlin",
-  category: "🧘‍♀️ Wellness",
-  datetime: DateTime.now() + 3.2/24,
-  capacity: 3,
-  user_id: User.last.id - 1)
-  activity.photos.attach(io: file, filename: 'photo')
-
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947225/Activities/photo-1488841714725-bb4c32d1ac94_ziy2y7.jpg')
-activity = Activity.create!(
-  name: 'Fleamarket',
-  description: 'Anyone who woul like to join me on a stroll through a fleamarket? 🤗',
-  address: "Am Kupfergraben 3, 10117 Berlin",
-  category: "🍝 Food & Drinks",
-  datetime: DateTime.now() + 3.1/24,
-  capacity: 4,
-  user_id: User.first.id)
-  activity.photos.attach(io: file, filename: 'photo')
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/sywK1V66gr1zzvG7U3yH5ksh.jpg')
-activity = Activity.create!(
-  name: 'Kater Blau',
-  description: "Let's dance the night awayyyyyy in one of Berlin's most famous clubs!" ,
-  address: "Holzmarktstraße 25, 10243 Berlin",
-  category: "🍻 Nightlife",
-  datetime: DateTime.now() + 1.98/24,
-  capacity: 3,
-  user_id: User.last.id - 2,
-  )
-  activity.photos.attach(io: file, filename: 'photo')
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/vhZSccAcPdi2pdQCYcAnJHEz.jpg')
-activity = Activity.create!(
-  name: 'Cacao Ceremony',
-  description: "Anyone keen on trying out a Cacao Ceremony with me? Cacao is a gentle for people to expirience awakening that is totally safe and accessible. Did one in Bali and loved it!😍" ,
-  address: "Rosenthaler Str. 36, 10178 Berlin",
-  category: "🧘‍♀️ Wellness",
-  datetime: DateTime.now() + 2.98/24,
-  capacity: 3,
   user_id: User.first.id + 1,
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/brunch_tllgjv.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1583944356/Activities/photo-1558710713-c1e32c4cb5a2_vrbhu7.jpg')
 activity = Activity.create!(
   name: 'Party Brunch',
   description: "Brunch Event -'Sorry Mama' - have heard lots about it and would love to check it out!" ,
@@ -264,19 +173,7 @@ activity = Activity.create!(
   category: "🍻 Nightlife",
   datetime: DateTime.now() - 1,
   capacity: 3,
-  user_id: User.last.id,
-  )
-activity.photos.attach(io: file, filename: 'photo')
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947765/Activities/jh-dig-2012-10-28-6142-w614xh345-cutout_utwjju.jpg')
-activity = Activity.create!(
-  name: 'Discover GDR memorial',
-  description: "Get in touch with history of Berlin by walking along the memorial in Bernauer",
-  address: "Bernauer Str. 111, 13355 Berlin",
-  category: "🎭 Culture",
-  datetime: DateTime.now() + 3.58/24,
-  capacity: 10,
-  user_id: User.first.id + 2,
+  user_id: User.first.id + 1,
   )
 activity.photos.attach(io: file, filename: 'photo')
 
@@ -288,7 +185,92 @@ activity = Activity.create!(
   category: "🤝 Networking",
   datetime: DateTime.now() - 1.8,
   capacity: 3,
+  user_id: User.first.id + 1,
+  )
+activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583944036/Activities/photo-1564769662533-4f00a87b4056_kv0baq.jpg')
+activity = Activity.create!(
+  name: 'Bouldering at Berta Block',
+  description: 'Come boulder with me!',
+  address: "Mühlenstraße 62, 13187 Berlin",
+  category: "⛹️‍♀️ Sports",
+  datetime: DateTime.now() + 1.75/24,
+  capacity: 5,
+  user_id: User.first.id + 2,
+  )
+  activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583944189/Activities/photo-1571167366136-b57e07761625_cc2nge.jpg')
+activity = Activity.create!(
+  name: 'Mädchenitaliener',
+  description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
+  address: "Alte Schönhauser Str. 12, 10119 Berlin",
+  category: "🍝 Food & Drinks",
+  datetime: DateTime.now() + 3.3/24,
+  capacity: 4,
   user_id: User.first.id + 3,
+  )
+  activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1584014041/Activities/bruce-mars-ZXq7xoo98b0-unsplash_xbqgzq.jpg')
+activity =Activity.create!(
+  name: 'Yoga at Jivamukti Yoga Berlin',
+  description: "Let's do Yoga together!" ,
+  address: " Brunnenstraße 29, 10119 Berlin",
+  category: "🧘‍♀️ Wellness",
+  datetime: DateTime.now() + 3.2/24,
+  capacity: 3,
+  user_id: User.first.id + 4,
+  )
+  activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947225/Activities/photo-1488841714725-bb4c32d1ac94_ziy2y7.jpg')
+activity = Activity.create!(
+  name: 'Fleamarket',
+  description: 'Anyone who woul like to join me on a stroll through a fleamarket? 🤗',
+  address: "Am Kupfergraben 3, 10117 Berlin",
+  category: "🍝 Food & Drinks",
+  datetime: DateTime.now() + 3.1/24,
+  capacity: 4,
+  user_id: User.first.id + 5
+  )
+  activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/sywK1V66gr1zzvG7U3yH5ksh.jpg')
+activity = Activity.create!(
+  name: 'Kater Blau',
+  description: "Let's dance the night awayyyyyy in one of Berlin's most famous clubs!" ,
+  address: "Holzmarktstraße 25, 10243 Berlin",
+  category: "🍻 Nightlife",
+  datetime: DateTime.now() + 1.98/24,
+  capacity: 3,
+  user_id: User.first.id + 6,
+  )
+  activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1584014522/Activities/janko-ferlic-h9Iq22JJlGk-unsplash_suxcjt.jpg')
+activity = Activity.create!(
+  name: 'Cacao Ceremony',
+  description: "Anyone keen on trying out a Cacao Ceremony with me? Cacao is a gentle for people to expirience awakening that is totally safe and accessible. Did one in Bali and loved it!😍" ,
+  address: "Rosenthaler Str. 36, 10178 Berlin",
+  category: "🧘‍♀️ Wellness",
+  datetime: DateTime.now() + 2.98/24,
+  capacity: 3,
+  user_id: User.first.id + 7,
+  )
+  activity.photos.attach(io: file, filename: 'photo')
+
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947765/Activities/jh-dig-2012-10-28-6142-w614xh345-cutout_utwjju.jpg')
+activity = Activity.create!(
+  name: 'Discover GDR memorial',
+  description: "Get in touch with history of Berlin by walking along the memorial in Bernauer",
+  address: "Bernauer Str. 111, 13355 Berlin",
+  category: "🎭 Culture",
+  datetime: DateTime.now() + 3.58/24,
+  capacity: 10,
+  user_id: User.first.id + 8,
   )
 activity.photos.attach(io: file, filename: 'photo')
 
@@ -300,11 +282,11 @@ activity = Activity.create!(
   category: "🎭 Culture",
   datetime: DateTime.now() + 2.48/24,
   capacity: 3,
-  user_id: User.first.id + 2,
+  user_id: User.first.id + 5,
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583948045/Activities/photo-1574091187948-740f1a90b6c2_a4tzla.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1584005935/darinka-kievskaya-ff221Bu56mI-unsplash_rrh5vd.jpg')
 activity = Activity.create!(
   name: 'Walk in Humboldthain with my dog Otto and me',
   description: "My beautiful dog Otto and me will be out to enjoy weather outside. Join us with your dog!" ,
@@ -312,7 +294,7 @@ activity = Activity.create!(
   category: "🌳 Nature",
   datetime: DateTime.now() + 1.98/24,
   capacity: 4,
-  user_id: User.first.id + 3,
+  user_id: User.first.id + 6,
   )
 activity.photos.attach(io: file, filename: 'photo')
 
@@ -321,60 +303,68 @@ puts 'Activities created'
 
 puts 'creating bookings'
 
-
+# past events
 Booking.create!(
-  activity_id: Activity.first.id,
-  user_id: User.first.id + 2,
+  activity_id: Activity.first.id, #Tim Raue/philipp
+  user_id: User.first.id + 6, #Jenni
   )
 
 Booking.create!(
   activity_id: Activity.first.id,
-  user_id: User.first.id + 3,
+  user_id: User.first.id + 2, #Amy
   )
 
+Booking.create!(
+  activity_id: Activity.first.id,
+  user_id: User.first.id + 3, #Ambar
+  )
+
+Booking.create!(
+  activity_id: Activity.first.id + 3, #2nd-Hand/anna
+  user_id: User.first.id + 6, #Jenni
+  )
+
+Booking.create!(
+  activity_id: Activity.first.id + 3,
+  user_id: User.first.id + 2, #Amy
+  )
+
+Booking.create!(
+  activity_id: Activity.first.id + 1, #Tennis/anna
+  user_id: User.first.id + 6, #Lyon
+  )
 
 Booking.create!(
   activity_id: Activity.first.id + 1,
-  user_id: (User.first.id + 2),
+  user_id: User.first.id + 3, #Ambar
   )
 
 Booking.create!(
-  activity_id: Activity.first.id + 2,
-  user_id: User.first.id,
+  activity_id: Activity.first.id + 3, #brunch/anna
+  user_id: User.first.id + 5,
   )
 
-Booking.create!(
-  activity_id: Activity.first.id + 2,
-  user_id: User.first.id + 1,
-  )
+# upcoming events
 
 Booking.create!(
-  activity_id: Activity.last.id - 1,
-  user_id: User.first.id,
-  )
-
-Booking.create!(
-  activity_id: Activity.last.id - 1,
-  user_id: User.last.id,
-  )
-
-Booking.create!(
-  activity_id: Activity.last.id - 1,
+  activity_id: Activity.first.id + 4, #bouldering/ambar
   user_id: User.first.id + 2,
   )
 
 Booking.create!(
-  activity_id: Activity.last.id,
-  user_id: User.first.id,
+  activity_id: Activity.first.id + 5, #italian/wanke
+  user_id: User.first.id + 5,
   )
-
 
 Booking.create!(
-  activity_id: Activity.last.id,
-  user_id: User.first.id + 1,
+  activity_id: Activity.first.id + 6, #yoga/5
+  user_id: User.first.id + 6,
   )
 
-
+Booking.create!(
+  activity_id: Activity.first.id + 7,
+  user_id: User.first.id + 3 ,
+  )
 
 puts 'Bookings created...'
 
@@ -461,50 +451,26 @@ Review.create!(
   )
 
 Review.create!(
-  booking_id: Booking.first.id + 1,
+  booking_id: Booking.first.id + 2,
   content: "The dinner is very tasty! The cusine is inspired by asian flavors. Friendly staff and awesome service. Worthy the money:)",
   activity_rating: 5
   )
 
 Review.create!(
-  booking_id: Booking.first.id + 2,
+  booking_id: Booking.first.id + 3,
   content: "The food is very good and very well presented, but it took too long!",
   activity_rating: 4
   )
 
 Review.create!(
-  booking_id: Booking.first.id + 3,
+  booking_id: Booking.first.id + 5,
   content: "A spontaneous sports night! I don't play very well but Hammi was very helpful!",
   activity_rating: 5
   )
 
-# Review.create!(
-#   booking_id: Booking.find(129),
-#   content: "so yummmmmmmy! loved Ambi's home-made dim sum! 🤤",
-#   activity_rating: 5
-#   )
-
-# Review.create!(
-#   booking_id: Booking.find(128),
-#   content: "it was a fun night at Ambi's place! she is very international and definetly a lovely entertainer. thanks for the great experience 🤗",
-#   activity_rating: 5
-  # )
-
 Review.create!(
   booking_id: Booking.first.id + 6,
-  content: "nice yoga session!",
-  activity_rating: 5
-  )
-
-Review.create!(
-  booking_id: Booking.first.id + 7,
-  content: "the studio is very cosy and not too crowded",
-  activity_rating: 4,
-  )
-
-Review.create!(
-  booking_id: Booking.first.id + 8,
-  content: "The teacher's voice is very nice in a meditative way 😇",
+  content: "Loved it!!!!!",
   activity_rating: 5
   )
 
