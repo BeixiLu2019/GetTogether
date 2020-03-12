@@ -1,38 +1,101 @@
 <div class="container">
-  <div class="content-index">
-    <div class="card-trip index-cards">
-      <% @explore_activity.photos.each do |photo| %>
-        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
-      <% end %>
-        <div class="card-trip-infos" id="idx-padding">
-          <div class="card-info-index">
-            <h1 class="index-h1"><%= link_to @explore_activity.name, activity_path(@explore_activity, current_location: @user_location) %></h1>
-              <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(@explore_activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
-            <div class="idx-card-description">
-            <p>
-            <% if @explore_activity.bookings.count == 1 %>
-              <%= @explore_activity.bookings.count %> Person is going
-            <% else %>
-              <%= @explore_activity.bookings.count %> People are going
-            <% end %>
-            </p>
-            <h2 class="demo"> <%= @explore_activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
-            </div>
-          </div>
-        </div>
-    </div>
+  <div class="return">
+    <%= form_tag activities_path, method: :get do %>
+    <% if params[:search].present? %>
+    <%= hidden_field_tag 'search[current_location]', params[:search][:current_location]%>
+    <% end %>
+    <%= link_to 'Return to all events near you', activities_path(current_location: @user_location) %>
+    <% end %>
   </div>
-  <div class="btn-container">
-    <%= link_to 'Anything else?', random_path(current_location: @user_location), class: "btn btn-green" %>
-      <div>
-        <%= form_tag activities_path, method: :get do %>
-        <% if params[:search].present? %>
-        <%= hidden_field_tag 'search[current_location]', params[:search][:current_location]%>
-        <% end %>
-        <%= link_to 'See all events near you', activities_path(current_location: @user_location), class: "btn btn-orange" %>
+  <div class="content-index random">
+    <div class="card-trip card-random">
+      <div class="img-container">
+        <% @explore_activity.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_random"  %>
         <% end %>
       </div>
-  </div>
+      <div class="card-trip-infos" id="idx-padding">
+        <div class="card-info-index">
+          <h3 class="index-h1"><%= link_to @explore_activity.name, activity_path(@explore_activity, current_location: @user_location) %></h3>
+          <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(@explore_activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
+          <div class="idx-card-description">
+            <p>
+              <%# if @explore_activity.bookings.count == 1 %>
+              <!-- <%#= @explore_activity.bookings.count %> Person is going -->
+              <%# else %>
+              <!-- <%#= @explore_activity.bookings.count %> People are going -->
+              <%# end %>
+            </p>
+
+
+
+            <div class="avatars-dashboard random-avatars">
+              <!-- Listing host -->
+              <div class="host-section">
+                <!--     <p> <i class="fas fa-user"></i> Host </p> -->
+                <div class="participants">
+                 <% if @explore_activity.user.photo.attached? %>
+                 <div class="avartar-set">
+                  <div class="avartar-name">
+                    <%= link_to cl_image_tag(@explore_activity.user.photo.key, class: "avatar"), user_path(@explore_activity.user) %>
+                    <p><%= @explore_activity.user.username %></p>
+                  </div>
+                </div>
+                <% else %>
+                <div class="avartar-set">
+                  <div class="avartar-name">
+                    <%= link_to @explore_activity.user.username, user_path(@explore_activity.user) %>
+                    <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(@explore_activity.user) %>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="participants-section">
+             <!--  <p> <i class="fas fa-users"></i> Attending </p> -->
+             <!-- Listing all participating users and host -->
+
+             <div class="participants">
+              <% @explore_activity.bookings.each do |booking| %>
+              <% user = User.find(booking.user_id) %>
+              <% if user.photo.attached? %>
+              <div class="avartar-set">
+                <div class="avartar-name">
+                  <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
+                  <p> <%= user.username %> </p>
+                </div>
+              </div>
+              <% else %>
+              <div class="avartar-set">
+                <div class="avartar-name">
+                 <%= user.username %>
+                 <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %></div>
+               </div>
+               <% end %>
+               <% end %>
+             </div>
+           </div>
+
+
+         </div>
+
+
+         <h2 class="demo"> <%= @explore_activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div class="btn-container">
+  <%= link_to random_path(current_location: @user_location) do %>
+<i class="fas fa-times-circle"></i>
+  <% end %>
+  <div>
+   <%=link_to activity_path(@explore_activity, current_location: @user_location) do %>
+<i class="fas fa-check-circle"></i>
+   <% end %>
+ </div>
+</div>
 </div>
 
 
