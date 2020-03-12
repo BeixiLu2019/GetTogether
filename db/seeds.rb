@@ -201,7 +201,7 @@ activity = Activity.create!(
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583944189/Activities/photo-1571167366136-b57e07761625_cc2nge.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1584020093/Activities/mgg-vitchakorn-98Xi5vMGKck-unsplash_xhflrw.jpg')
 activity = Activity.create!(
   name: 'Mädchenitaliener',
   description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
@@ -274,11 +274,11 @@ activity = Activity.create!(
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947867/Activities/photo-1561587327-41f8d18f71df_g9lfoi.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1584020428/Activities/culture_rf7kme.jpg')
 activity = Activity.create!(
-  name: 'Explore Institute for Contemporary Art',
-  description: "Check out the newest exibition of Paola Condelo with me" ,
-  address: "Auguststraße 69, 10117 Berlin",
+  name: 'Explore Naturkundemuseum',
+  description: "Everything about the evolution of and on our planet!Let's explore that together:)" ,
+  address: "U Naturkundemuseum, 10115 Berlin",
   category: "🎭 Culture",
   datetime: DateTime.now() + 2.48/24,
   capacity: 3,
