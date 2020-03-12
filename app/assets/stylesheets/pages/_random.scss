@@ -1,12 +1,62 @@
 .btn-container {
   margin-top: 30px;
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  padding-left: 10px;
 
-  .btn-orange {
-    margin-top: 15px;
-    width: 100%;
+  .btn-orange .random {
+    width: 120%;
+    text-align: center;
   }
-  .btn-green {
-    width: 100%;
+  .btn-green .random {
+    width: 120%;
+    text-align: center;
+  }
+}
+
+.return {
+  margin-top: 20px;
+  a {
+    color: $red;
+  }
+}
+
+.card-random {
+  margin-bottom: 25px;
+  padding-bottom: 10px;
+  background-color: #f5ece6;
+  border-radius: 10px;
+  h3 {
+    margin-top: 10px;
+    color: #5b6175;
+    font-size: 1.75rem;
+  }
+  a {
+    color: $red;
+  }
+  h2.demo {
+    font-size: 1.3rem !important;
+  }
+   p {
+    a {
+    color: $dark-gray;
+    }
+  }
+  .btn-outline {
+    margin-top: 8px;
+    background-color: white;
+    color: #5b6175;
+    display: block;
+    margin-left: 12px;
+    // margin: auto;
+  }
+  small {
+    color: $dark-gray;
+  }
+
+  #img_random {
+    height: 250px;
   }
 }
