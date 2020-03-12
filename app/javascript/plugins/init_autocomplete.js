@@ -13,3 +13,17 @@ const initAutocomplete = () => {
 };
 
 export { initAutocomplete };
+
+const initAutocompleteTwo = () => {
+  const addressInput = document.getElementById('activity_address');
+  let placesInstance;
+  if (addressInput) {
+    placesInstance = places({
+      container: addressInput,
+      userDeviceLocation: true
+    });
+  placesInstance.configure({aroundLatLngViaIP: true})
+  }
+};
+
+export { initAutocompleteTwo };
