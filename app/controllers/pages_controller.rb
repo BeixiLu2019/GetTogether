@@ -31,7 +31,22 @@ class PagesController < ApplicationController
 
   def random
     @user_location = params[:search].present? ?  params[:search][:current_location] : params[:current_location]
-    @explore_activity = Activity.joins(:bookings).group('activities.id').having('COUNT(bookings.id) < activities.capacity').where('activities.datetime > CURRENT_TIMESTAMP').sample
+    activity_after_now = Activity.where('activities.datetime > CURRENT_TIMESTAMP')
+    act = activity_after_now.select do |activity|
+      activity.bookings.size < activity.capacity
+    end
+    array = []
+    act.each do |activity|
+      if !activity.bookings.present? || activity.id != current_user.id
+        array.push(activity)
+      else
+        activity.bookings.each do |booking|
+          if booking.user_id != current_user.id
+            array.push(Activity.find(booking.activity.id))
+          end
+        end
+      end
+    end
+    @explore_activity = array.sample
   end
-
 end
