@@ -74,9 +74,9 @@ label {
 
 .form-container {
   background-color: white;
-  padding: 30px 40px 0px 40px;
+  padding: 30px 40px 10px 40px;
   margin: 25px 40px;
-  height: 70%;
+  // height: 80%;
   border-radius: 10px;
   .btn {
     width: 100%;
@@ -107,4 +107,11 @@ label {
     a {
     color: $orange;
   }
+}
+
+.form-actions {
+  .btn {
+    margin-bottom: 20px;
+  }
+  margin-bottom: 20px;
 }
