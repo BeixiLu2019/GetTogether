@@ -1,9 +1,11 @@
-
-
 <div class="container">
   <div class="header-conversation">
     <h3>Your messages</h3>
   </div>
+  <% if @conversations == [] %>
+    <h6><%= link_to "Find activity", root_path, class: "btn btn-outline" %></h6>
+  <% else %>
+
     <% @conversations.each do |conversation| %>
 
       <!-- Find Chat partner -->
@@ -60,5 +62,6 @@
         </div>
       <% end %>
     <% end %>
+  <% end %>
 </div>
 
