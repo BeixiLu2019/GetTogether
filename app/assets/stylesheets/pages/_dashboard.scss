@@ -5,12 +5,12 @@
   margin-bottom: 60px;
   h2 {
     margin-bottom: 25px;
+    color: #5b6175;
   }
   a:hover {
     color: $dark-gray;
   }
 }
-
 
 .host-section {
   a {
@@ -58,7 +58,7 @@
     background-color: white;
     color: #5b6175;
     display: block;
-    margin-left: 12px;
+    // margin-left: 12px;
     // margin: auto;
   }
   small {
@@ -97,6 +97,18 @@
 }
 
 .review-container {
-  margin-left: 14px;
+  display: flex;
+  align-items: center;
+  p {
+    padding-right: 10px;
+  }
+  // align-items: flex-end;
+  // position: relative;
+  // margin: 0px 14px 0px 14px;
+}
+
+.review-button {
+  margin: 0px 14px 0px 14px;
+  // position: absolute;
 }
 

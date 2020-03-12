@@ -5,6 +5,7 @@
   margin: auto;
   h1 {
     color: $red;
+    font-size: 37px;
   }
 }
 .category {
@@ -23,11 +24,17 @@
   margin: auto;
   h6 {
     color: #5b6175;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0;
   }
   i {
     margin-right: 5px;
+  }
+  p {
+    font-size: 18px;
+  }
+  .review-container {
+    align-items: baseline;
   }
 }
 
@@ -120,6 +127,10 @@ p {
 }
 
 .avatars-show {
+  img {
+    height: 60px;
+    width: 60px;
+  }
   .host-info img {
     border: 2px solid $green;
   }

@@ -24,6 +24,14 @@
           <!-- Add Tag for My event! -->
             <h3><%= link_to activity.name, activity_path(activity) %></h3>
             <!-- List activity information -->
+              <div class="review-container">
+                <% if activity.reviews.empty? %>
+                <p> <i class="far fa-star"></i> Reviews</p>
+                <% else %>
+                <p> <i class="fas fa-star"></i>  Reviews</p>
+                <%= '⭐️' * (activity.reviews.sum(:activity_rating) / activity.reviews.count) %>
+                <% end %>
+              </div>
             <p> <i class="far fa-clock"></i> <%=activity.datetime.strftime("%b %eth %Y, %k:%M") %> </p>
           </div>
 
@@ -78,23 +86,16 @@
               </div>
             </div>
 
-          <!-- Add link for writing review -->
-          <% unless activity.bookings.empty? %>
-            <% if activity.user_id == current_user.id  %>
-            <% else %>
-              <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-green" %>
-            <% end %>
-          <% end %>
+            <!-- review button -->
+            <div class="review-button">
+              <% unless activity.bookings.empty? %>
+                <% if activity.user_id == current_user.id  %>
+                <% else %>
+                  <%= link_to 'Add Review', new_booking_review_path(activity.bookings.where(user: current_user).first), class:"btn btn-outline" %>
+                <% end %>
+              <% end %>
+            </div>
 
-          <!-- Listing reviews: -->
-          <div class="review-container">
-            <p> <i class="fas fa-star"></i> Reviews</p>
-            <% if activity.reviews.empty?  %>
-              <p> <small>This activity has not been reviewed yet </small></p>
-            <% else %>
-              <%= '⭐️' * (activity.reviews.sum(:activity_rating) / activity.reviews.count) %>
-            <% end %>
-          </div>
         </div>
       <% end %>
     <% end %>
