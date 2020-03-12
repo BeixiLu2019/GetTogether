@@ -13,7 +13,6 @@
        <p>
       <i class="fas fa-sort-amount-down-alt"></i>  <%= @activity.category.capitalize %>
       </p>
-
       <p><i class="fas fa-map-marker-alt"></i> <%=  @activity.address %></p>
       <p>
       <i class="far fa-clock"></i> <%= @activity.datetime.strftime("%b %eth %Y, %k:%M") %>
@@ -21,16 +20,13 @@
 
       <p><i class="fas fa-users"></i> Maximum <%= @activity.capacity %></p>
       <p><i class="fas fa-chair"></i> <%= pluralize (@activity.capacity - @activity.bookings.count), "space" %> left</p>
-      <p><i class="fas fa-user"></i>
-          <%#= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-          <% if current_user && @activity.user_id != current_user.id %>
-           <%= link_to "Contact host", activity_conversations_path(@activity), method: "Post" %>
-            <%= link_to activity_conversations_path(@activity), method: "Post" do %>
-              <i class="far fa-comment"></i>
-            <% end %>
-             <% else %>
-              Your event
-          <% end %> </p>
+      <% if current_user && @activity.user_id != current_user.id %>
+        <%= link_to activity_conversations_path(@activity), method: "Post" do %>
+        <button class="btn btn-outline">Contact host</button>
+        <% end %>
+      <% else %>
+      <p><i class="fas fa-user"></i> Your event</p>
+      <% end %>
 
       <div class="avatars-show">
           <div class="host-info">
@@ -64,10 +60,10 @@
       </div>
         <!-- reviews -->
         <div class="review-container">
-            <p>Reviews</p>
             <% if @activity.reviews.empty?  %>
-              <p> This activity has not been reviewed yet </p>
+              <p> <i class="far fa-star"></i> Reviews</p>
             <% else %>
+              <p> <i class="fas fa-star"></i>  Reviews</p>
               <%= '⭐️' * (@activity.reviews.sum(:activity_rating) / @activity.reviews.count) %>
             <% end %>
         </div>

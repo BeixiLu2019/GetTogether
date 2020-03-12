@@ -32,16 +32,23 @@
   }
   p {
     font-size: 18px;
+    margin-left: 5px;
   }
   .review-container {
     align-items: baseline;
+    .fa-star {
+      color: $green;
+    }
+  }
+  .btn-outline {
+    margin-top: 10px;
   }
 }
 
 .host-info {
   display: flex;
   align-items: center;
-  margin: 10px 0px 20px -5px;
+  // margin: 10px 0px 20px -5px;
   flex-direction: column;
   width: 60px;
   padding: 5px;
@@ -127,6 +134,7 @@ p {
 }
 
 .avatars-show {
+  margin: 8px 5px 5px 5px;
   img {
     height: 60px;
     width: 60px;
@@ -136,6 +144,7 @@ p {
   }
   display: flex;
   align-items: baseline;
+  flex-wrap: wrap;
 }
 
 .delete-link {

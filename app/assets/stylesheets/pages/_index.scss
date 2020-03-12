@@ -87,15 +87,12 @@ h2.demo {
 
 .form-idx {
   padding: 10px;
-
-  .btn-orange {
-    width: 140px;
-    background: #fb7e5c;
-    &:hover {
-      background: #f65d5a;
+  border-bottom: 1px solid $light-gray;
+  .category-and-random {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  }
-
   #friend_places {
     margin-bottom: 5px;
   }
@@ -103,17 +100,18 @@ h2.demo {
     margin-bottom: 5px;
   }
   #category {
+    width: 120px;
     color: #ced4da;
     border: 1px solid #ced4da;
     background-color: white;
     height: 35px;
     border-radius: 10px;
   }
-  border-bottom: 1px solid $light-gray;
+
 }
 
  button.btn-index.btn.btn-outline {
-   position: unset;
+   // position: unset;
    color: $orange;
  }
 
