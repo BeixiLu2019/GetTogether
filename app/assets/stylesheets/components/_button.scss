@@ -10,14 +10,16 @@
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
   -webkit-box-pack: center;
+  &:hover {
+    color: white;
+  }
 }
 
 .btn-green {
   background: $green;
   // margin-right: 5px;
-
   &:hover {
-    background: #4ec6cb;
+    background: #f47d31;
   }
 }
 
@@ -25,6 +27,13 @@
   background: #fb7e5c;
   &:hover {
     background: #f65d5a;
+  }
+}
+
+.btn-red {
+  background: #f65d5a;
+  &:hover {
+    background: $dark-red;
   }
 }
 

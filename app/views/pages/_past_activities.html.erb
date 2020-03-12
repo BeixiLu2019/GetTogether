@@ -1,5 +1,4 @@
 <div class="dashboard-container">
-  <h2>You participated in <%= pluralize @sorted_past.count, "activity"%>: </h2>
     <% if @sorted_past.count == 0 %>
       <p> <%= link_to "Find events", activities_path, class: "btn btn-outline" %> </p>
     <% else %>
