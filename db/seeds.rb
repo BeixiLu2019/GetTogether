@@ -185,7 +185,7 @@ activity = Activity.create!(
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253420/Berta_Block_vtnhva.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583944036/Activities/photo-1564769662533-4f00a87b4056_kv0baq.jpg')
 activity = Activity.create!(
   name: 'Bouldering at Berta Block',
   description: 'Come boulder with me!',
@@ -197,8 +197,7 @@ activity = Activity.create!(
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583841094/Italien_food_cgiwta.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/Italien_food_cgiwta.jpg')
 activity = Activity.create!(
   name: 'Mädchenitaliener',
   description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
@@ -210,7 +209,7 @@ activity = Activity.create!(
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253419/Yoga_erxj9j.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/Yoga_erxj9j.jpg')
 activity =Activity.create!(
   name: 'Yoga at Jivamukti Yoga Berlin',
   description: "Let's do Yoga together!" ,
@@ -222,7 +221,7 @@ activity =Activity.create!(
   activity.photos.attach(io: file, filename: 'photo')
 
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583931218/fleamarket_xbqij6.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947225/Activities/photo-1488841714725-bb4c32d1ac94_ziy2y7.jpg')
 activity = Activity.create!(
   name: 'Fleamarket',
   description: 'Anyone who woul like to join me on a stroll through a fleamarket? 🤗',
@@ -233,7 +232,7 @@ activity = Activity.create!(
   user_id: User.first.id)
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583512582/sywK1V66gr1zzvG7U3yH5ksh.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/sywK1V66gr1zzvG7U3yH5ksh.jpg')
 activity = Activity.create!(
   name: 'Kater Blau',
   description: "Let's dance the night awayyyyyy in one of Berlin's most famous clubs!" ,
@@ -245,7 +244,7 @@ activity = Activity.create!(
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583513120/vhZSccAcPdi2pdQCYcAnJHEz.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/vhZSccAcPdi2pdQCYcAnJHEz.jpg')
 activity = Activity.create!(
   name: 'Cacao Ceremony',
   description: "Anyone keen on trying out a Cacao Ceremony with me? Cacao is a gentle for people to expirience awakening that is totally safe and accessible. Did one in Bali and loved it!😍" ,
@@ -257,9 +256,9 @@ activity = Activity.create!(
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583858578/brunch_tllgjv.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/brunch_tllgjv.jpg')
 activity = Activity.create!(
-  name: 'Party Brunchhhhhh',
+  name: 'Party Brunch',
   description: "Brunch Event -'Sorry Mama' - have heard lots about it and would love to check it out!" ,
   address: "Heidestraße 62, 10557 Berlin, Germany",
   category: "🍻 Nightlife",
@@ -269,7 +268,7 @@ activity = Activity.create!(
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947765/Activities/jh-dig-2012-10-28-6142-w614xh345-cutout_utwjju.jpg')
 activity = Activity.create!(
   name: 'Discover GDR memorial',
   description: "Get in touch with history of Berlin by walking along the memorial in Bernauer",
@@ -281,7 +280,7 @@ activity = Activity.create!(
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947775/Activities/photo-1536091987692-0b4d0b507a89_zehqes.jpg')
 activity = Activity.create!(
   name: 'Second Hand shopping in Mauerpark',
   description: "Shop with me on the infamous fleemarket in Prenzalauer Berg",
@@ -293,7 +292,7 @@ activity = Activity.create!(
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947867/Activities/photo-1561587327-41f8d18f71df_g9lfoi.jpg')
 activity = Activity.create!(
   name: 'Explore Institute for Contemporary Art',
   description: "Check out the newest exibition of Paola Condelo with me" ,
@@ -305,7 +304,7 @@ activity = Activity.create!(
   )
 activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open()
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583948045/Activities/photo-1574091187948-740f1a90b6c2_a4tzla.jpg')
 activity = Activity.create!(
   name: 'Walk in Humboldthain with my dog Otto and me',
   description: "My beautiful dog Otto and me will be out to enjoy weather outside. Join us with your dog!" ,
@@ -316,7 +315,6 @@ activity = Activity.create!(
   user_id: User.first.id + 3,
   )
 activity.photos.attach(io: file, filename: 'photo')
-
 
 puts 'Activities created'
 ()
