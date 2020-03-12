@@ -48,7 +48,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -94,6 +94,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Action Cable setup
-  config.action_cable.url = "wss://www.gettogether-for.fun/cable"
+  config.action_cable.url = ["wss://www.gettogether-for.fun/cable", "ws://www.gettogether-for.fun/cable"]
   config.action_cable.allowed_request_origins = [ "http://www.gettogether-for.fun", "https://www.gettogether-for.fun" ]
 end
