@@ -197,7 +197,7 @@ activity = Activity.create!(
   category: "⛹️‍♀️ Sports",
   datetime: DateTime.now() + 1.75/24,
   capacity: 5,
-  user_id: User.first.id + 2,
+  user_id: User.first.id + 6,
   )
   activity.photos.attach(io: file, filename: 'photo')
 
