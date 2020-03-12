@@ -37,12 +37,16 @@ class PagesController < ApplicationController
     end
     array = []
     act.each do |activity|
-      if !activity.bookings.present? || activity.id != current_user.id
+      if current_user == nil
         array.push(activity)
       else
-        activity.bookings.each do |booking|
-          if booking.user_id != current_user.id
-            array.push(Activity.find(booking.activity.id))
+        if !activity.bookings.present? || activity.id != current_user.id
+          array.push(activity)
+        else
+          activity.bookings.each do |booking|
+            if booking.user_id != current_user.id
+              array.push(Activity.find(booking.activity.id))
+            end
           end
         end
       end
