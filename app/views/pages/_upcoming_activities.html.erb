@@ -31,7 +31,7 @@
               <div class="host-section">
                 <p> <i class="fas fa-user"></i> Host </p>
                 <div class="participants">
-                  <% if current_user.photo.attached? %>
+                  <% if User.find(activity.user_id).photo.attached? %>
                     <div class="avartar-set">
                       <div class="avartar-name">
                        <%= link_to cl_image_tag(User.find(activity.user_id).photo.key, class: "avatar"), user_path(current_user) %>
