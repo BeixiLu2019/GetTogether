@@ -180,7 +180,7 @@ activity.photos.attach(io: file, filename: 'photo')
 file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947775/Activities/photo-1536091987692-0b4d0b507a89_zehqes.jpg')
 activity = Activity.create!(
   name: 'Second Hand shopping in Mauerpark',
-  description: "Shop with me on the infamous fleemarket in Prenzalauer Berg",
+  description: "Shop with me on the infamous fleemarket in Prenzlauer Berg",
   address: "Am Falkplatz 1, 10437 Berlin",
   category: "🤝 Networking",
   datetime: DateTime.now() - 1.8,
