@@ -56,46 +56,46 @@
              <!--  <p> <i class="fas fa-users"></i> Attending </p> -->
              <!-- Listing all participating users and host -->
 
-             <div class="participants">
-              <% @explore_activity.bookings.each do |booking| %>
-              <% user = User.find(booking.user_id) %>
-              <% if user.photo.attached? %>
-              <div class="avartar-set">
-                <div class="avartar-name">
-                  <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
-                  <p> <%= user.username %> </p>
+               <div class="participants">
+                <% @explore_activity.bookings.each do |booking| %>
+                <% user = User.find(booking.user_id) %>
+                <% if user.photo.attached? %>
+                <div class="avartar-set">
+                  <div class="avartar-name">
+                    <%= link_to cl_image_tag(user.photo.key, class: "avatar"), user_path(user.id) %>
+                    <p> <%= user.username %> </p>
+                  </div>
                 </div>
-              </div>
-              <% else %>
-              <div class="avartar-set">
-                <div class="avartar-name">
-                 <%= user.username %>
-                 <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %></div>
+                <% else %>
+                <div class="avartar-set">
+                  <div class="avartar-name">
+                   <%= user.username %>
+                   <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), user_path(user.id) %></div>
+                 </div>
+                 <% end %>
+                 <% end %>
                </div>
-               <% end %>
-               <% end %>
              </div>
+
+
            </div>
 
 
+           <h2 class="demo"> <%= @explore_activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
+           </div>
          </div>
-
-
-         <h2 class="demo"> <%= @explore_activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
        </div>
      </div>
-   </div>
- </div>
- <div class="btn-container">
-  <%= link_to random_path(current_location: @user_location) do %>
-<i class="fas fa-times-circle"></i>
-  <% end %>
-  <div>
-   <%=link_to activity_path(@explore_activity, current_location: @user_location) do %>
-<i class="fas fa-check-circle"></i>
-   <% end %>
- </div>
+     <div class="btn-container">
+      <%= link_to random_path(current_location: @user_location) do %>
+    <i class="fas fa-times-circle"></i>
+      <% end %>
+      <div>
+       <%=link_to activity_path(@explore_activity, current_location: @user_location) do %>
+    <i class="fas fa-check-circle"></i>
+       <% end %>
+     </div>
+    </div>
+  </div>
 </div>
-</div>
-
 
