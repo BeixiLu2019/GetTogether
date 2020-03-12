@@ -46,7 +46,6 @@
   margin-bottom: 10px;
   overflow: scroll;
   height: calc(100vh - 200px);
-
 }
 
 .chat-message {
@@ -116,6 +115,10 @@
     padding: none;
     font-size: 20px;
   }
+}
+
+.main {
+  flex-grow: 1;
 }
 
 

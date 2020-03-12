@@ -26,7 +26,11 @@
     </div>
   </div>
 
+
   <div class="messages-container">
+    <br>
+    <br>
+    <br>
       <% @sorted_messages.each do |message| %>
       <% message %>
         <%= render "message_partial", message: message, user_is_messages_author: message.user_id == current_user.id %>
@@ -45,7 +49,7 @@
 
   <% content_for :after_js do %>
     <script>
-    scrollLastMessageIntoView();
+    scrolling();
     App["conversation_<%= @conversation.id %>"] = App.cable.subscriptions.create(
       {channel: 'ConversationsChannel', conversation_id: <%= @conversation.id %>},
       {
@@ -54,7 +58,7 @@
             messageContainer = document.querySelector('.messages-container');
             messageContainer.insertAdjacentHTML('beforeend', data.message_par);
             // continue here
-            scrollLastMessageIntoView();
+            scrolling();
           }
         }
       }
