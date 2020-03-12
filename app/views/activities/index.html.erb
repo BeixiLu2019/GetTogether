@@ -1,24 +1,58 @@
-<div class="container">
-  <div class="form-idx">
-    <%= form_tag activities_path, method: :get do %>
-    <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search in a different location" %>
-    <%= select_tag(:category, options_for_select(["🍝 Food & Drinks", "🍻 Nightlife", "🎭 Culture", "🌳 Nature", "🧘‍♀️ Wellness", "🤝 Networking", "📚 Learning", "⛹️‍♀️ Sports"], selected: params[:category]), :include_blank => "Category") %>
-    <% if params[:search].present? %>
-    <%= hidden_field_tag 'search[current_location]', params[:search][:current_location]%>
-    <% end %>
-    <%= button_tag(type: "submit", class: "btn-index btn btn-outline", id: "filter-btn" ) do %>
-    <i class="fas fa-sort-amount-down-alt"></i>
-    <% end %>
-      <button class="btn btn-orange" type='submit' formaction='/random'>Suprise me!</button>
-    <% end %>
-  </div>
+<div class="container-index">
+    <div class="form-idx">
+      <%= form_tag activities_path, method: :get do %>
+      <%= text_field_tag :address, params[:address], class: "form-control", id: "friend_places", placeholder: "Search in a different location" %>
+      <%= select_tag(:category, options_for_select(["🍝 Food & Drinks", "🍻 Nightlife", "🎭 Culture", "🌳 Nature", "🧘‍♀️ Wellness", "🤝 Networking", "📚 Learning", "⛹️‍♀️ Sports"], selected: params[:category]), :include_blank => "Category") %>
+      <% if params[:search].present? %>
+      <%= hidden_field_tag 'search[current_location]', params[:search][:current_location]%>
+      <% end %>
+      <%= button_tag(type: "submit", class: "btn-index btn btn-outline", id: "filter-btn" ) do %>
+      <i class="fas fa-sort-amount-down-alt"></i>
+      <% end %>
+        <button class="btn btn-orange" type='submit' formaction='/random'>Suprise me!</button>
+      <% end %>
+    </div>
 
-  <div class="content-index">
-    <%# demo_counter = 0 %>
-    <% @activities.each do |activity| %>
-    <% if current_user.nil? != true %>
-    <% if activity.datetime > DateTime.now() && activity.bookings.count < activity.capacity && (current_user.bookings.ids & activity.bookings.ids).empty? == true  %>
+    <div class="content-index">
+      <%# demo_counter = 0 %>
+      <% @activities.each do |activity| %>
+      <% if current_user.nil? != true %>
+      <% if activity.datetime > DateTime.now() && activity.bookings.count < activity.capacity && (current_user.bookings.ids & activity.bookings.ids).empty? == true  %>
 
+      <div class="card-trip index-cards">
+        <% activity.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
+        <% end %>
+
+        <div class="card-trip-infos" id="idx-padding">
+          <div class="card-info-index">
+           <h1 class="index-h1"><%= link_to activity.name, activity_path(activity, current_location: @user_location) %></h1>
+           <% if params[:address].present? %>
+           <h6 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h6>
+           <% elsif params[:search].present? %>
+           <h6 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h6>
+           <% else %>
+           <% end %>
+
+           <div class="idx-card-description">
+             <p>
+              <% if activity.bookings.count == 1 %>
+              <%= activity.bookings.count %> person is going
+              <% else %>
+              <%= activity.bookings.count %> people are going
+              <% end %>
+            </p>
+            <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <% end %>
+    <%else %>
+    <% if activity.datetime > DateTime.now() && activity.bookings.count %>
     <div class="card-trip index-cards">
       <% activity.photos.each do |photo| %>
       <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
@@ -36,13 +70,12 @@
 
          <div class="idx-card-description">
            <p>
-
             <% if activity.bookings.count < 1 %>
                Be the first to go!
-            <% else activity.bookings.count == 1 %>
+            <% elsif activity.bookings.count == 1 %>
               <%= activity.bookings.count %> Person is going
-            <%# else %>
-              <%#= activity.bookings.count %>
+            <% else %>
+              <%= activity.bookings.count %> People are going
             <% end %>
           </p>
           <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
@@ -54,50 +87,11 @@
   </div>
 
   <% end %>
-  <%else %>
-  <% if activity.datetime > DateTime.now() && activity.bookings.count %>
-  <div class="card-trip index-cards">
-    <% activity.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fit, :id => "img_index"  %>
-    <% end %>
-
-    <div class="card-trip-infos" id="idx-padding">
-      <div class="card-info-index">
-       <h1 class="index-h1"><%= link_to activity.name, activity_path(activity, current_location: @user_location) %></h1>
-       <% if params[:address].present? %>
-       <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(params[:address])).round(1) %> km away</h2>
-       <% elsif params[:search].present? %>
-       <h2 id="index-km"> <%= Geocoder::Calculations.distance_between(activity.to_coordinates, Geocoder.coordinates(@user_location)).round(1) %> km away</h2>
-       <% else %>
-       <% end %>
-
-       <div class="idx-card-description">
-         <p>
-            <% if activity.bookings.count < 1 %>
-               Be the first to go!
-            <% elsif activity.bookings.count == 1 %>
-              <%= activity.bookings.count %> Person is going
-            <% else %>
-              <%= activity.bookings.count %> People are going
-            <% end %>
-        </p>
-        <h2 class="demo"> <%= activity.datetime.strftime("%b %e, %Y %H:%M:%S") %></h2>
-
-      </div>
-    </div>
-
+  <% end %>
+  <% end %>
   </div>
 </div>
 
-<% end %>
-<% end %>
-<% end %>
-</div>
-</div>
-
 <br>
 <br>
 <br>
-
-
-

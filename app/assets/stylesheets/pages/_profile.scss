@@ -7,9 +7,18 @@
   i {
     margin-right: 5px;
   }
+  p {
+    font-size: 18px;
+  }
 }
 
 .profile-name {
+  border-radius: 15px;
+  background: url(https://res.cloudinary.com/dvpcxhofq/image/upload/v1583948509/background3_sce0r6.png) no-repeat center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,8 +34,7 @@
 }
 
 .reviews {
-  padding-top:20px;
-  padding-left: 15px;
+  padding-top: 20px;
   border-top: 1px solid $light-gray;
 
   h4 {
@@ -48,6 +56,7 @@
 
 .event-rating {
   margin-top: 25px;
+  margin-bottom: 10px;
 }
 
 .single-activity {
