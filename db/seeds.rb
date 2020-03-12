@@ -49,7 +49,7 @@ user = User.create!(
   password: "000000",
   birthday: Date.new(1984,11,29),
   bio: "Everything under control",
-  interest: "Music",
+  interest: "Music"
   )
 user.photo.attach(io: file, filename: 'photo')
 
@@ -62,7 +62,7 @@ user1 = User.create!(
   password: "000000",
   birthday: Date.new(1990,06,24),
   bio: "I know where to go",
-  interest: "Tech",
+  interest: "Tech"
   )
   user1.photo.attach(io: file1, filename: 'photo1')
 
@@ -75,7 +75,7 @@ user = User.create!(
   password: "000000",
   birthday: Date.new(1988,07,06),
   bio: "I love sweets",
-  interest: "Cooking healty",
+  interest: "Cooking healty"
   )
   user.photo.attach(io: file, filename: 'photo')
 
@@ -88,7 +88,7 @@ user = User.create!(
   password: "000000",
   birthday: Date.new(1986,10,11),
   bio: "Designing like a boss",
-  interest: "I like to dance disco music",
+  interest: "I like to dance disco music"
   )
   user.photo.attach(io: file, filename: 'photo')
 
@@ -167,10 +167,9 @@ activity = Activity.create!(
   description: 'Join me at the best restaurant in Berlin!',
   address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
+  datetime: DateTime.now() - 1.0,
   capacity: 3,
   user_id: User.first.id,
-  # photos: ["cqmszae8rere14lnciwy"]
   )
   activity.photos.attach(io: file, filename: 'photo')
 
@@ -180,114 +179,142 @@ activity = Activity.create!(
   description: 'Move your body with me playing tennis. I am not very good. ',
   address: "Cantianstr. 24, 10437 Berlin",
   category: "⛹️‍♀️ Sports",
-  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
+  datetime: DateTime.now() - 1.5,
   capacity: 2,
   user_id: User.first.id,
   )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253420/Berta_Block_vtnhva.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583944036/Activities/photo-1564769662533-4f00a87b4056_kv0baq.jpg')
 activity = Activity.create!(
   name: 'Bouldering at Berta Block',
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "⛹️‍♀️ Sports",
-  datetime: DateTime.new(2020, 03, 11, 16, 30, 0),
+  datetime: DateTime.now() + 1.75/24,
   capacity: 5,
-  user_id: User.last.id)
+  user_id: User.last.id,
+  )
   activity.photos.attach(io: file, filename: 'photo')
 
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583841094/Italien_food_cgiwta.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/Italien_food_cgiwta.jpg')
 activity = Activity.create!(
   name: 'Mädchenitaliener',
   description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
   address: "Alte Schönhauser Str. 12, 10119 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.new(2020, 03, 10, 18, 00, 0),
+  datetime: DateTime.now() + 3.3/24,
   capacity: 4,
-  user_id: User.last.id)
+  user_id: User.last.id,
+  )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583253419/Yoga_erxj9j.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/Yoga_erxj9j.jpg')
 activity =Activity.create!(
   name: 'Yoga at Jivamukti Yoga Berlin',
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
   category: "🧘‍♀️ Wellness",
-  # datetime: DateTime.new(2020, 03, 11, 9, 30, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.now() + 3.2/24,
   capacity: 3,
   user_id: User.last.id - 1)
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583841094/Italien_food_cgiwta.jpg')
-activity = Activity.create!(
-  name: 'Mädchenitaliener',
-  description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
-  address: "Alte Schönhauser Str. 12, 10119 Berlin",
-  category: "🍝 Food & Drinks",
-  datetime: DateTime.new(2020, 03, 11, 18, 00, 0),
-  capacity: 4,
-  user_id: User.last.id)
-  activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583931218/fleamarket_xbqij6.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947225/Activities/photo-1488841714725-bb4c32d1ac94_ziy2y7.jpg')
 activity = Activity.create!(
   name: 'Fleamarket',
   description: 'Anyone who woul like to join me on a stroll through a fleamarket? 🤗',
   address: "Am Kupfergraben 3, 10117 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.new(2020, 03, 11, 18, 00, 0),
+  datetime: DateTime.now() + 3.1/24,
   capacity: 4,
   user_id: User.first.id)
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583248180/BtHrsTQUiNBDGrVzgsyGo7cQ.jpg')
-activity = Activity.create!(
-  name: 'Dinner at mine',
-  description: "Let's cook together in my kitchen!" ,
-  address: " Grünberger Straße, 10245 Berlin",
-  category: "🍝 Food & Drinks",
-  datetime: DateTime.new(2020, 03, 11, 18, 30, 0),
-  capacity: 3,
-  user_id: User.last.id)
-  activity.photos.attach(io: file, filename: 'photo')
-
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583512582/sywK1V66gr1zzvG7U3yH5ksh.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/sywK1V66gr1zzvG7U3yH5ksh.jpg')
 activity = Activity.create!(
   name: 'Kater Blau',
   description: "Let's dance the night awayyyyyy in one of Berlin's most famous clubs!" ,
   address: "Holzmarktstraße 25, 10243 Berlin",
   category: "🍻 Nightlife",
-  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
+  datetime: DateTime.now() + 1.98/24,
   capacity: 3,
-  user_id: User.last.id - 2)
+  user_id: User.last.id - 2,
+  )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583513120/vhZSccAcPdi2pdQCYcAnJHEz.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/vhZSccAcPdi2pdQCYcAnJHEz.jpg')
 activity = Activity.create!(
   name: 'Cacao Ceremony',
   description: "Anyone keen on trying out a Cacao Ceremony with me? Cacao is a gentle for people to expirience awakening that is totally safe and accessible. Did one in Bali and loved it!😍" ,
   address: "Rosenthaler Str. 36, 10178 Berlin",
   category: "🧘‍♀️ Wellness",
-  datetime: DateTime.new(2020, 03, 11, 19, 30, 0),
+  datetime: DateTime.now() + 2.98/24,
   capacity: 3,
-  user_id: User.first.id + 1)
+  user_id: User.first.id + 1,
+  )
   activity.photos.attach(io: file, filename: 'photo')
 
-file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583858578/brunch_tllgjv.jpg')
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583243051/brunch_tllgjv.jpg')
 activity = Activity.create!(
-  name: 'Party Brunchhhhhh',
+  name: 'Party Brunch',
   description: "Brunch Event -'Sorry Mama' - have heard lots about it and would love to check it out!" ,
   address: "Heidestraße 62, 10557 Berlin, Germany",
   category: "🍻 Nightlife",
-  # datetime: DateTime.new(2020, 03, 11, 11, 30, 0),
-  datetime: DateTime.now() + 1.0/12,
+  datetime: DateTime.now() - 1,
   capacity: 3,
-  user_id: User.last.id)
-  activity.photos.attach(io: file, filename: 'photo')
+  user_id: User.last.id,
+  )
+activity.photos.attach(io: file, filename: 'photo')
 
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947765/Activities/jh-dig-2012-10-28-6142-w614xh345-cutout_utwjju.jpg')
+activity = Activity.create!(
+  name: 'Discover GDR memorial',
+  description: "Get in touch with history of Berlin by walking along the memorial in Bernauer",
+  address: "Bernauer Str. 111, 13355 Berlin",
+  category: "🎭 Culture",
+  datetime: DateTime.now() + 3.58/24,
+  capacity: 10,
+  user_id: User.first.id + 2,
+  )
+activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947775/Activities/photo-1536091987692-0b4d0b507a89_zehqes.jpg')
+activity = Activity.create!(
+  name: 'Second Hand shopping in Mauerpark',
+  description: "Shop with me on the infamous fleemarket in Prenzalauer Berg",
+  address: "Am Falkplatz 1, 10437 Berlin",
+  category: "🤝 Networking",
+  datetime: DateTime.now() - 1.8,
+  capacity: 3,
+  user_id: User.first.id + 3,
+  )
+activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583947867/Activities/photo-1561587327-41f8d18f71df_g9lfoi.jpg')
+activity = Activity.create!(
+  name: 'Explore Institute for Contemporary Art',
+  description: "Check out the newest exibition of Paola Condelo with me" ,
+  address: "Auguststraße 69, 10117 Berlin",
+  category: "🎭 Culture",
+  datetime: DateTime.now() + 2.48/24,
+  capacity: 3,
+  user_id: User.first.id + 2,
+  )
+activity.photos.attach(io: file, filename: 'photo')
+
+file = URI.open('https://res.cloudinary.com/dvpcxhofq/image/upload/v1583948045/Activities/photo-1574091187948-740f1a90b6c2_a4tzla.jpg')
+activity = Activity.create!(
+  name: 'Walk in Humboldthain with my dog Otto and me',
+  description: "My beautiful dog Otto and me will be out to enjoy weather outside. Join us with your dog!" ,
+  address: "Brunnenstraße 91, 13355 Berlin",
+  category: "🌳 Nature",
+  datetime: DateTime.now() + 1.98/24,
+  capacity: 4,
+  user_id: User.first.id + 3,
+  )
+activity.photos.attach(io: file, filename: 'photo')
 
 puts 'Activities created'
 ()
