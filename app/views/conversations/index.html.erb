@@ -14,29 +14,29 @@
       <% end %>
 
       <!-- Conversation card -->
+      <%= link_to conversation_path(conversation) do %>
         <div class="card-conversation">
           <div class="avatar-me">
             <div class="avatar-position">
               <% if chat_partner.photo.attached? %>
-                <%= link_to cl_image_tag(chat_partner.photo.key, class: "avatar"), conversation_path(conversation) %>
+                <%= cl_image_tag(chat_partner.photo.key, class: "avatar") %>
               <% else %>
-                <%= link_to cl_image_tag("img_264570_wuw5yx", class: "avatar"), conversation_path(conversation) %>
+                <%= cl_image_tag("img_264570_wuw5yx", class: "avatar") %>
               <% end %>
             </div>
-            <div class="main">
-              <div class="activity">
-                <%= link_to chat_partner.username, conversation_path(conversation) %> <!-- for
-                <%#= Activity.find(conversation.activity_id).name%> -->
-              </div>
-              <div class="last-message">
-                <p>
-                  <%= link_to conversation.messages.last.body[0..28], conversation_path(conversation) %>
-                  <!-- 3 dots for longer messages -->
-                  <% if conversation.messages.last.body.size > 28 %>
-                    ...
-                  <% end %>
-                </p>
-              </div>
+          </div>
+          <div class="main">
+            <div class="activity">
+              <%= chat_partner.username %>
+            </div>
+            <div class="last-message">
+              <p>
+                <%= conversation.messages.last.body[0..24] %>
+                <!-- 3 dots for longer messages -->
+                <% if conversation.messages.last.body.size > 24 %>
+                  ...
+                <% end %>
+              </p>
             </div>
           </div>
           <!-- Button for new messages -->
@@ -58,6 +58,7 @@
             <%#=  link_to "Delete", conversation_path(conversation), method: "Delete" %>
           </div> -->
         </div>
+      <% end %>
     <% end %>
 </div>
 
