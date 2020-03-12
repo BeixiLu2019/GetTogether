@@ -3,8 +3,7 @@
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
-  padding-right: 65px;
-  padding-left: 65px;
+  padding: 0px 35px 40px 35px;
 
   .btn-orange.random {
     // width: 120%;
@@ -45,7 +44,7 @@ div.avatars-dashboard.random-avatars {
   padding-bottom: 10px;
   background-color: #f5ece6;
   border-radius: 10px;
-  height: 65vh;
+  // height: 65vh;
   h3 {
     margin-top: 10px;
     color: #5b6175;
