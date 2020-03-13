@@ -195,7 +195,7 @@ activity = Activity.create!(
   description: 'Come boulder with me!',
   address: "Mühlenstraße 62, 13187 Berlin",
   category: "⛹️‍♀️ Sports",
-  datetime: DateTime.now() + 1.75/24,
+  datetime: DateTime.now() + 4.75/24,
   capacity: 5,
   user_id: User.first.id + 6,
   )
@@ -207,7 +207,7 @@ activity = Activity.create!(
   description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
   address: "Alte Schönhauser Str. 12, 10119 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.now() + 3.3/24,
+  datetime: DateTime.now() + 4.3/24,
   capacity: 4,
   user_id: User.first.id + 3,
   )
@@ -219,7 +219,7 @@ activity =Activity.create!(
   description: "Let's do Yoga together!" ,
   address: " Brunnenstraße 29, 10119 Berlin",
   category: "🧘‍♀️ Wellness",
-  datetime: DateTime.now() + 3.2/24,
+  datetime: DateTime.now() + 5.2/24,
   capacity: 3,
   user_id: User.first.id + 4,
   )
@@ -231,7 +231,7 @@ activity = Activity.create!(
   description: 'Anyone who woul like to join me on a stroll through a fleamarket? 🤗',
   address: "Am Kupfergraben 3, 10117 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.now() + 3.1/24,
+  datetime: DateTime.now() + 6.1/24,
   capacity: 4,
   user_id: User.first.id + 5
   )
@@ -243,7 +243,7 @@ activity = Activity.create!(
   description: "Let's dance the night awayyyyyy in one of Berlin's most famous clubs!" ,
   address: "Holzmarktstraße 25, 10243 Berlin",
   category: "🍻 Nightlife",
-  datetime: DateTime.now() + 1.98/24,
+  datetime: DateTime.now() + 5.28/24,
   capacity: 3,
   user_id: User.first.id + 6,
   )
@@ -255,7 +255,7 @@ activity = Activity.create!(
   description: "Anyone keen on trying out a Cacao Ceremony with me? Cacao is a gentle for people to expirience awakening that is totally safe and accessible. Did one in Bali and loved it!😍" ,
   address: "Rosenthaler Str. 36, 10178 Berlin",
   category: "🧘‍♀️ Wellness",
-  datetime: DateTime.now() + 2.98/24,
+  datetime: DateTime.now() + 5.48/24,
   capacity: 3,
   user_id: User.first.id + 7,
   )
@@ -268,7 +268,7 @@ activity = Activity.create!(
   description: "Get in touch with history of Berlin by walking along the memorial in Bernauer",
   address: "Bernauer Str. 111, 13355 Berlin",
   category: "🎭 Culture",
-  datetime: DateTime.now() + 3.58/24,
+  datetime: DateTime.now() + 5.38/24,
   capacity: 10,
   user_id: User.first.id + 8,
   )
@@ -280,7 +280,7 @@ activity = Activity.create!(
   description: "Everything about the evolution of and on our planet!Let's explore that together:)" ,
   address: "U Naturkundemuseum, 10115 Berlin",
   category: "🎭 Culture",
-  datetime: DateTime.now() + 3.48/24,
+  datetime: DateTime.now() + 5.28/24,
   capacity: 3,
   user_id: User.first.id + 5,
   )
@@ -292,7 +292,7 @@ activity = Activity.create!(
   description: "My beautiful dog Otto and me will be out to enjoy weather outside. Join us with your dog!" ,
   address: "Brunnenstraße 91, 13355 Berlin",
   category: "🌳 Nature",
-  datetime: DateTime.now() + 1.98/24,
+  datetime: DateTime.now() + 5.98/24,
   capacity: 4,
   user_id: User.first.id + 6,
   )
