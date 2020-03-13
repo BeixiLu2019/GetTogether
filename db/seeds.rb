@@ -207,7 +207,7 @@ activity = Activity.create!(
   description: 'Who wants to join in on italien food? This place is the besteeeest! super hungry so keen to go earlier too haha',
   address: "Alte Schönhauser Str. 12, 10119 Berlin",
   category: "🍝 Food & Drinks",
-  datetime: DateTime.now() + 4.3/24,
+  datetime: DateTime.now() + 5.3/24,
   capacity: 4,
   user_id: User.first.id + 3,
   )
@@ -280,7 +280,7 @@ activity = Activity.create!(
   description: "Everything about the evolution of and on our planet!Let's explore that together:)" ,
   address: "U Naturkundemuseum, 10115 Berlin",
   category: "🎭 Culture",
-  datetime: DateTime.now() + 5.28/24,
+  datetime: DateTime.now() + 6.28/24,
   capacity: 3,
   user_id: User.first.id + 5,
   )
