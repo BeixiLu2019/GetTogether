@@ -280,7 +280,7 @@ activity = Activity.create!(
   description: "Everything about the evolution of and on our planet!Let's explore that together:)" ,
   address: "U Naturkundemuseum, 10115 Berlin",
   category: "🎭 Culture",
-  datetime: DateTime.now() + 2.48/24,
+  datetime: DateTime.now() + 3.48/24,
   capacity: 3,
   user_id: User.first.id + 5,
   )
@@ -464,7 +464,7 @@ Review.create!(
 
 Review.create!(
   booking_id: Booking.first.id + 5,
-  content: "A spontaneous sports night! I don't play very well but Hammi was very helpful!",
+  content: "A spontaneous sports night! I don't play very well but Anna was very helpful!",
   activity_rating: 5
   )
 
